@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-laxfantasymobile-dev-31cee-authRole",
+      "UnauthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxfantasymobile-dev-31cee-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxfantasymobile-dev-31cee-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-laxfantasymobile-dev-31cee-deployment",
+      "UnauthRoleName": "amplify-laxfantasymobile-dev-31cee-unauthRole",
+      "StackName": "amplify-laxfantasymobile-dev-31cee",
+      "StackId": "arn:aws:cloudformation:us-east-1:442042506404:stack/amplify-laxfantasymobile-dev-31cee/7554e2a0-c3bc-11ef-90f9-0affe25c9dd5",
+      "AmplifyAppId": "d3m1qndb8pq1yz"
+    },
+    "categories": {
+      "auth": {
+        "laxfantasymobile8f023552": {}
+      }
+    }
+  }
+}
