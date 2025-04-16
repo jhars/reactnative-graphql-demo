@@ -2,6 +2,19 @@ import axios from 'axios';
 import { app } from '../../appConfig';
 import { OrderedStatsArgs } from '../actions/playersOrderedByStatisticAction';
 
+
+// export const getPlayersGQL = async () => {
+// 	console.log("========STARTING GET PLAYERS GQL============");
+// 	try {		
+// 		const response = await axios.get("https://fantasy-lax-api-71359d347c0a.herokuapp.com/players");
+// 		// const response = await axios.get("localhost:3000/players");
+// 		return response.data
+// 	} catch(error) {
+// 		console.log(error);
+// 		throw error
+// 	}
+// }
+
 export const getPlayers = async () => {
 	console.log("========STARTING GET PLAYERS============");
 	try {		
