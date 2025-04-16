@@ -11,6 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 const TeamRow = ({team}) => {
   const navigation = useNavigation();
 
+  console.log("===== team =====")
+  console.log(team)
+  console.log("==========")
 	const {
 		name
 	} = team;
