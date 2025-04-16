@@ -4,28 +4,33 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+// import {useDispatch, useSelector} from 'react-redux';
 
 const PlayerRow = ({indPlayerStats}) => {
 
+	// const {
+	// 	Jersey,
+	// 	FirstName,
+	// 	LastName,
+	// 	goals,
+	// 	assists,
+	// 	points
+	// } = indPlayerStats;
+
 	const {
-		Jersey,
-		FirstName,
-		LastName,
-		goals,
-		assists,
-		points
+		lastName,
+		jersey,
+		statistics
 	} = indPlayerStats;
 
 	return(
 		<View style={styles.container}>
-			<Text style={styles.numberColumn}>{Jersey}</Text>
+			<Text style={styles.numberColumn}>{jersey}</Text>
 			<View style={styles.nameColumn}>
-				<Text>{FirstName}</Text>
-				<Text>{LastName}</Text>
+				<Text>{lastName}</Text>
 			</View>
 			<View style={styles.pointsColumn}>
-				<Text>{points}</Text>
+				<Text>{statistics.statLineLastSeason.points}</Text>
 			</View>
 		</View>
 	);

@@ -9,25 +9,49 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import store from './src/reducers/store';
 
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import {Navigation} from './src/navigation'
 
 Amplify.configure(config);
 
-//can i pass props of user id, username to navigation comppnent?
+const client = new ApolloClient({
+  // uri: 'https://lax-api-04-15d23fe6df01.herokuapp.com/graphql',
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
+});
+
 
 function App() {
   return (
-    <Provider store={store}>
-      <Authenticator.Provider>
-        <Authenticator>
-          <SafeAreaProvider>
-            <Navigation />
-          </SafeAreaProvider>      
-        </Authenticator>
-      </Authenticator.Provider>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <Authenticator.Provider>
+          <Authenticator>
+            <SafeAreaProvider>
+              <Navigation />
+            </SafeAreaProvider>      
+          </Authenticator>
+        </Authenticator.Provider>
+      </Provider>
+     </ApolloProvider>
   );
 }
+
+//can i pass props of user id, username to navigation comppnent?
+// function App() {
+//   return (
+//     <Provider store={store}>
+//       <Authenticator.Provider>
+//         <Authenticator>
+//           <SafeAreaProvider>
+//             <Navigation />
+//           </SafeAreaProvider>      
+//         </Authenticator>
+//       </Authenticator.Provider>
+//     </Provider>
+//   );
+// }
 
 export default App;
 
