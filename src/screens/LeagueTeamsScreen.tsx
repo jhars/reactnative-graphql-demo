@@ -7,6 +7,12 @@ import TeamsList from '../components/TeamsList';
 // import {fetchTeamsByUserAction} from '../actions/teamsAction';
 // import {fetchTeamsByLeagueAction} from '../actions/teamsByLeagueAction';
 
+//==== GraphQL ========
+import { useQuery } from '@apollo/client';
+import { GET_TEAM_ROSTER } from '../data/queries';
+import { Teams, RosterForTeamVars } from '../types';
+//=====================
+
 export default function LeagueTeamsScreen({route}) {
   const navigation = useNavigation();
 
@@ -16,15 +22,15 @@ export default function LeagueTeamsScreen({route}) {
 
   // const [userTeamInLeague, setUserTeamInLeague] = useState(null);
 
-  // const dispatch = useDispatch();
-
   useEffect(()=>{
-    // dispatch(fetchTeamsByLeagueAction(route.params.league.id))
     navigation.setOptions({
           title: route.params.league.title,
         });
     }, []);
 
+  console.log("route.params: ")
+  console.log(route.params)
+  console.log("route.params")
   return (
     <TeamsList teams={route.params.league.teams} leagueTitle={route.params.league.title} />
   );

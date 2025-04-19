@@ -1,67 +1,49 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPlayersAction} from '../actions/playerAction';
 import {fetchPlayersByStatisticAction} from '../actions/playersOrderedByStatisticAction';
-import PlayerRow from './PlayerRow';
+import RosterRow from './RosterRow';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
-export default function TeamPlayerList({players}) {
-
-  [teamPlayers, setTeamPlayers] = useState(players)
-
-	const [ columns, setColumns ] = useState([
-    "Number",
-    "Name",
-    "Points",
-  ])
-
-  console.log("TeamPlayerList => players")
-  console.log(teamPlayers)
-
-  const [ selectedColumn, setSelectedColumn ] = useState(null)
-
-	const dispatch = useDispatch();
-
-	const sortTable = (column) => {
-	}
-	
-	useEffect(()=>{
-    setTeamPlayers(players)
-	}, []);
+export default function RosterList({roster}) {
 
 	const tableHeader = () => (
 	  <View style={styles.tableHeader}>
 
-		  <View style={styles.numberColumnHeader} >
-		  	<Text style={styles.columnHeaderTxt}>#</Text>	
+		  <View style={styles.positionColumnHeader} >
+		  	<Text style={styles.columnHeaderTxt}>Position</Text>	
 		  </View>
 
 		  <TouchableOpacity 
-		    style={styles.nameColumnHeader} 
-		    onPress={()=> sortTable('Name')}>
-		    <Text style={styles.columnHeaderTxt}>{'Name' + " "}</Text>
+		    style={styles.nameColumnHeader}>
+		    <Text style={styles.columnHeaderTxt}>{'Name'}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
-		    style={styles.pointsColumnHeader} 
-		    onPress={()=> sortTable('Points')}>
-		    <Text style={styles.columnHeaderTxt}>{'Points' + " "}</Text>
+		    style={styles.pointsColumnHeader}>
+		    <Text style={styles.columnHeaderTxt}>{'Points'}</Text>
 		  </TouchableOpacity>
 
 	  </View>
 	)
 
-	return(
-  			<View>
-  				<FlatList
-  					ListHeaderComponent={tableHeader}
-  					stickyHeaderIndices={[0]}
-  				  data={teamPlayers}
-  				  renderItem={({item}) => <PlayerRow indPlayerStats={item} />}
-  	      />	
-  			</View>
-	);
+  return (
+    <View>
+      {tableHeader()}
+      <ScrollView>
+        <RosterRow position={"G"} playerInfo={roster.goalie}/>
+        <RosterRow position={"D"} playerInfo={roster.defense1}/>
+        <RosterRow position={"D"} playerInfo={roster.defense2}/>
+        <RosterRow position={"LSM"} playerInfo={roster.lsm}/>
+        <RosterRow position={"FO"} playerInfo={roster.fo}/>
+        <RosterRow position={"M"} playerInfo={roster.midfield1}/>
+        <RosterRow position={"M"} playerInfo={roster.midfield2}/>
+        <RosterRow position={"A"} playerInfo={roster.attack1}/>
+        <RosterRow position={"A"} playerInfo={roster.attack2}/>
+      </ScrollView>      
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -84,13 +66,13 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems:"center",
   },
-  numberColumnHeader: {
+  positionColumnHeader: {
     alignItems:"left",
   },
   nameColumnHeader: {
     justifyContent: "flex-start",
     alignItems:"center",
-    paddingLeft: 20
+    paddingLeft: 25
   },
   pointsColumnHeader: {
   	flex: 2,

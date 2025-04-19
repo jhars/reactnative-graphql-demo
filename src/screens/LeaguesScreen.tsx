@@ -29,9 +29,6 @@ export default function LeaguesScreen() {
   //=====================
 
   //JH-NOTE: logic for no leeagues
-  console.log("leagues data")
-  console.log(data)
-  console.log("==========")
 
   return(
     <LeaguesList leagues={data?.leagues} />

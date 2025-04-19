@@ -4,28 +4,23 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-// import {useDispatch, useSelector} from 'react-redux';
 
 const PlayerRow = ({indPlayerStats}) => {
-
-	// const {
-	// 	Jersey,
-	// 	FirstName,
-	// 	LastName,
-	// 	goals,
-	// 	assists,
-	// 	points
-	// } = indPlayerStats;
 
 	const {
 		lastName,
 		jersey,
+		position,
 		statistics
 	} = indPlayerStats;
 
 	return(
 		<View style={styles.container}>
-			<Text style={styles.numberColumn}>{jersey}</Text>
+
+			<View style={styles.positionColumn}>
+			  <Text style={styles.positionText}>{position}</Text>  
+			</View>
+
 			<View style={styles.nameColumn}>
 				<Text>{lastName}</Text>
 			</View>
@@ -42,25 +37,25 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     backgroundColor: '#fff',
-    alignItems: 'left',
     height: 50,
     paddingLeft: 15,
     paddingTop:30,
+    paddingRight: 80,
   },
-  numberColumn: {
-    alignItems:"left",
+  positionColumn: {
+    flex:1,
+    flexGrow: 3,
+  },
+  positionText: {
+    textAlign: 'center'
   },
   nameColumn: {
-    alignItems:"center",
-    paddingLeft: 20,
-    flexDirection: "row",
+    flex:1,
+    flexGrow: 10,
+    paddingLeft: 50,
   },
   pointsColumn: {
-  	flex: 2,
-  	flexDirection: "row",
-  	justifyContent: "flex-end",
-  	alignItems: 'center',
-  	paddingRight: 80
+    flex:1,
+    alignItems: 'flex-end'
   },
-
 });

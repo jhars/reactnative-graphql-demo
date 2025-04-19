@@ -7,29 +7,40 @@ import PlayerRow from '../components/PlayerRow';
 
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
-import { GET_ALL_PLAYERS } from '../data/queries';
+import { GET_SORTED_PLAYERS } from '../data/queries';
 import { Players } from '../types';
 //=====================
 
 export default function AllPlayersScreen() {
 
-	//==== GraphQL ======== 
-	const { loading, error, data } = useQuery<Players>(GET_ALL_PLAYERS);
-	if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
-	if (error) return <Text>Error: {error.message}</Text>;
-	//=====================
-	
+
 	//pass in players from parent component
 	const [ columns, setColumns ] = useState([
-    "Number",
+    "Position",
     "Name",
     "Points",
   ])
 
   const [ selectedColumn, setSelectedColumn ] = useState(null)
-  const [ poinstsSortDirection, setPoinstsSortDirection ] = useState('ASC')
+  const [ pointsSortDirection, setPoinstsSortDirection ] = useState('DESC')
+  const [ positionSortDirection, setPositionSortDirection ] = useState('ASC')
   const [ nameSortDirection, setNameSortDirection ] = useState('ASC')
 
+
+
+  //==== GraphQL ======== 
+	const { loading, error, data, refetch } = useQuery<Players>(GET_SORTED_PLAYERS, {
+		variables: {
+		  "orderBy": {
+		    "field": "points",
+		    "order": pointsSortDirection
+		  }
+		}
+	});
+	if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+	if (error) return <Text>Error: {error.message}</Text>;
+	//=====================
+	
   const playerList = data.players;
 
   //JH-NOTE: Old Redux
@@ -38,6 +49,7 @@ export default function AllPlayersScreen() {
 	// const searchPlayers = () => {
 	//   dispatch(fetchPlayersByStatisticAction({stat: 'points', order: poinstsSortDirection}))
 	// }
+
 	// useEffect(()=>{
 	//   searchPlayers();
 	// }, []);
@@ -50,22 +62,31 @@ export default function AllPlayersScreen() {
 	  	sortStat = "lastName"
 	  	order = nameSortDirection
 	  	setNameSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
-	  } else {
+	  } else if (column == "Position") {
 	  	sortStat = column.toLowerCase()
-	  	order = poinstsSortDirection
+	  	// order = poinstsSortDirection
+	  	order = positionSortDirection
+	  	setPositionSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
+	  } else if (column == "Points") {
+	  	sortStat = column.toLowerCase()
+	  	order = pointsSortDirection
+	  	// order = positionSortDirection
 	  	setPoinstsSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
 	  }
 	  //JH-NOTE: Old Redux
 	  // dispatch(fetchPlayersByStatisticAction({stat: sortStat, order: order}))
+	  refetch({"orderBy": {"field": sortStat, "order": order}})
 	}
 
 
 	const tableHeader = () => (
 	  <View style={styles.tableHeader}>
 
-		  <View style={styles.numberColumnHeader} >
-		  	<Text style={styles.columnHeaderTxt}>#</Text>	
-		  </View>
+		  <TouchableOpacity 
+		    style={styles.positionColumnHeader} 
+		    onPress={()=> sortTable('Position')}>
+		  	<Text style={styles.columnHeaderTxt}>{'Position' + " ▲▼"}</Text>
+		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		    style={styles.nameColumnHeader} 
@@ -74,8 +95,8 @@ export default function AllPlayersScreen() {
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
-		    style={styles.pointsColumnHeader} 
-		    onPress={()=> sortTable('Points')}>
+		  	style={styles.pointsColumnHeader}
+		  	onPress={()=> sortTable('Points')}>
 		    <Text style={styles.columnHeaderTxt}>{'Points' + " ▲▼"}</Text>
 		  </TouchableOpacity>
 
@@ -114,7 +135,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems:"center",
   },
-  numberColumnHeader: {
+  positionColumnHeader: {
     alignItems:"left",
   },
   nameColumnHeader: {

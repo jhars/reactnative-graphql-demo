@@ -7,6 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function TeamsList({teams}) {
 
+	console.log("teams: ")
+	console.log(teams)
+	console.log("========")
+
  	return(
 	    <View style={styles.container}>
 	      <FlatList

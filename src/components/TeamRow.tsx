@@ -11,23 +11,18 @@ import { useNavigation } from '@react-navigation/native';
 const TeamRow = ({team}) => {
   const navigation = useNavigation();
 
-  console.log("===== team =====")
-  console.log(team)
-  console.log("==========")
 	const {
 		name
 	} = team;
 
   return(
     <View style={styles.container}>
-      <Button onPress={() => navigation.navigate('TeamPlayersScreen', {team: team})}>
+      <Button onPress={() => navigation.navigate('RosterScreen', { team: team})}>
         {name}
       </Button>
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {

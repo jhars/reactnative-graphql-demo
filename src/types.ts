@@ -2,6 +2,12 @@ export type ById<T> = { [index: string]: T };
 
 interface StatLine {
   points: number;
+  goals: number;
+  assists: number;
+  turnovers: number;
+  groundBalls: number;
+  faceoffsWon: number;
+  saves: number;
 }
 
 interface Statistics {
@@ -24,22 +30,6 @@ export interface Players {
   data: PlayerData;
 }
 
-// export interface Player {
-//   id: number;
-//   Jersey: string;
-//   FirstName: string;
-//   LastName: string;
-//   goals: number;
-//   assists: number;
-// }
-
-// interface League {
-//   id: serial;
-//   title: string;
-//   memberTeams: serial[];
-//   leagueOwner: serial;
-// }
-
 interface League {
   id: serial;
   title: string;
@@ -54,24 +44,10 @@ interface Leagues {
   data: LeagueData;
 }
 
-// export interface Team {
-//   id: serial;
-//   name: string;
-//   belongsToLeague: serial;
-//   teamOwner: serial;
-//   players: number[]
-// }
-
-// JH-NOTE: Add Roster Fetching Fields Here
 export interface Team {
-  id: serial;
+  id: string;
   name: string;
 }
-
-// export interface Teams {
-//   [key: string]: Team
-// }
-//JH-NOTE: this naming convention is confusing
 
 interface TeamData {
   teams: Team[]
@@ -81,8 +57,25 @@ export interface Teams {
   data: TeamData
 }
 
-export interface RosterForTeamVars {
-  teamsId: number;
+export interface Roster {
+  teamId: number;
+  goalie: Player;
+  defense1: Player;
+  defense2: Player;
+  lsm: Player;
+  fo: Player;
+  midfield1: Player;
+  midfield2: Player;
+  attack1: Player;
+  attack2: Player;
+}
+
+interface RosterData {
+  roster: Roster;
+}
+
+export interface Roster {
+  data: RosterData;
 }
 
 //============================

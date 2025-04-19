@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import MyTeamsScreen from '../screens/MyTeamsScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
-import TeamPlayersScreen from '../screens/TeamPlayersScreen';
+import RosterScreen from '../screens/RosterScreen';
 import CreateNewTeamScreen from '../screens/CreateNewTeamScreen';
 import CreateNewTeamConfirmation from '../screens/CreateNewTeamConfirmation';
 import AllPlayersScreen from '../screens/AllPlayersScreen';
@@ -38,6 +38,7 @@ export const Navigation = () => {
       <LeagueStack.Navigator>
         <LeagueStack.Screen options={{ headerShown: false }} name="LeaguesScreen" component={LeaguesScreen} />
         <LeagueStack.Screen name="LeagueTeamsScreen" component={LeagueTeamsScreen} />
+        <LeagueStack.Screen name="RosterScreen" component={RosterScreen} />
       </LeagueStack.Navigator>
     );
   }
@@ -46,7 +47,7 @@ export const Navigation = () => {
     return (
       <TeamsStack.Navigator>
         <TeamsStack.Screen options={{ headerShown: false }} name="UserTeams" component={MyTeamsScreen} />
-        <TeamsStack.Screen name="TeamPlayersScreen" component={TeamPlayersScreen} />
+        <TeamsStack.Screen name="RosterScreen" component={RosterScreen} />
         <TeamsStack.Screen name="CreateNewTeamScreen" component={CreateNewTeamScreen} />
         <TeamsStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} />
       </TeamsStack.Navigator>
