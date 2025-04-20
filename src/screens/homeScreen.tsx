@@ -2,14 +2,17 @@ import React, {useEffect} from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';//JH: should i dispatch a signout action?
 import { useAuthenticator } from '@aws-amplify/ui-react-native';
 
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const {user} = useAuthenticator((context) => context.user);
+  const {user} = useAuthenticator((context) => [context.user]);
+
+  // console.log("AWS Cognito User (from userAuthenricator):")
+  // console.log(user)
+  // console.log("AWS AWS AWS AWS AWS AWS AWS AWS AWS AWS AWS")
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

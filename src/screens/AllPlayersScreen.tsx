@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-// import {useDispatch, useSelector} from 'react-redux';
-// import {fetchPlayersAction} from '../actions/playerAction';
-// import {fetchPlayersByStatisticAction} from '../actions/playersOrderedByStatisticAction';
 import PlayerRow from '../components/PlayerRow';
 
 //==== GraphQL ========
@@ -13,8 +10,6 @@ import { Players } from '../types';
 
 export default function AllPlayersScreen() {
 
-
-	//pass in players from parent component
 	const [ columns, setColumns ] = useState([
     "Position",
     "Name",
@@ -25,8 +20,6 @@ export default function AllPlayersScreen() {
   const [ pointsSortDirection, setPoinstsSortDirection ] = useState('DESC')
   const [ positionSortDirection, setPositionSortDirection ] = useState('ASC')
   const [ nameSortDirection, setNameSortDirection ] = useState('ASC')
-
-
 
   //==== GraphQL ======== 
 	const { loading, error, data, refetch } = useQuery<Players>(GET_SORTED_PLAYERS, {
@@ -43,17 +36,6 @@ export default function AllPlayersScreen() {
 	
   const playerList = data.players;
 
-  //JH-NOTE: Old Redux
-	// const playerList = useSelector((state) => state.playersByStat);
-	// const dispatch = useDispatch();
-	// const searchPlayers = () => {
-	//   dispatch(fetchPlayersByStatisticAction({stat: 'points', order: poinstsSortDirection}))
-	// }
-
-	// useEffect(()=>{
-	//   searchPlayers();
-	// }, []);
-
 	const sortTable = (column) => {
 	  setSelectedColumn(column)
 	  let sortStat
@@ -64,17 +46,13 @@ export default function AllPlayersScreen() {
 	  	setNameSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
 	  } else if (column == "Position") {
 	  	sortStat = column.toLowerCase()
-	  	// order = poinstsSortDirection
 	  	order = positionSortDirection
 	  	setPositionSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
 	  } else if (column == "Points") {
 	  	sortStat = column.toLowerCase()
 	  	order = pointsSortDirection
-	  	// order = positionSortDirection
 	  	setPoinstsSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
 	  }
-	  //JH-NOTE: Old Redux
-	  // dispatch(fetchPlayersByStatisticAction({stat: sortStat, order: order}))
 	  refetch({"orderBy": {"field": sortStat, "order": order}})
 	}
 

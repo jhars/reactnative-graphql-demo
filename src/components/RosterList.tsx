@@ -17,12 +17,12 @@ export default function RosterList({roster}) {
 
 		  <TouchableOpacity 
 		    style={styles.nameColumnHeader}>
-		    <Text style={styles.columnHeaderTxt}>{'Name'}</Text>
+		    <Text style={styles.columnHeaderTxt}>Name</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		    style={styles.pointsColumnHeader}>
-		    <Text style={styles.columnHeaderTxt}>{'Points'}</Text>
+		    <Text style={styles.columnHeaderTxt}>Points</Text>
 		  </TouchableOpacity>
 
 	  </View>

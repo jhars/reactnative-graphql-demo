@@ -6,9 +6,6 @@ import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import {Provider} from 'react-redux';
-import store from './src/reducers/store';
-
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import {Navigation} from './src/navigation'
@@ -25,33 +22,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Provider store={store}>
-        <Authenticator.Provider>
-          <Authenticator>
-            <SafeAreaProvider>
-              <Navigation />
-            </SafeAreaProvider>      
-          </Authenticator>
-        </Authenticator.Provider>
-      </Provider>
+      <Authenticator.Provider>
+        <Authenticator>
+          <SafeAreaProvider>
+            <Navigation />
+          </SafeAreaProvider>      
+        </Authenticator>
+      </Authenticator.Provider>
      </ApolloProvider>
   );
 }
-
-//can i pass props of user id, username to navigation comppnent?
-// function App() {
-//   return (
-//     <Provider store={store}>
-//       <Authenticator.Provider>
-//         <Authenticator>
-//           <SafeAreaProvider>
-//             <Navigation />
-//           </SafeAreaProvider>      
-//         </Authenticator>
-//       </Authenticator.Provider>
-//     </Provider>
-//   );
-// }
 
 export default App;
 

@@ -14,7 +14,6 @@ const RosterRow = ({position, playerInfo}) => {
       <View style={styles.positionColumn}>
         <Text style={styles.positionText}>{position}</Text>  
       </View>
-      
 
       <View style={styles.nameColumn}>
         <Text style={styles.nameText}>{playerInfo?.lastName ?? "EMPTYYYYYYYYYYYY"}</Text>

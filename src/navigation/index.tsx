@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useDispatch } from 'react-redux';
 import {
   createStaticNavigation,
   useNavigation,
@@ -7,7 +6,6 @@ import {
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import MyTeamsScreen from '../screens/MyTeamsScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
@@ -18,20 +16,20 @@ import AllPlayersScreen from '../screens/AllPlayersScreen';
 import LeaguesScreen from '../screens/LeaguesScreen';
 import LeagueTeamsScreen from '../screens/LeagueTeamsScreen';
 
-import {currentUserAction} from '../actions/currentUserAction';
+// import {currentUserAction} from '../actions/currentUserAction';
 
 const Drawer = createDrawerNavigator();
 const LeagueStack = createNativeStackNavigator();
 const TeamsStack = createNativeStackNavigator();
 
 export const Navigation = () => {
-// const DrawerNavigator = () => {
+    // const dispatch = useDispatch();
+    // useEffect(()=>{
+    //    // dispatch(currentUserAction());
+    // }, []);
 
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-       dispatch(currentUserAction());
-    }, []);
+  // JH-NOTE: could do userSession (use)Context() here...?
+  // export const AuthContext = createContext({ authState: {id:"",username:"",signedIn:false}, setAuthState: () => {} });
 
   function LeaguesNavigator() {
     return (

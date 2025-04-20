@@ -5,7 +5,6 @@ import {
   StyleSheet
 } from 'react-native';
 import { Button } from '@react-navigation/elements';
-import {useDispatch, useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 const LeagueRow = ({league}) => {

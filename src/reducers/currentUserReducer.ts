@@ -18,13 +18,6 @@ export function CurrentUserReducer(state: ReduxState = initialState, action: Cur
     console.log("=================")
     return action.payload;
   }
-  // if (action.type === CURRENT_USER && action.state === AsyncActionState.Failed) {
-  //   console.log("===== ACTION =====")
-  //   console.log(action)
-
-  //   console.log("=================")
-  //   return [...action.payload];
-  // }
 
   return state;
 }
