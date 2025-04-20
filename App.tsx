@@ -1,14 +1,12 @@
 import 'react-native-gesture-handler';//JH- do i need this here?
-
 import React from 'react';
 import { Authenticator } from '@aws-amplify/ui-react-native';
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-import {Navigation} from './src/navigation'
+import {Navigation} from './src/navigation';
+import { UserProvider } from './src/contexts/UserContext';
 
 Amplify.configure(config);
 
@@ -23,9 +21,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Authenticator.Provider>
-        <Authenticator>
+        <Authenticator 
+          loginMechanisms={['email']}
+          signUpAttributes={['preferred_username']}>
           <SafeAreaProvider>
-            <Navigation />
+            <UserProvider>
+              <Navigation />
+            </UserProvider>
           </SafeAreaProvider>      
         </Authenticator>
       </Authenticator.Provider>

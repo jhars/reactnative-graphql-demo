@@ -5,7 +5,7 @@ import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
-import {fetchLeaguesAction} from '../actions/leaguesAction';
+// import {fetchLeaguesAction} from '../actions/leaguesAction';
 
 export default function CreateNewTeamScreen() {
   const navigation = useNavigation();
@@ -17,7 +17,7 @@ export default function CreateNewTeamScreen() {
   const dispatch = useDispatch(); 
 
   useEffect(()=>{
-    dispatch(fetchLeaguesAction())
+    // dispatch(fetchLeaguesAction())
     navigation.setOptions({
           title: "Create New Team"
         });

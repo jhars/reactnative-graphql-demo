@@ -1,6 +1,6 @@
 {
   "auth": {
-    "laxfantasymobile8f023552": {
+    "laxappdemo451d064d": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -16,7 +16,10 @@
           "EMAIL"
         ],
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL",
+          "PHONE_NUMBER"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]

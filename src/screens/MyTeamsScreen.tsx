@@ -14,9 +14,11 @@ export default function MyTeamsScreen() {
 
   // const dispatch = useDispatch(); 
 
-  // useEffect(()=>{
-  //   dispatch(fetchTeamsByUserAction(currentUser.id))
-  // }, []); 
+  useEffect(()=>{
+    // dispatch(fetchTeamsByUserAction(currentUser.id))
+  }, []);
+
+  // const { user, setUser } = useContext(AppContext);
 
   return (
     <View style={styles.container}>

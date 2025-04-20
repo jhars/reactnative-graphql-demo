@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {
   createStaticNavigation,
   useNavigation,
@@ -15,21 +15,19 @@ import CreateNewTeamConfirmation from '../screens/CreateNewTeamConfirmation';
 import AllPlayersScreen from '../screens/AllPlayersScreen';
 import LeaguesScreen from '../screens/LeaguesScreen';
 import LeagueTeamsScreen from '../screens/LeagueTeamsScreen';
-
-// import {currentUserAction} from '../actions/currentUserAction';
+import {getCurrentUser} from '../data/userService';
+import { UserContext } from "../contexts/UserContext"
 
 const Drawer = createDrawerNavigator();
 const LeagueStack = createNativeStackNavigator();
 const TeamsStack = createNativeStackNavigator();
 
 export const Navigation = () => {
-    // const dispatch = useDispatch();
-    // useEffect(()=>{
-    //    // dispatch(currentUserAction());
-    // }, []);
-
-  // JH-NOTE: could do userSession (use)Context() here...?
-  // export const AuthContext = createContext({ authState: {id:"",username:"",signedIn:false}, setAuthState: () => {} });
+    const { user, setUser } = useContext(UserContext);
+    
+    useEffect(()=>{
+      getCurrentUser().then(res => setUser(res))
+    }, []);
 
   function LeaguesNavigator() {
     return (
@@ -53,15 +51,15 @@ export const Navigation = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="My Teams" component={MyTeamsNavigator} />
-        <Drawer.Screen name="Leagues" component={LeaguesNavigator} />
-        <Drawer.Screen name="Players" component={AllPlayersScreen} />
-        <Drawer.Screen name="Account" component={MyAccountScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="My Teams" component={MyTeamsNavigator} />
+          <Drawer.Screen name="Leagues" component={LeaguesNavigator} />
+          <Drawer.Screen name="Players" component={AllPlayersScreen} />
+          <Drawer.Screen name="Account" component={MyAccountScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
   );
 }
 
