@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList} from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useAuthenticator } from '@aws-amplify/ui-react-native';
 import LeagueRow from './LeagueRow';
@@ -10,7 +10,8 @@ export default function LeaguesList({leagues}) {
         <FlatList
           data={leagues}
           renderItem={({item}) => <LeagueRow league={item} />}
-        />  
+        />
+
       </View>
     );
 }

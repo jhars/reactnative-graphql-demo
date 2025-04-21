@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
@@ -12,11 +12,10 @@ import { Leagues } from '../types';
 
 export default function CreateNewTeamScreen() {
   const navigation = useNavigation();
-  const [teamname, onChangeText] = useState('');
 
   useEffect(()=>{
     navigation.setOptions({
-      title: "Create New Team"
+      title: "Choose League To Join"
     });
   }, []);
 
@@ -29,13 +28,7 @@ export default function CreateNewTeamScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          placeholder="Team Name"
-          value={teamname}
-        />
-        <LeagueSelectFromList leagues={data.leagues} disabled={teamname.length == 0 ? true : false} teamname={teamname}/>
+        <LeagueSelectFromList leagues={data.leagues}/>
       </SafeAreaView>
     </SafeAreaProvider>
   );

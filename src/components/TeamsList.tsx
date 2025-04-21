@@ -9,7 +9,7 @@ export default function TeamsList({teams}) {
 	      <FlatList
 	        data={teams}
 	        renderItem={({item}) => <TeamRow team={item} />}
-	      />  
+	      />
 	    </View>
   	);
 }
@@ -17,5 +17,11 @@ export default function TeamsList({teams}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  footer: {
+    height: 100,  
+    justifyContent: 'flex-end',
+    flexGrow: 1,
+    paddingBottom: 100
   }
 });

@@ -1,19 +1,37 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-laxappdemo-dev-bd262-authRole",
-      "UnauthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxappdemo-dev-bd262-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxappdemo-dev-bd262-authRole",
+      "AuthRoleName": "amplify-lax-dev-69c57-authRole",
+      "UnauthRoleArn": "arn:aws:iam::442042506404:role/amplify-lax-dev-69c57-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::442042506404:role/amplify-lax-dev-69c57-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-laxappdemo-dev-bd262-deployment",
-      "UnauthRoleName": "amplify-laxappdemo-dev-bd262-unauthRole",
-      "StackName": "amplify-laxappdemo-dev-bd262",
-      "StackId": "arn:aws:cloudformation:us-east-1:442042506404:stack/amplify-laxappdemo-dev-bd262/6bcb75b0-1d84-11f0-83c7-1262879c387d",
-      "AmplifyAppId": "d151g1ljj6o5x5"
+      "DeploymentBucketName": "amplify-lax-dev-69c57-deployment",
+      "UnauthRoleName": "amplify-lax-dev-69c57-unauthRole",
+      "StackName": "amplify-lax-dev-69c57",
+      "StackId": "arn:aws:cloudformation:us-east-1:442042506404:stack/amplify-lax-dev-69c57/01d7b620-1eea-11f0-9fb3-12a32df7e975",
+      "AmplifyAppId": "djv5uva7gdegd"
     },
     "categories": {
       "auth": {
-        "laxappdemo451d064d": {}
+        "lax3c02835d": {}
+      }
+    }
+  },
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lax-production-72a2e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::442042506404:role/amplify-lax-production-72a2e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::442042506404:role/amplify-lax-production-72a2e-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lax-production-72a2e-deployment",
+      "UnauthRoleName": "amplify-lax-production-72a2e-unauthRole",
+      "StackName": "amplify-lax-production-72a2e",
+      "StackId": "arn:aws:cloudformation:us-east-1:442042506404:stack/amplify-lax-production-72a2e/4346f670-1eea-11f0-b8ea-0e0900359517",
+      "AmplifyAppId": "djv5uva7gdegd"
+    },
+    "categories": {
+      "auth": {
+        "lax3c02835d": {}
       }
     }
   }

@@ -18,7 +18,7 @@ export default function MyTeamsScreen() {
 
   //==== GraphQL ======== 
   const { loading, error, data, refetch } = useQuery<Teams>(GET_TEAMS, {
-    variables: { ownerId: user.id }
+    variables: { ownerId: user?.id }
   });
 
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;

@@ -1,9 +1,5 @@
-import React, {useContext} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
+import React, {useContext, useState} from 'react';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import { ADD_TEAM_TO_LEAGUE } from '../data/mutations';
@@ -14,14 +10,10 @@ import { UserContext } from "../contexts/UserContext"
 const CreateNewTeamConfirmation = ({route}) => {
   const navigation = useNavigation();
   const { user } = useContext(UserContext);
-  const {leagueID, leagueName, teamname} = route.params
+  const {leagueID, leagueName } = route.params
+  const [teamname, onChangeText] = useState('');
 
   const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
-    variables: {
-      "ownerId": String(user.id),
-      "name": teamname,
-      "leagueId": Number(leagueID),
-    },
     onCompleted(data) {
       // if (!data.addTeam) console.log(data)
       navigation.navigate('UserTeams')
@@ -33,10 +25,22 @@ const CreateNewTeamConfirmation = ({route}) => {
       console.log("***********")
     }
   });
+      
 
-  return(        
+  return(
     <View style={styles.container}>
-      <Button onPress={() => addTeam()}>Add {teamname} to {leagueName}</Button>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        placeholder="Team Name"
+        value={teamname}
+      />
+        <Button 
+          disabled={teamname.length <= 0}
+          onPress={() => addTeam({variables: { ownerId: String(user.id), name: teamname, leagueId: Number(leagueID) }})}>
+          Add {teamname} to {leagueName}
+        </Button>
+
       { error &&
         <Text>Error: {error.message}</Text>
       }
