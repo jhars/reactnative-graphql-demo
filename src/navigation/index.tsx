@@ -29,6 +29,10 @@ export const Navigation = () => {
     getCurrentUser().then(res => setUser(res))
   }, []);
 
+  //JH-NOTE: Roster Screen is on here in two different stacks
+  // should refactor, espcially in consideration of new Draft Stack
+  // Either have it's own stack (but not in drawer) OR nest in a Draft Stack
+  // Will need a better way to access Universally
   function LeaguesNavigator() {
     return (
       <LeagueStack.Navigator>

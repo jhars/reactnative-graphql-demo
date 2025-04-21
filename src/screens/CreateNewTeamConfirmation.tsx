@@ -15,7 +15,6 @@ const CreateNewTeamConfirmation = ({route}) => {
 
   const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
     onCompleted(data) {
-      // if (!data.addTeam) console.log(data)
       navigation.navigate('UserTeams')
     },
     errorPolicy: "all",
@@ -26,7 +25,6 @@ const CreateNewTeamConfirmation = ({route}) => {
     }
   });
       
-
   return(
     <View style={styles.container}>
       <TextInput
