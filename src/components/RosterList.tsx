@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchPlayersAction} from '../actions/playerAction';
-import {fetchPlayersByStatisticAction} from '../actions/playersOrderedByStatisticAction';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import RosterRow from './RosterRow';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default function RosterList({roster}) {
 
