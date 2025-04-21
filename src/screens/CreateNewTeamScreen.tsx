@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { View, Text, TextInput, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
@@ -33,12 +33,3 @@ export default function CreateNewTeamScreen() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
