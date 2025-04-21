@@ -1,27 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import { Button } from '@react-navigation/elements';
+import { View, Text, TextInput, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
-// import {fetchLeaguesAction} from '../actions/leaguesAction';
+
+//==== GraphQL ========
+import { useQuery } from '@apollo/client';
+import { GET_ALL_LEAGUES } from '../data/queries';
+import { Leagues } from '../types';
+//=====================
 
 export default function CreateNewTeamScreen() {
   const navigation = useNavigation();
-  const leagueList = useSelector((state) => state.allLeagues);
-
   const [teamname, onChangeText] = useState('');
-  // const [number, onChangeNumber] = useState('');
-
-  const dispatch = useDispatch(); 
 
   useEffect(()=>{
-    // dispatch(fetchLeaguesAction())
     navigation.setOptions({
-          title: "Create New Team"
-        });
+      title: "Create New Team"
+    });
   }, []);
+
+  //==== GraphQL ======== 
+  const { loading, error, data } = useQuery<Leagues>(GET_ALL_LEAGUES);
+  if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+  if (error) return <Text>Error: {error.message}</Text>;
+  //=====================
 
   return (
     <SafeAreaProvider>
@@ -32,7 +35,7 @@ export default function CreateNewTeamScreen() {
           placeholder="Team Name"
           value={teamname}
         />
-        <LeagueSelectFromList leagues={leagueList} disabled={teamname.length == 0 ? true : false} teamname={teamname}/>
+        <LeagueSelectFromList leagues={data.leagues} disabled={teamname.length == 0 ? true : false} teamname={teamname}/>
       </SafeAreaView>
     </SafeAreaProvider>
   );

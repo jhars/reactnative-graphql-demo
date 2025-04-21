@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
 import { GET_TEAM_ROSTER } from '../data/queries';
-import { Teams } from '../types';
+import { Roster } from '../types';
 //=====================
 
 export default function RosterScreen({route}) {

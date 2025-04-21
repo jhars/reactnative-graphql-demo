@@ -23,11 +23,11 @@ const LeagueStack = createNativeStackNavigator();
 const TeamsStack = createNativeStackNavigator();
 
 export const Navigation = () => {
-    const { user, setUser } = useContext(UserContext);
-    
-    useEffect(()=>{
-      getCurrentUser().then(res => setUser(res))
-    }, []);
+  const { user, setUser } = useContext(UserContext);
+  
+  useEffect(()=>{
+    getCurrentUser().then(res => setUser(res))
+  }, []);
 
   function LeaguesNavigator() {
     return (
@@ -62,5 +62,3 @@ export const Navigation = () => {
       </NavigationContainer>
   );
 }
-
-// export const Navigation = createStaticNavigation(MyDrawer);

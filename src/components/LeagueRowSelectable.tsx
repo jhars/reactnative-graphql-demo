@@ -10,8 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 const LeagueRowSelectable = ({league, disabled, teamname}) => {
   const navigation = useNavigation();
 
-  console.log(`leagueId: ${league.id}, leagueName: ${league.title}, teamname: ${teamname}`)
-
 	return(
 		<View style={styles.container}>
       		<Button onPress={() => navigation.navigate('CreateNewTeamConfirmation', {leagueID: league.id, leagueName: league.title, teamname: teamname})}>{league.title}</Button>

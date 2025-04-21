@@ -11,9 +11,6 @@ export default function LeagueTeamsScreen({route}) {
         });
     }, []);
 
-  console.log("route.params: ")
-  console.log(route.params)
-  console.log("route.params")
   return (
     <TeamsList teams={route.params.league.teams} leagueTitle={route.params.league.title} />
   );

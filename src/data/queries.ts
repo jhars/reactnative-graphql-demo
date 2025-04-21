@@ -1,18 +1,5 @@
 import { gql } from '@apollo/client';
 
-  // query Players {
-  //   players {
-  //     id
-  //     lastName
-  //     position
-  //     statistics {
-  //       statLineLastSeason {
-  //         points
-  //       }
-  //     }
-  //   }
-  // }
-
 export const GET_SORTED_PLAYERS = gql`
   query Players($orderBy: PlayerOrder) {
     players(orderBy: $orderBy) {
@@ -39,6 +26,20 @@ export const GET_ALL_LEAGUES = gql`
 	  }
 	}
 `;
+
+export const GET_TEAMS = gql`
+  query Teams($ownerId: ID, $teamsId: Int, $leagueId: Int) {
+    teams(ownerId: $ownerId, teamsId: $teamsId, leagueId: $leagueId) {
+      id
+      name
+      league {
+        title
+      }
+    }
+  }
+`;
+
+
 
 export const GET_TEAM_ROSTER = gql`
 query Roster($teamId: Int) {
@@ -140,29 +141,3 @@ query Roster($teamId: Int) {
   }
 }
 `;
-
-	    // roster {
-	    //   goalie {
-	    //   	name
-	    //   }
-	    //   fo {
-	    //   	name
-	    //   }
-	    //   lsm {
-	    //   	name
-	    //   }
-	    // }
-
-// export const GET_TEAM_ROSTER = gql`
-// 	query Teams {
-// 	  teams {
-// 	    id
-// 	    name
-// 	    roster {
-// 	      goalie {
-// 	        lastName
-// 	      }
-// 	    }
-// 	  }
-// 	}
-// `;

@@ -1,36 +1,45 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
   StyleSheet
 } from 'react-native';
 import { Button } from '@react-navigation/elements';
-import {useDispatch, useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import {createNewTeamForLeague} from '../actions/createNewTeamAction';
-import { AsyncActionState } from '../actions/asyncAction';
+import { ADD_TEAM_TO_LEAGUE } from '../data/mutations';
+import { useMutation } from '@apollo/client';
+import { UserContext } from "../contexts/UserContext"
 
 
 const CreateNewTeamConfirmation = ({route}) => {
   const navigation = useNavigation();
-  const currentUser = useSelector((state) => state.currentUserSession);
-  const newTeam = useSelector((state) => state.createNewTeam);
+  const { user } = useContext(UserContext);
   const {leagueID, leagueName, teamname} = route.params
-  const dispatch = useDispatch();
 
-  console.log("leagueID, leagueName, teamname")
-  console.log(leagueID, leagueName, teamname)
+  const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
+    variables: {
+      "ownerId": String(user.id),
+      "name": teamname,
+      "leagueId": Number(leagueID),
+    },
+    onCompleted(data) {
+      // if (!data.addTeam) console.log(data)
+      navigation.navigate('UserTeams')
+    },
+    errorPolicy: "all",
+    onError(err) {
+      console.log("Apollo err")
+      console.log(err)
+      console.log("***********")
+    }
+  });
 
-  if (newTeam.status == AsyncActionState.Succeeded) {
-    navigation.navigate('UserTeams') 
-  }
-
-  useEffect(()=>{
-  }, []);
-
-  return(
+  return(        
     <View style={styles.container}>
-      <Button onPress={() => dispatch(createNewTeamForLeague({userId: currentUser.id, leagueId: leagueID, name: teamname}))}>Add {teamname} to {leagueName}</Button>
+      <Button onPress={() => addTeam()}>Add {teamname} to {leagueName}</Button>
+      { error &&
+        <Text>Error: {error.message}</Text>
+      }
     </View>
   );
 }

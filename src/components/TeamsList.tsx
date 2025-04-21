@@ -1,15 +1,8 @@
-import React, {useEffect} from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchTeamsByUserAction} from '../actions/teamsAction';
+import React from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
 import TeamRow from './TeamRow';
-import { useNavigation } from '@react-navigation/native';
 
 export default function TeamsList({teams}) {
-
-	console.log("teams: ")
-	console.log(teams)
-	console.log("========")
 
  	return(
 	    <View style={styles.container}>
@@ -23,8 +16,6 @@ export default function TeamsList({teams}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    // justifyContent: 'center',
+    flex: 1
   }
 });

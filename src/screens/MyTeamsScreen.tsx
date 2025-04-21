@@ -1,28 +1,33 @@
-import React, {useEffect} from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-// import {useDispatch, useSelector} from 'react-redux';
 import TeamsList from '../components/TeamsList';
-// import {fetchTeamsByUserAction} from '../actions/teamsAction';
+import { useQuery } from '@apollo/client';
+import { GET_TEAMS } from '../data/queries';
+import { Teams } from '../types';
+import { UserContext } from "../contexts/UserContext"
 
 export default function MyTeamsScreen() {
   const navigation = useNavigation();
-
-  // const teamsForUserList = useSelector((state) => state.teamsForUser);
-  // const currentUser = useSelector((state) => state.currentUserSession);
-
-  // const dispatch = useDispatch(); 
+  const { user } = useContext(UserContext);
 
   useEffect(()=>{
-    // dispatch(fetchTeamsByUserAction(currentUser.id))
+    refetch();
   }, []);
 
-  // const { user, setUser } = useContext(AppContext);
+  //==== GraphQL ======== 
+  const { loading, error, data, refetch } = useQuery<Teams>(GET_TEAMS, {
+    variables: { ownerId: user.id }
+  });
+
+  if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+  if (error) return <Text>Error: {error.message}</Text>;
+  //=====================
 
   return (
     <View style={styles.container}>
-      {/*<TeamsList teams={teamsForUserList} />*/}
+      <TeamsList teams={data?.teams} />
       <View style={styles.footer}>
         <Button onPress={() => navigation.navigate('CreateNewTeamScreen')}>Add New Team</Button>
       </View>

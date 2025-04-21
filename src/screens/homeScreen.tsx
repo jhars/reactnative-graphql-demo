@@ -11,7 +11,7 @@ export default function HomeScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Welcome, {user?.preferred_username}</Text>
-      <Button onPress={() => navigation.navigate('MyTeams')}>
+      <Button onPress={() => navigation.navigate('My Teams')}>
         Go to My Teams
       </Button>
     </View>
