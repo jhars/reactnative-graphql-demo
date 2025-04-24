@@ -2,9 +2,9 @@ import React, {useContext, useState} from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-import { ADD_TEAM_TO_LEAGUE } from '../data/mutations';
+import { ADD_TEAM_TO_LEAGUE } from '../../data/mutations';
 import { useMutation } from '@apollo/client';
-import { UserContext } from "../contexts/UserContext"
+import { UserContext } from "../../contexts/UserContext"
 
 
 const CreateNewTeamConfirmation = ({route}) => {

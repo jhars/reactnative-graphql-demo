@@ -11,15 +11,20 @@ export default function LeagueTeamsScreen({route}) {
 
   useEffect(()=>{
     navigation.setOptions({
-          title: route.params.league.title,
+          title: league.title,
         });
     }, []);
 
   return (
     <View style={styles.container}>
-      <TeamsList teams={league.teams} leagueTitle={league.title} />
+      <TeamsList teams={league.teams} myTeams={false}/>
       <View style={styles.footer}>
-        <Button onPress={() => navigation.navigate('My Teams',{screen: 'CreateNewTeamConfirmation', params: {leagueID: league.id, leagueName: league.title}})}>
+        <Button onPress={() => navigation.navigate('My Teams',{
+          screen: 'CreateNewTeamConfirmation',
+          params: {
+            leagueID: league.id, 
+            leagueName: league.title
+          }})}>
           Join {league.title}
         </Button>
       </View>

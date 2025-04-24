@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { View, Text } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useAuthenticator } from '@aws-amplify/ui-react-native';
-import { UserContext } from "../contexts/UserContext"
+import { UserContext } from "../../contexts/UserContext"
 
 export default function MyAccountScreen() {
   const { signOut } = useAuthenticator();

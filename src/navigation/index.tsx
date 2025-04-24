@@ -6,15 +6,15 @@ import {
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import MyTeamsScreen from '../screens/MyTeamsScreen';
-import MyAccountScreen from '../screens/MyAccountScreen';
-import RosterScreen from '../screens/RosterScreen';
-import CreateNewTeamScreen from '../screens/CreateNewTeamScreen';
-import CreateNewTeamConfirmation from '../screens/CreateNewTeamConfirmation';
-import AllPlayersScreen from '../screens/AllPlayersScreen';
-import LeaguesScreen from '../screens/LeaguesScreen';
-import LeagueTeamsScreen from '../screens/LeagueTeamsScreen';
+import HomeScreen from '../views/screens/HomeScreen';
+import MyTeamsScreen from '../views/screens/MyTeamsScreen';
+import MyAccountScreen from '../views/screens/MyAccountScreen';
+import RosterScreen from '../views/screens/RosterScreen';
+import CreateNewTeamScreen from '../views/screens/CreateNewTeamScreen';
+import CreateNewTeamConfirmation from '../views/screens/CreateNewTeamConfirmation';
+import AllPlayersScreen from '../views/screens/AllPlayersScreen';
+import LeaguesScreen from '../views/screens/LeaguesScreen';
+import LeagueTeamsScreen from '../views/screens/LeagueTeamsScreen';
 import {getCurrentUser} from '../data/userService';
 import { UserContext } from "../contexts/UserContext"
 
@@ -48,6 +48,7 @@ export const Navigation = () => {
       <TeamsStack.Navigator>
         <TeamsStack.Screen options={{ headerShown: false }} name="UserTeams" component={MyTeamsScreen} />
         <TeamsStack.Screen name="RosterScreen" component={RosterScreen} />
+        <TeamsStack.Screen name="AvailablePlayersScreen" component={AllPlayersScreen} />
         <TeamsStack.Screen name="CreateNewTeamScreen" component={CreateNewTeamScreen} />
         <TeamsStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} />
       </TeamsStack.Navigator>

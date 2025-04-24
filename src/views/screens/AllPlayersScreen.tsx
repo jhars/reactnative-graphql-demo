@@ -4,11 +4,13 @@ import PlayerRow from '../components/PlayerRow';
 
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
-import { GET_SORTED_PLAYERS } from '../data/queries';
-import { Players } from '../types';
+import { GET_SORTED_PLAYERS } from '../../data/queries';
+import { Players } from '../../data/types';
 //=====================
 
-export default function AllPlayersScreen() {
+export default function AllPlayersScreen({route}) {
+
+	// const { availableForLeagueId, position } = route.params
 
 	const [ columns, setColumns ] = useState([
     "Position",
@@ -27,14 +29,16 @@ export default function AllPlayersScreen() {
 		  "orderBy": {
 		    "field": "points",
 		    "order": pointsSortDirection
-		  }
+		  },
+		  "availableForLeagueId": Number(route.params?.availableForLeagueId) || null,
+		  "position": route.params?.position || null
 		}
 	});
 	if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
 	if (error) return <Text>Error: {error.message}</Text>;
 	//=====================
 	
-  const playerList = data.players;
+  // const playerList = data.players;
 
 	const sortTable = (column) => {
 	  setSelectedColumn(column)
@@ -63,20 +67,28 @@ export default function AllPlayersScreen() {
 		  <TouchableOpacity 
 		    style={styles.positionColumnHeader} 
 		    onPress={()=> sortTable('Position')}>
-		  	<Text style={styles.columnHeaderTxt}>{'Position' + " ▲▼"}</Text>
+		  	<Text style={styles.columnHeaderTxt}>{'Pos.' + "\n▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		    style={styles.nameColumnHeader} 
 		    onPress={()=> sortTable('Name')}>
-		    <Text style={styles.columnHeaderTxt}>{'Name' + " ▲▼"}</Text>
+		    <Text style={styles.columnHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		  	style={styles.pointsColumnHeader}
 		  	onPress={()=> sortTable('Points')}>
-		    <Text style={styles.columnHeaderTxt}>{'Points' + " ▲▼"}</Text>
+		    <Text style={styles.columnHeaderTxt}>{'Points' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
+
+		  {route.params?.availableForLeagueId && 
+
+		  	<TouchableOpacity 
+		  		style={styles.addColumnHeader}>
+		  	  <Text style={styles.columnHeaderTxt}>{'Add'}</Text>
+		  	</TouchableOpacity>
+			}
 
 	  </View>
 	)
@@ -86,8 +98,8 @@ export default function AllPlayersScreen() {
   				<FlatList
   					ListHeaderComponent={tableHeader}
 						stickyHeaderIndices={[0]}
-				  	data={playerList}
-				  	renderItem={({item}) => <PlayerRow indPlayerStats={item} />}
+				  	data={data?.players}
+				  	renderItem={({item}) => <PlayerRow indPlayerStats={item} addPlayerButton={route.params?.availableForLeagueId ?? false} />}
   	      />	
   			</View>
 	);
@@ -108,31 +120,59 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 15
   },
-  tableRow: {
-    flexDirection: "row",
-    height: 40,
-    alignItems:"center",
-  },
   positionColumnHeader: {
-    alignItems:"left",
+    flex:1,
+    flexGrow: 2,
+    alignItems: 'center'
   },
   nameColumnHeader: {
-    justifyContent: "flex-start",
-    alignItems:"center",
-    paddingLeft: 20
+    flex:1,
+    flexGrow: 5,
   },
   pointsColumnHeader: {
-  	flex: 2,
-  	flexDirection: "row",
-  	justifyContent: "flex-end",
-  	paddingRight: 60
+  	flexGrow:1,
+    alignItems: 'center'
+  },
+  addColumnHeader: {
+    flexGrow:1,
   },
   columnHeaderTxt: {
     color: "white",
     fontWeight: "bold",
   },
-  columnRowTxt: {
-    width:"20%",
-    textAlign:"center",
-  }
 });
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   tableHeader: {
+//     flexDirection: "row",
+//     justifyContent: "flex-start",
+//     alignItems: "center",
+//     backgroundColor: "#37C2D0",
+//     height: 50,
+//     paddingLeft: 15
+//   },
+//   positionColumnHeader: {
+//     alignItems:"left",
+//   },
+//   nameColumnHeader: {
+//     justifyContent: "flex-start",
+//     alignItems:"center",
+//     paddingLeft: 20
+//   },
+//   pointsColumnHeader: {
+//   	flex: 2,
+//   	flexDirection: "row",
+//   	justifyContent: "flex-end",
+//   	paddingRight: 60
+//   },
+//   columnHeaderTxt: {
+//     color: "white",
+//     fontWeight: "bold",
+//   },
+// });

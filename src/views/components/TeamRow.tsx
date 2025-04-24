@@ -8,7 +8,7 @@ import { Button } from '@react-navigation/elements';
 import {useDispatch, useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-const TeamRow = ({team}) => {
+const TeamRow = ({team, myTeam}) => {
   const navigation = useNavigation();
 
 	const {
@@ -17,7 +17,7 @@ const TeamRow = ({team}) => {
 
   return(
     <View style={styles.container}>
-      <Button onPress={() => navigation.navigate('RosterScreen', { team: team})}>
+      <Button onPress={() => navigation.navigate('RosterScreen', { team: team, myTeam: myTeam})}>
         {name}
       </Button>
     </View>

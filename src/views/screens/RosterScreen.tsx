@@ -5,21 +5,25 @@ import { useNavigation } from '@react-navigation/native';
 
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
-import { GET_TEAM_ROSTER } from '../data/queries';
-import { Roster } from '../types';
+import { GET_TEAM_ROSTER } from '../../data/queries';
+import { Roster } from '../../data/types';
 //=====================
 
 export default function RosterScreen({route}) {
   const navigation = useNavigation();
+
+  const { team, myTeam } = route.params
+
   useEffect(()=>{
     navigation.setOptions({
-          title: route.params.team.name,
+          title: team.name,
         });
+    refetch()
   }, []);
 
   //JH-NOTE: Query with parameters here...
-  const { loading, error, data } = useQuery<Roster>(GET_TEAM_ROSTER, {
-    variables: { teamId: Number(route.params.team.id) }
+  const { loading, error, data, refetch } = useQuery<Roster>(GET_TEAM_ROSTER, {
+    variables: { teamId: Number(team.id) }
   });
 
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
@@ -31,15 +35,6 @@ export default function RosterScreen({route}) {
   console.log("========")
 
   return(
-    <RosterList roster={roster}/>
+    <RosterList roster={roster} myTeam={myTeam}/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

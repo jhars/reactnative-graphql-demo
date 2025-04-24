@@ -4,9 +4,9 @@ import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import TeamsList from '../components/TeamsList';
 import { useQuery } from '@apollo/client';
-import { GET_TEAMS } from '../data/queries';
-import { Teams } from '../types';
-import { UserContext } from "../contexts/UserContext"
+import { GET_TEAMS } from '../../data/queries';
+import { Teams } from '../../data/types';
+import { UserContext } from "../../contexts/UserContext"
 
 export default function MyTeamsScreen() {
   const navigation = useNavigation();
@@ -27,7 +27,7 @@ export default function MyTeamsScreen() {
 
   return (
     <View style={styles.container}>
-      <TeamsList teams={data?.teams} />
+      <TeamsList teams={data?.teams} myTeams={true}/>
       <View style={styles.footer}>
         <Button onPress={() => navigation.navigate('CreateNewTeamScreen')}>Add New Team</Button>
       </View>

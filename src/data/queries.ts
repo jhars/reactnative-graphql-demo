@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_SORTED_PLAYERS = gql`
-  query Players($orderBy: PlayerOrder) {
-    players(orderBy: $orderBy) {
+  query Players($orderBy: PlayerOrder!, $position: Position, $availableForLeagueId: Int) {
+    players(orderBy: $orderBy, position: $position, availableForLeagueId: $availableForLeagueId) {
       lastName
       position
       statistics {
@@ -34,6 +34,7 @@ export const GET_TEAMS = gql`
       name
       league {
         title
+        id
       }
     }
   }
@@ -44,6 +45,13 @@ export const GET_TEAMS = gql`
 export const GET_TEAM_ROSTER = gql`
 query Roster($teamId: Int) {
   roster(teamId: $teamId) {
+
+    teamInfo {
+      league {
+        title
+        id
+      }
+    }
 
     goalie {
       lastName
@@ -76,6 +84,16 @@ query Roster($teamId: Int) {
     }
 
     lsm {
+      lastName
+      statistics {
+        statLineLastSeason {
+          points
+          groundBalls
+        }
+      }
+    }
+
+    ssdm {
       lastName
       statistics {
         statLineLastSeason {

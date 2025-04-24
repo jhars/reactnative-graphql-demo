@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-const PlayerRow = ({indPlayerStats}) => {
+const PlayerRow = ({indPlayerStats, addPlayerButton}) => {
 
 	const {
 		lastName,
@@ -27,6 +27,12 @@ const PlayerRow = ({indPlayerStats}) => {
 			<View style={styles.pointsColumn}>
 				<Text>{statistics.statLineLastSeason.points}</Text>
 			</View>
+
+      {addPlayerButton && 
+        <View style={styles.addPlayerColumn}>
+          <Text>Add</Text>
+        </View>
+      }
 		</View>
 	);
 }
@@ -35,27 +41,25 @@ export default PlayerRow;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: "row",
     backgroundColor: '#fff',
     height: 50,
-    paddingLeft: 15,
     paddingTop:30,
-    paddingRight: 80,
   },
   positionColumn: {
     flex:1,
-    flexGrow: 3,
-  },
-  positionText: {
-    textAlign: 'center'
+    flexGrow: 2,
+    alignItems: 'center'
   },
   nameColumn: {
     flex:1,
-    flexGrow: 10,
-    paddingLeft: 50,
+    flexGrow: 5,
   },
   pointsColumn: {
-    flex:1,
-    alignItems: 'flex-end'
+    flexGrow:1,
   },
+  addPlayerColumn: {
+    flexGrow:1,
+  }
 });

@@ -6,8 +6,8 @@ import LeagueSelectFromList from '../components/LeagueSelectFromList';
 
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
-import { GET_ALL_LEAGUES } from '../data/queries';
-import { Leagues } from '../types';
+import { GET_ALL_LEAGUES } from '../../data/queries';
+import { Leagues } from '../../data/types';
 //=====================
 
 export default function CreateNewTeamScreen() {

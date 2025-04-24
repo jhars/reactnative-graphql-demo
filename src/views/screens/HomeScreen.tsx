@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-import { UserContext } from "../contexts/UserContext"
+import { UserContext } from "../../contexts/UserContext"
 
 export default function HomeScreen() {
   const navigation = useNavigation();

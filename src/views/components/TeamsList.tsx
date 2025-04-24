@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import TeamRow from './TeamRow';
 
-export default function TeamsList({teams}) {
+export default function TeamsList({teams, myTeams}) {
 
  	return(
 	    <View style={styles.container}>
 	      <FlatList
 	        data={teams}
-	        renderItem={({item}) => <TeamRow team={item} />}
+	        renderItem={({item}) => <TeamRow team={item} myTeam={myTeams}/>}
 	      />
 	    </View>
   	);
