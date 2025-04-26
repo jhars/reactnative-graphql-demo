@@ -1,18 +1,10 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
+import React, {useState,  useContext, memo} from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import AddPlayerConfirmationModal from './AddPlayerConfirmationModal'
 
-const PlayerRow = ({indPlayerStats, addPlayerButton}) => {
-
-	const {
-		lastName,
-		jersey,
-		position,
-		statistics
-	} = indPlayerStats;
+const PlayerRow = ({player, addPlayerButton, callback}) => {
+  const [ addPlayer, setAddPlayer ] = useState(null);
+	const { id, lastName, jersey, position, statistics } = player;
 
 	return(
 		<View style={styles.container}>
@@ -25,19 +17,21 @@ const PlayerRow = ({indPlayerStats, addPlayerButton}) => {
 				<Text>{lastName}</Text>
 			</View>
 			<View style={styles.pointsColumn}>
-				<Text>{statistics.statLineLastSeason.points}</Text>
+				<Text>{statistics?.statLineLastSeason.points}</Text>
 			</View>
 
       {addPlayerButton && 
         <View style={styles.addPlayerColumn}>
-          <Text>Add</Text>
+          <TouchableOpacity onPress={() => callback(player)}>
+            <Text>Add</Text>
+          </TouchableOpacity>
         </View>
       }
 		</View>
 	);
 }
 
-export default PlayerRow;
+export default memo(PlayerRow);
 
 const styles = StyleSheet.create({
   container: {

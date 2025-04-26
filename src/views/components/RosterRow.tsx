@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const RosterRow = ({position, playerInfo, myTeam, leagueId}) => {
+const RosterRow = ({rosterId, rosterSpot, position, playerInfo, myTeam, leagueId, team}) => {
   const navigation = useNavigation();
   
   const addDrop = () => {
@@ -18,7 +18,13 @@ const RosterRow = ({position, playerInfo, myTeam, leagueId}) => {
     } else {
       return (
         <View style={styles.dropAddColumn}>
-          <TouchableOpacity onPress={() => navigation.navigate('AvailablePlayersScreen', {availableForLeagueId: leagueId, position: position})}>
+          <TouchableOpacity onPress={() => navigation.navigate('AvailablePlayersScreen', {
+            availableForLeagueId: leagueId,
+            position: position,
+            team: team,
+            rosterSpot: rosterSpot,
+            rosterId: rosterId
+          })}>
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>

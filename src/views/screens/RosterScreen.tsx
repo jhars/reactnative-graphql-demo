@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import { StyleSheet, ActivityIndicator, Text } from 'react-native';
 import RosterList from '../components/RosterList';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
@@ -18,8 +18,20 @@ export default function RosterScreen({route}) {
     navigation.setOptions({
           title: team.name,
         });
-    refetch()
+    // JH-NOTE: not sure if this refetch is necessary anymore
+    // refetch()
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      refetch()
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, [])
+    )
 
   //JH-NOTE: Query with parameters here...
   const { loading, error, data, refetch } = useQuery<Roster>(GET_TEAM_ROSTER, {
@@ -35,6 +47,6 @@ export default function RosterScreen({route}) {
   console.log("========")
 
   return(
-    <RosterList roster={roster} myTeam={myTeam}/>
+    <RosterList roster={roster} myTeam={myTeam} />
   );
 }
