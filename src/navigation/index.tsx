@@ -17,7 +17,6 @@ import LeaguesScreen from '../views/screens/LeaguesScreen';
 import LeagueTeamsScreen from '../views/screens/LeagueTeamsScreen';
 import {getCurrentUser} from '../data/userService';
 import { UserContext } from "../contexts/UserContext"
-import { AddPlayerProvider } from '../contexts/AddPlayerContext';
 
 const Drawer = createDrawerNavigator();
 const LeagueStack = createNativeStackNavigator();
@@ -46,7 +45,6 @@ export const Navigation = () => {
 
   function MyTeamsNavigator() {
     return (
-      <AddPlayerProvider>
         <TeamsStack.Navigator>
           <TeamsStack.Screen options={{ headerShown: false }} name="UserTeams" component={MyTeamsScreen} />
           <TeamsStack.Screen name="RosterScreen" component={RosterScreen} />
@@ -54,7 +52,6 @@ export const Navigation = () => {
           <TeamsStack.Screen name="CreateNewTeamScreen" component={CreateNewTeamScreen} />
           <TeamsStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} />
         </TeamsStack.Navigator>
-      </AddPlayerProvider>
     );
   }
 
