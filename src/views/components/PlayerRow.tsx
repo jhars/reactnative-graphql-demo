@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AddPlayerConfirmationModal from './AddPlayerConfirmationModal'
 
 const PlayerRow = ({player, addPlayerButton, callback}) => {
-  const [ addPlayer, setAddPlayer ] = useState(null);
 	const { id, lastName, jersey, position, statistics } = player;
 
 	return(
@@ -31,6 +30,7 @@ const PlayerRow = ({player, addPlayerButton, callback}) => {
 	);
 }
 
+// export default memo(PlayerRow);
 export default memo(PlayerRow);
 
 const styles = StyleSheet.create({

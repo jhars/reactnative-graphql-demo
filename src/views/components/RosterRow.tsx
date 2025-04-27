@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const RosterRow = ({rosterId, rosterSpot, position, playerInfo, myTeam, leagueId, team}) => {
+const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam, leagueId, team}) => {
   const navigation = useNavigation();
   
-  const addDrop = () => {
-
+  const addDropButton = () => {
     if(playerInfo) {
       return (
         <View style={styles.dropAddColumn}>
-          <TouchableOpacity onPress={() => console.log('Drop Player')}>
+          <TouchableOpacity onPress={() => {
+            console.log('Drop Player')
+            // leagueId: team?.league?.id,
+            callback({
+              leagueId: leagueId,
+              playerId: playerInfo.id,
+              rosterSpot: rosterSpot,
+              rosterId: rosterId,
+              playerInfo: playerInfo
+            })
+          }}>
             <Text style={styles.buttonText}>Drop</Text>
           </TouchableOpacity>
         </View>
@@ -32,8 +41,6 @@ const RosterRow = ({rosterId, rosterSpot, position, playerInfo, myTeam, leagueId
     }
   }
 
-
-
 	return(
     <View style={styles.container}>
 
@@ -49,13 +56,13 @@ const RosterRow = ({rosterId, rosterSpot, position, playerInfo, myTeam, leagueId
         <Text style={styles.rowText}>{playerInfo?.statistics.statLineLastSeason.points ?? "  "}</Text>
       </View>
 
-      { myTeam && addDrop() }
+      { myTeam && addDropButton() }
 
     </View>
 	);
 }
-
-export default RosterRow;
+//JH-NOTE: may not need this, just copying add Player structure...
+export default memo(RosterRow);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,22 +1,46 @@
 import React, {memo} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Alert, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useMutation } from '@apollo/client';
+import { REMOVE_PLAYER_FROM_TEAM } from '../../data/mutations';
 
 
-const AddPlayerConfirmationModal = ({playerId, lastName, position, team, callback, visible, cancelCallback}) => {
-  // JH-NOTE: not using currently, but may need on refactor...
-  // const navigation = useNavigation();
+const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, roster, modalCallback, visible, cancelCallback}) => {
+  const [dropPlayerFromTeam, { data, loading, error }] = useMutation(REMOVE_PLAYER_FROM_TEAM, {
+    onCompleted(data) {
+      console.log("Drop Player Request Complete")
+      modalCallback()
+    },
+    errorPolicy: "all",
+    onError(err) {
+      console.log("Apollo err")
+      console.log(err)
+      console.log("***********")
+    }
+  });
+
+  if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+  if (error) return <Text>Error: {error.message}</Text>;
+
 
   return(
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Add {lastName} as {position} to {team}?
+            Drop  ({position}){lastName} as your {rosterSpot} from {roster?.teamInfo?.name}?
           </Text>
            
           <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
-              onPress={() => callback(playerId,lastName,position,team,team?.league?.id)}>
+              onPress={() => {
+              		dropPlayerFromTeam({
+              	  	variables: { 
+              			  leagueId: Number(roster?.teamInfo?.league?.id),
+              			  playerId: Number(playerId),
+              			  rosterSpot: rosterSpot,
+              			  rosterId: roster.id
+              	  	}
+              		})
+              }}>
 
               <Text style={styles.textStyle}>Confirm</Text>
 
@@ -32,10 +56,9 @@ const AddPlayerConfirmationModal = ({playerId, lastName, position, team, callbac
         </View>
       </View>
   );
-
 }
-// do i need this to be a memo?
-export default memo(AddPlayerConfirmationModal);
+
+export default memo(DropPlayerConfirmationModal);
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -79,4 +102,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-

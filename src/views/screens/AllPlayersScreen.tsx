@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useCallback, useMemo} from 'react';
+import React, {useState, useCallback} from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
 import PlayerRow from '../components/PlayerRow';
 import AddPlayerConfirmationModal from '../components/AddPlayerConfirmationModal'
@@ -12,14 +12,20 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function AllPlayersScreen({route}) {
 	const navigation = useNavigation();
+
+		const [ columns, setColumns ] = useState([
+	    "Position",
+	    "Name",
+	    "Points",
+	  ])
+
+  const [ selectedColumn, setSelectedColumn ] = useState(null)
+  const [ pointsSortDirection, setPoinstsSortDirection ] = useState('DESC')
+  const [ positionSortDirection, setPositionSortDirection ] = useState('ASC')
+  const [ nameSortDirection, setNameSortDirection ] = useState('ASC')
+
   const [ addPlayer, setAddPlayer ] = useState(null);
   const [ modalVisible, setModalVisible ] = useState(false);
-  // const [ playerToAdd, setPlayerToAdd ] = useState(null);
-
-  const selectPlayerToAdd = (player) => {
-  	setAddPlayer(player)
-  	setModalVisible(true)
-  }
 
   const playerRowCallback = useCallback( (player) => {
   	selectPlayerToAdd(player)
@@ -34,13 +40,16 @@ export default function AllPlayersScreen({route}) {
   // 1) Move Table Header View Logic to new Component
   // 2) See if useMutation logic can be moved to modal...?
   // 3) Destructure route?.params (after refactor)
+  // 4) Could do 'PlayerList' component, could complicate sort though
 
-  const modalCallBack = useCallback( (pID,lastName,pos,team) => {
+  const modalCallBack = useCallback( (pID,lastName,pos,team,LId) => {
 
 		const teamId = route.params?.team.id
 		const playerId = pID
 		const rosterSpot = route.params?.rosterSpot
 		const leagueId = route.params?.availableForLeagueId
+		// const leagueId = LId
+		// const leagueId = route.params?.team?.league?.id
 		const position = pos
 		const rosterId = route.params?.rosterId
 
@@ -57,45 +66,42 @@ export default function AllPlayersScreen({route}) {
   	setModalVisible(false)
   }, []);
 
-	const [ columns, setColumns ] = useState([
-    "Position",
-    "Name",
-    "Points",
-  ])
+    //==== GraphQL ======== 
+  	const { loading, error, data, refetch } = useQuery<Players>(GET_SORTED_PLAYERS, {
+  		variables: {
+  		  "orderBy": {
+  		    "field": "points",
+  		    "order": pointsSortDirection
+  		  },
+  		  "availableForLeagueId": Number(route.params?.availableForLeagueId) || null,
+  		  "position": route.params?.position || null
+  		}
+  	});
 
-  const [ selectedColumn, setSelectedColumn ] = useState(null)
-  const [ pointsSortDirection, setPoinstsSortDirection ] = useState('DESC')
-  const [ positionSortDirection, setPositionSortDirection ] = useState('ASC')
-  const [ nameSortDirection, setNameSortDirection ] = useState('ASC')
+  	const [addPlayerToTeam, { addPlayerData, addPlayerLoading, addPlayerError }] = useMutation(ADD_PLAYER_TO_TEAM, {
+  	  onCompleted(data) {
+  	  	//JH-NOTE: 'data' coming from above/below query/mutation?
+  	  	console.log("going back??")
+  	    navigation.goBack();
+  	  },
+  	  errorPolicy: "all",
+  	  onError(err) {
+  	    console.log("Apollo err")
+  	    console.log(err)
+  	    console.log("***********")
+  	  }
+  	});
 
-  //==== GraphQL ======== 
-	const { loading, error, data, refetch } = useQuery<Players>(GET_SORTED_PLAYERS, {
-		variables: {
-		  "orderBy": {
-		    "field": "points",
-		    "order": pointsSortDirection
-		  },
-		  "availableForLeagueId": Number(route.params?.availableForLeagueId) || null,
-		  "position": route.params?.position || null
-		}
-	});
+  	const selectPlayerToAdd = (player) => {
+  		setAddPlayer(player)
+  		setModalVisible(true)
+  	}
 
-	//JH-NOTE: is below 'data' coming from above?
+  	if (loading || addPlayerLoading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+  	if (error || addPlayerError) return <Text>Error: {error.message}</Text>;
 
-	const [addPlayerToTeam, { addPlayerData, addPlayerLoading, addPlayerError }] = useMutation(ADD_PLAYER_TO_TEAM, {
-	  onCompleted(data) {
-	    navigation.goBack();
-	  },
-	  errorPolicy: "all",
-	  onError(err) {
-	    console.log("Apollo err")
-	    console.log(err)
-	    console.log("***********")
-	  }
-	});
-
-	if (addPlayerLoading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
-	if (addPlayerError) return <Text>Error: {error.message}</Text>;
+  	// if (addPlayerLoading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
+  	// if (addPlayerError) return <Text>Error: {error.message}</Text>;
 	//=====================
 
 	const sortTable = (column) => {
@@ -151,6 +157,7 @@ export default function AllPlayersScreen({route}) {
 	  </View>
 	)
 
+	//JH-NOTE: when/how is "Alert being used?"
 	return(
   		<View>
 				{ route.params?.availableForLeagueId && 
@@ -159,22 +166,21 @@ export default function AllPlayersScreen({route}) {
 	  			  transparent={true}
 	  			  visible={modalVisible}
 	  			  onRequestClose={() => {
+	  			  	// does this ever run?
 	  			    Alert.alert('Modal has been closed.');
-	  			    setModalVisible(!modalVisible);
-	  			  }}>
-		  			  <AddPlayerConfirmationModal 
-		  			  	lastName={addPlayer?.lastName}
-		  			  	position={addPlayer?.position}
-		  			  	team={route.params?.team.name}
-		  			  	playerId={addPlayer?.id}
-		  			  	callback={modalCallBack}
-		  			  	cancelCallback={cancelModalCallback}
-		  			  	visible={modalVisible}
-		  			  />
-	  			  </Modal>
+	  			    // setModalVisible(!modalVisible);
+	  			 }}>
+	  			  <AddPlayerConfirmationModal 
+	  			  	lastName={addPlayer?.lastName}
+	  			  	position={addPlayer?.position}
+	  			  	team={route.params?.team.name}
+	  			  	playerId={addPlayer?.id}
+	  			  	callback={modalCallBack}
+	  			  	cancelCallback={cancelModalCallback}
+	  			  	visible={modalVisible}
+	  			  />
+  			  </Modal>
 				}
-
-
   				<FlatList
   					keyExtractor={(item) => item.id}
   					ListHeaderComponent={tableHeader}

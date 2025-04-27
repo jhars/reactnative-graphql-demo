@@ -59,7 +59,9 @@ query Roster($teamId: Int) {
     }
 
     goalie {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -69,8 +71,10 @@ query Roster($teamId: Int) {
     }
 
     defense1 {
+    id
     lastName
-     statistics {
+    position
+    statistics {
       statLineLastSeason {
         points
         turnovers
@@ -79,17 +83,21 @@ query Roster($teamId: Int) {
     }
    
     defense2 {
-     lastName
-     statistics {
-      statLineLastSeason {
-        points
-        turnovers
+      id
+      lastName
+      position
+      statistics {
+        statLineLastSeason {
+          points
+          turnovers
       }
      } 
     }
 
     lsm {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -99,7 +107,9 @@ query Roster($teamId: Int) {
     }
 
     ssdm {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -109,7 +119,9 @@ query Roster($teamId: Int) {
     }
 
     fo {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -119,7 +131,9 @@ query Roster($teamId: Int) {
     }
 
     midfield1 {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -130,7 +144,9 @@ query Roster($teamId: Int) {
     }
 
     midfield2 {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -141,7 +157,9 @@ query Roster($teamId: Int) {
     }
 
     attack1 {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
@@ -152,7 +170,9 @@ query Roster($teamId: Int) {
     }
 
     attack2 {
+      id
       lastName
+      position
       statistics {
         statLineLastSeason {
           points
