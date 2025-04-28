@@ -1,39 +1,64 @@
 import React, {memo} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useMutation } from '@apollo/client';
+import { ADD_PLAYER_TO_TEAM } from '../../data/mutations';
 
+const AddPlayerConfirmationModal = ({rosterSpot, rosterId, playerId, lastName, position, team, callback, visible, cancelCallback, failedToAddPlayerCallback}) => {
 
-const AddPlayerConfirmationModal = ({playerId, lastName, position, team, callback, visible, cancelCallback}) => {
-  // JH-NOTE: not using currently, but may need on refactor...
-  // const navigation = useNavigation();
+  const [addPlayerToTeam, { data, loading, error }] = useMutation(ADD_PLAYER_TO_TEAM, {
+    onCompleted(data) {
+      callback()
+    },
+    errorPolicy: "all",
+    onError(err) {
+      console.log("Apollo err")
+      console.log(err)
+      failedToAddPlayerCallback()
+      //JH-NOTE: Display Error Message on UI via Callback?
+    }
+  });
+
+  if (error ) return <Text>Error: {error.message}</Text>;
 
   return(
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>
-            Add {lastName} as {position} to {team}?
-          </Text>
-           
-          <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => callback(playerId,lastName,position,team,team?.league?.id)}>
+    <View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <Text style={styles.modalText}>
+          Add {lastName} as {position} to {team?.name}?
+        </Text>
+         
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={() => {
+              addPlayerToTeam({
+              variables: { 
+                teamId: Number(team?.id),
+                playerId: Number(playerId),
+                rosterSpot: rosterSpot,
+                leagueId: Number(team.league.id),
+                position: position,
+                rosterId: rosterId,
+              }
+            })
+          }
+          }>
 
-              <Text style={styles.textStyle}>Confirm</Text>
+          <Text style={styles.textStyle}>Confirm</Text>
 
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => cancelCallback(visible)}>
+        <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => cancelCallback(visible)}>
 
-              <Text style={styles.textStyle}>Cancel</Text>
+            <Text style={styles.textStyle}>Cancel</Text>
 
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
       </View>
+    </View>
   );
-
 }
+
 // do i need this to be a memo?
 export default memo(AddPlayerConfirmationModal);
 

@@ -1,8 +1,7 @@
 import React, {memo} from 'react';
-import { Alert, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Alert, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { REMOVE_PLAYER_FROM_TEAM } from '../../data/mutations';
-
 
 const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, roster, modalCallback, visible, cancelCallback}) => {
   const [dropPlayerFromTeam, { data, loading, error }] = useMutation(REMOVE_PLAYER_FROM_TEAM, {
@@ -18,7 +17,6 @@ const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, 
     }
   });
 
-  if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
   if (error) return <Text>Error: {error.message}</Text>;
 
 
