@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
 	},
 	dropAddColumnHeader: {
 	  flexGrow:1,
+	  width: 25
 	},
 	columnHeaderTxt: {
 	  color: "white",

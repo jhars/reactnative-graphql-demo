@@ -84,13 +84,15 @@ const styles = StyleSheet.create({
   },
   dropAddColumn: {
     flexGrow:1,
-    paddingRight: 10
+    paddingRight: 10,
+    width: 25
   },
   rowText: {
   },
   buttonText: {
-    // fontSize: 40,
+    fontSize: 12,
     color: 'aliceblue',
+    fontWeight: "bold"
   },
   addButton: {
     backgroundColor: 'green',
