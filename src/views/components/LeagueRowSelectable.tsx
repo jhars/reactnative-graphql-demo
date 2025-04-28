@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,8 +8,8 @@ const LeagueRowSelectable = ({league}) => {
 
 	return(
 		<View style={styles.container}>
-        <Button onPress={() => navigation.navigate('CreateNewTeamConfirmation', {leagueID: league.id, leagueName: league.title})}>
-          {league.title}
+        <Button style={styles.button} onPress={() => navigation.navigate('CreateNewTeamConfirmation', {leagueID: league.id, leagueName: league.title})}>
+          <Text style={styles.buttonText}>{league.title}</Text>
         </Button>
   		
 		</View>
@@ -18,9 +18,15 @@ const LeagueRowSelectable = ({league}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop:25,
+    flex: 1,
     padding:5,
   },
+  button: {
+    backgroundColor: 'darkblue',
+  },
+  buttonText: {
+    color: 'aliceblue'
+  }
 });
 
 export default LeagueRowSelectable;

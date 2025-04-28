@@ -17,8 +17,8 @@ const TeamRow = ({team, myTeam}) => {
 
   return(
     <View style={styles.container}>
-      <Button onPress={() => navigation.navigate('RosterScreen', { team: team, myTeam: myTeam})}>
-        {name}
+      <Button style={styles.button} onPress={() => navigation.navigate('RosterScreen', { team: team, myTeam: myTeam})}>
+        <Text style={styles.buttonText}>{name}</Text>
       </Button>
     </View>
   );
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding:5,
   },
+  button: {
+    backgroundColor: 'steelblue',
+  },
+  buttonText: {
+    color: 'aliceblue'
+  }
 });
 
 export default TeamRow;

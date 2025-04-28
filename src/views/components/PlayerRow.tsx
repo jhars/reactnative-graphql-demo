@@ -21,8 +21,8 @@ const PlayerRow = ({player, addPlayerButton, callback}) => {
 
       {addPlayerButton && 
         <View style={styles.addPlayerColumn}>
-          <TouchableOpacity onPress={() => callback(player)}>
-            <Text>Add</Text>
+          <TouchableOpacity style={styles.addButton} onPress={() => callback(player)}>
+            <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>
       }
@@ -55,5 +55,15 @@ const styles = StyleSheet.create({
   },
   addPlayerColumn: {
     flexGrow:1,
+    paddingRight: 10
+  },
+  addButton: {
+    backgroundColor: 'green',
+    borderWidth: 2,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'aliceblue',
   }
 });

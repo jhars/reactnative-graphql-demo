@@ -47,8 +47,8 @@ export const Navigation = () => {
     return (
         <TeamsStack.Navigator>
           <TeamsStack.Screen options={{ headerShown: false }} name="UserTeams" component={MyTeamsScreen} />
-          <TeamsStack.Screen name="RosterScreen" component={RosterScreen} />
-          <TeamsStack.Screen name="AvailablePlayersScreen" component={AllPlayersScreen} />
+          <TeamsStack.Screen name="RosterScreen" component={RosterScreen} options={{ headerBackTitle: 'My Teams'}} />
+          <TeamsStack.Screen name="AvailablePlayersScreen" component={AllPlayersScreen} options={({ route }) => ({ title: "Available Players" })}/>
           <TeamsStack.Screen name="CreateNewTeamScreen" component={CreateNewTeamScreen} />
           <TeamsStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} />
         </TeamsStack.Navigator>

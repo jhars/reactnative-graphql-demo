@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useAuthenticator } from '@aws-amplify/ui-react-native';
 import { UserContext } from "../../contexts/UserContext"
@@ -9,12 +9,49 @@ export default function MyAccountScreen() {
   const { user } = useContext(UserContext);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Email: {user?.email}</Text>
-      <Text>Username: {user?.preferred_username}</Text>
-      <Button onPress={signOut}>
-        Sign Out
-      </Button>
+    <View style={styles.container}>
+      <View style={styles.userData}>
+        <Text style={styles.userRow}>Email: {user?.email}</Text>
+        <Text style={styles.userRow}>Username: {user?.preferred_username}</Text>
+      </View>
+      <View style={styles.footer}>
+        <Button style={styles.button} onPress={signOut}>
+          <Text style={styles.buttonText}>Sign Out</Text>
+        </Button>
+      </View>
+
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  userData: {
+    flex: 1,
+    marginTop: 25
+  },
+  userRow: {
+    margin: 10,
+    fontSize: 20
+  },
+  footer: {
+    height: 100,  
+    justifyContent: 'flex-end',
+    flexGrow: 1,
+    paddingBottom: 50
+  },
+  button: {
+    backgroundColor: 'darkblue',
+  },
+  buttonText: {
+    color: 'aliceblue',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontVariant: 'small-caps'
+  }
+})
+
+

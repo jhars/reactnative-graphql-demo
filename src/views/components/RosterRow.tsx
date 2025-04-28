@@ -9,9 +9,7 @@ const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam
     if(playerInfo) {
       return (
         <View style={styles.dropAddColumn}>
-          <TouchableOpacity onPress={() => {
-            console.log('Drop Player')
-            // leagueId: team?.league?.id,
+          <TouchableOpacity style={styles.dropButton} onPress={() => {
             callback({
               leagueId: leagueId,
               playerId: playerInfo.id,
@@ -27,7 +25,7 @@ const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam
     } else {
       return (
         <View style={styles.dropAddColumn}>
-          <TouchableOpacity onPress={() => navigation.navigate('AvailablePlayersScreen', {
+          <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AvailablePlayersScreen', {
             availableForLeagueId: leagueId,
             position: position,
             team: team,
@@ -86,10 +84,24 @@ const styles = StyleSheet.create({
   },
   dropAddColumn: {
     flexGrow:1,
+    paddingRight: 10
   },
   rowText: {
   },
   buttonText: {
     // fontSize: 40,
+    color: 'aliceblue',
+  },
+  addButton: {
+    backgroundColor: 'green',
+    borderWidth: 2,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  dropButton: {
+    backgroundColor: 'darkred',
+    borderWidth: 2,
+    borderRadius: 20,
+    alignItems: 'center',
   }
 });

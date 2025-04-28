@@ -3,7 +3,7 @@ import { Alert, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { REMOVE_PLAYER_FROM_TEAM } from '../../data/mutations';
 
-const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, roster, modalCallback, visible, cancelCallback}) => {
+const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, roster, modalCallback, visible, cancelCallback, failedToDropPlayerCallback}) => {
   const [dropPlayerFromTeam, { data, loading, error }] = useMutation(REMOVE_PLAYER_FROM_TEAM, {
     onCompleted(data) {
       console.log("Drop Player Request Complete")
@@ -13,7 +13,7 @@ const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, 
     onError(err) {
       console.log("Apollo err")
       console.log(err)
-      console.log("***********")
+      failedToDropPlayerCallback()
     }
   });
 
@@ -26,31 +26,34 @@ const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, 
           <Text style={styles.modalText}>
             Drop  ({position}){lastName} as your {rosterSpot} from {roster?.teamInfo?.name}?
           </Text>
-           
-          <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-              		dropPlayerFromTeam({
-              	  	variables: { 
-              			  leagueId: Number(roster?.teamInfo?.league?.id),
-              			  playerId: Number(playerId),
-              			  rosterSpot: rosterSpot,
-              			  rosterId: roster.id
-              	  	}
-              		})
-              }}>
+          
+          <View style={styles.actionButtons}>
+            <TouchableOpacity
+                style={[styles.button, styles.buttonConfirm]}
+                onPress={() => {
+                    dropPlayerFromTeam({
+                      variables: { 
+                        leagueId: Number(roster?.teamInfo?.league?.id),
+                        playerId: Number(playerId),
+                        rosterSpot: rosterSpot,
+                        rosterId: roster.id
+                      }
+                    })
+                }}>
 
-              <Text style={styles.textStyle}>Confirm</Text>
+                <Text style={styles.textStyle}>Confirm</Text>
 
-          </TouchableOpacity>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => cancelCallback(visible)}>
+            <TouchableOpacity
+                style={[styles.button, styles.buttonCancel]}
+                onPress={() => cancelCallback(visible)}>
 
-              <Text style={styles.textStyle}>Cancel</Text>
+                <Text style={styles.textStyle}>Cancel</Text>
 
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          
         </View>
       </View>
   );
@@ -83,12 +86,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    margin: 10
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+  buttonConfirm: {
+    backgroundColor: 'green',
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
+  buttonCancel: {
+    backgroundColor: 'darkred',
   },
   textStyle: {
     color: 'white',
@@ -98,5 +102,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontSize: 15
   },
+  actionButtons: {
+    flexDirection: "row"
+  }
 });

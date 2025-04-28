@@ -25,7 +25,7 @@ export default RosterTableHeader = (props: RosterHeaderProps) => {
 		  { props.myTeam && 
 		    <View 
 		      style={styles.dropAddColumnHeader}>
-		      <Text style={styles.columnHeaderTxt}>DropAdd</Text>
+		      <Text style={styles.columnHeaderTxt}>Action</Text>
 		    </View>        
 		  }
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 	  flex: 1,
 	  flexDirection: "row",
 	  alignItems: "center",
-	  backgroundColor: "#37C2D0",
+	  backgroundColor: "darkblue",
 	  height: 50,
 	},
 	positionColumnHeader: {

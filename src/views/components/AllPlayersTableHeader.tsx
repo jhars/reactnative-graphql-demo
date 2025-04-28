@@ -30,7 +30,7 @@ export default AllPlayersTableHeader = (props: AllPlayersTableHeaderProps) => {
 		  {props.availableForLeagueId && 
 
 		  	<View style={styles.addColumnHeader}>
-		  	  <Text style={styles.columnHeaderTxt}>{'Add'}</Text>
+		  	  <Text style={styles.columnHeaderTxt}>{'Action'}</Text>
 		  	</View>
 			}
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#37C2D0",
+    backgroundColor: "darkblue",
     height: 50,
     paddingLeft: 15
   },

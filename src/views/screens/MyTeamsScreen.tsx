@@ -29,7 +29,9 @@ export default function MyTeamsScreen() {
     <View style={styles.container}>
       <TeamsList teams={data?.teams} myTeams={true}/>
       <View style={styles.footer}>
-        <Button onPress={() => navigation.navigate('CreateNewTeamScreen')}>Add New Team</Button>
+        <Button style={styles.button} onPress={() => navigation.navigate('CreateNewTeamScreen')}>
+          <Text style={styles.buttonText}>Add New Team</Text>
+        </Button>
       </View>
     </View>
   );
@@ -41,10 +43,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   footer: {
-    height: 100,  
-    justifyContent: 'flex-end',
-    flexGrow: 1,
-    paddingBottom: 100
+    marginBottom: 25,
+    marginTop: 25,
+  },
+  button: {
+    backgroundColor: 'darkblue',
+  },
+  buttonText: {
+    color: 'aliceblue',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontVariant: 'small-caps'
   }
-  
 });

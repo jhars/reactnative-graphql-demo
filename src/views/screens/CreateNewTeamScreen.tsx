@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { View, Text, TextInput, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
@@ -24,12 +24,17 @@ export default function CreateNewTeamScreen() {
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
   if (error) return <Text>Error: {error.message}</Text>;
   //=====================
-
+  
   return (
-    <SafeAreaProvider>
-      <SafeAreaView>
-        <LeagueSelectFromList leagues={data.leagues}/>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+        <LeagueSelectFromList leagues={data?.leagues}/>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});

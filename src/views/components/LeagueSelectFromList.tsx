@@ -1,16 +1,21 @@
 import React from 'react';
-import { View, FlatList, Text, TouchableOpacity } from 'react-native';
-import { Button } from '@react-navigation/elements';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import LeagueRowSelectable from './LeagueRowSelectable';
 
 export default function LeagueSelectFromList({leagues}) {
-
-    return(
-    	<View>
-  			<FlatList
-  				data={leagues}
-  				renderItem={({item}) => <LeagueRowSelectable league={item} />}
-  			/> 
-    	</View>
-    );
+  return(
+  	<View style={styles.container}>
+			<FlatList
+				data={leagues}
+				renderItem={({item}) => <LeagueRowSelectable league={item} />}
+			/> 
+  	</View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+})

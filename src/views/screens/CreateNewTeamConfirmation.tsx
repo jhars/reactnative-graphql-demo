@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,13 @@ const CreateNewTeamConfirmation = ({route}) => {
   const { user } = useContext(UserContext);
   const {leagueID, leagueName } = route.params
   const [teamname, onChangeText] = useState('');
+
+  useEffect(()=>{
+    navigation.setOptions({
+      title: "Create Team Name"
+    });
+  }, []);
+
 
   const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
     onCompleted(data) {
@@ -33,10 +40,11 @@ const CreateNewTeamConfirmation = ({route}) => {
         placeholder="Team Name"
         value={teamname}
       />
-        <Button 
+        <Button
+          style={styles.button}
           disabled={teamname.length <= 0}
           onPress={() => addTeam({variables: { ownerId: String(user.id), name: teamname, leagueId: Number(leagueID) }})}>
-          Add {teamname} to {leagueName}
+          <Text style={styles.buttonText}>Add {teamname} to {leagueName}</Text>
         </Button>
 
       { error &&
@@ -57,6 +65,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  button: {
+    backgroundColor: 'darkblue',
+  },
+  buttonText: {
+    color: 'aliceblue',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontVariant: 'small-caps'
+  }
 });
 
 export default CreateNewTeamConfirmation;

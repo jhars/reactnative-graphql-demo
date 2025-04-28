@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { View, Text, StyleSheet, ScrollView, Modal, ActivityIndicator} from 'react-native';
+import { Alert, View, Text, StyleSheet, ScrollView, Modal, ActivityIndicator} from 'react-native';
 import RosterTableHeader from '../components/RosterTableHeader';
 import RosterRow from '../components/RosterRow';
 import DropPlayerConfirmationModal from '../components/DropPlayerConfirmationModal'
@@ -22,19 +22,13 @@ export default function RosterScreen({route}) {
     navigation.setOptions({
           title: team.name,
         });
-    // JH-NOTE: not sure if this refetch is necessary anymore
-    refetch()
   }, []);
 
   useFocusEffect(
     useCallback(() => {
       // Do something when the screen is focused
-      // refetch({ teamId: Number(team.id) })
       refetch()
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-      };
+      return () => {};
     }, [])
   )
 
@@ -56,6 +50,19 @@ export default function RosterScreen({route}) {
   const cancelModalCallback = useCallback( (show) => {
     setModalVisible(false)
   }, []);
+
+  const failedToDropPlayerCallback = useCallback( () => {
+    showFailureAlert()
+  }, []);
+
+  const showFailureAlert = (player) => {
+    setModalVisible(false)
+    Alert.alert('Unable to Drop Player','Player may have started games this week or there may be network issues', [
+      {
+        text: 'OK'
+      }
+    ])
+  } 
 
   const { loading, error, data, refetch } = useQuery<Roster>(GET_TEAM_ROSTER, {
     variables: { teamId: Number(team.id) }
@@ -83,6 +90,7 @@ export default function RosterScreen({route}) {
               roster={roster}
               modalCallback={modalCallback}
               cancelCallback={cancelModalCallback}
+              failedToDropPlayerCallback={failedToDropPlayerCallback}
               visible={modalVisible}/>
 
           </Modal>

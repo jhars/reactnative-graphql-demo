@@ -16,16 +16,24 @@ const LeagueRow = ({league}) => {
 
 	return(
 		<View style={styles.container}>
-      <Button onPress={() => navigation.navigate('LeagueTeamsScreen', {league: league, name: league.title})}>{title}</Button>
+      <Button style={styles.button} onPress={() => navigation.navigate('LeagueTeamsScreen', {league: league, name: league.title})}>
+      	<Text style={styles.buttonText}>{title}</Text>
+      </Button>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop:25,
+    flex: 1,
     padding:5,
   },
+  button: {
+    backgroundColor: 'steelblue',
+  },
+  buttonText: {
+    color: 'aliceblue'
+  }
 });
 
 export default LeagueRow;

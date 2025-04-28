@@ -26,34 +26,38 @@ const AddPlayerConfirmationModal = ({rosterSpot, rosterId, playerId, lastName, p
         <Text style={styles.modalText}>
           Add {lastName} as {position} to {team?.name}?
         </Text>
+
+        <View style={styles.actionButtons}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonConfirm]}
+            onPress={() => {
+                addPlayerToTeam({
+                variables: { 
+                  teamId: Number(team?.id),
+                  playerId: Number(playerId),
+                  rosterSpot: rosterSpot,
+                  leagueId: Number(team.league.id),
+                  position: position,
+                  rosterId: rosterId,
+                }
+              })
+            }
+            }>
+
+            <Text style={styles.textStyle}>Confirm</Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity
+              style={[styles.button, styles.buttonCancel]}
+              onPress={() => cancelCallback(visible)}>
+
+              <Text style={styles.textStyle}>Cancel</Text>
+
+          </TouchableOpacity>
+        </View>
          
-        <TouchableOpacity
-          style={[styles.button, styles.buttonClose]}
-          onPress={() => {
-              addPlayerToTeam({
-              variables: { 
-                teamId: Number(team?.id),
-                playerId: Number(playerId),
-                rosterSpot: rosterSpot,
-                leagueId: Number(team.league.id),
-                position: position,
-                rosterId: rosterId,
-              }
-            })
-          }
-          }>
 
-          <Text style={styles.textStyle}>Confirm</Text>
-
-        </TouchableOpacity>
-
-        <TouchableOpacity
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => cancelCallback(visible)}>
-
-            <Text style={styles.textStyle}>Cancel</Text>
-
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -87,12 +91,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    margin: 10
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+  buttonConfirm: {
+    backgroundColor: 'green',
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
+  buttonCancel: {
+    backgroundColor: 'darkred',
   },
   textStyle: {
     color: 'white',
@@ -102,6 +107,10 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontSize: 15
   },
+  actionButtons: {
+    flexDirection: "row"
+  }
 });
 

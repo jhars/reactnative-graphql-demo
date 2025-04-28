@@ -18,10 +18,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  footer: {
-    height: 100,  
-    justifyContent: 'flex-end',
-    flexGrow: 1,
-    paddingBottom: 100
-  }
 });
