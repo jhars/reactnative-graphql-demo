@@ -36,7 +36,6 @@ const AddPlayerConfirmationModal = ({
       console.log("Apollo err")
       console.log(err)
       failedToAddPlayerCallback()
-      //JH-NOTE: Display Error Message on UI via Callback?
     }
   });
 

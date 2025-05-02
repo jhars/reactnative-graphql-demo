@@ -37,7 +37,6 @@ export default function RosterScreen() {
     setModalVisible(true)
   }
   
-  //JH-NOTE: may want to define type here...
   const dropPlayerFromRosterRowCallback = useCallback( (player: DropPlayerRequestObject) => {
     selectPlayerToDrop(player)
   }, []);
