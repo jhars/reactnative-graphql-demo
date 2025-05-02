@@ -1,6 +1,5 @@
 export type ById<T> = { [index: string]: T };
 
-//JH-NOTE: unused
 export interface DropPlayerRequestObject {
   leagueId: number,
   playerId: number,

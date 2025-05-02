@@ -10,7 +10,6 @@ import { PlayerData, Team, Position, RosterSpot, SortColumnName, Player} from '.
 //=====================
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AvailablePlayersScreenRouteProp } from '../../navigation/types';
-//##### NAV ROUTE PROPS########
 
 export default function AllPlayersScreen() {
 
@@ -103,7 +102,6 @@ export default function AllPlayersScreen() {
 	if (loading ) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
 	if (error ) return <Text>Error: {error.message}</Text>;
 //=====================
-	// const ready
 	const renderModal = addPlayer && route.params?.team && route.params?.rosterId && route.params?.rosterSpot && route.params?.availableForLeagueId
 	return(
 		<View>

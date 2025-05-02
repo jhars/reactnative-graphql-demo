@@ -54,14 +54,6 @@ export const Navigation = () => {
         </MyTeamsStack.Navigator>
     );
   }
-
-  // function RosterNavigator() {
-  //   return (
-  //     <RosterStack.Navigator>
-  //       <RosterStack.Screen name="RosterScreen" component={RosterScreen} />
-  //     </RosterStack.Navigator>
-  //   );
-  // }
   
   function CreateTeamNavigator() {
     return (
@@ -84,7 +76,6 @@ export const Navigation = () => {
           <Drawer.Screen name="CreateTeam" component={CreateTeamNavigator} options={() => ({
             drawerItemStyle: { display: 'none' },
           })}/>
-          {/*<RosterNavigator name=/>*/}
         </Drawer.Navigator>
         
       </NavigationContainer>

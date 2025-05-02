@@ -20,10 +20,7 @@ export default function MyTeamsScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      // Do something when the screen is focused
       refetch()
-      //Do I need this return statement at all?
-      return () => {};
     }, [])
   )
 

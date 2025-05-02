@@ -28,7 +28,6 @@ const CreateNewTeamConfirmation = () => {
 
   const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
     onCompleted(data) {
-      // navigation.navigate('MyTeams', {screen:'UserTeams'})
       navigate('MyTeams', {screen:'UserTeams'})
     },
     errorPolicy: "all",
@@ -81,9 +80,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'aliceblue',
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
-    marginLeft: 25
   },
 });
 

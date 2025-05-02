@@ -83,7 +83,7 @@ const RosterRow = ({
     </View>
 	);
 }
-//JH-NOTE: may not need this, just copying add Player structure...
+//JH-NOTE: may not need this, see addPlayer memo
 export default memo(RosterRow);
 
 const styles = StyleSheet.create({

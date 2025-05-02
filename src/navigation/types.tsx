@@ -6,8 +6,8 @@ import type { NativeStackScreenProps, NativeStackNavigationProp } from '@react-n
 
 //JH-NOTE: review all of this... necessary? 
 export type BaseNavigationProps = NativeStackNavigationProp<ParamListBase>;
-
 export type AvailablePlayersScreenRouteProp = RouteProp<MyTeamsStackParamList, 'AvailablePlayersScreen'>;
+export type RosterScreenRouteProps = RouteProp<LeaguesStackParamList|MyTeamsStackParamList,'RosterScreen'>;
 
 export type MyTeamsScreenNavigationProps = NavigatorScreenParams<MyTeamsStackParamList>;
 
@@ -16,28 +16,6 @@ export type LeaguesScreenNavigationProps = NavigatorScreenParams<LeaguesStackPar
 
 export type CreateNewTeamConfirmationScreenRouteProp = RouteProp<CreateTeamStackParamList, 'CreateNewTeamConfirmation'>;
 export type CreateNewTeamNavigationProps = NavigatorScreenParams<CreateTeamStackParamList>;
-
-export type RosterScreenRouteProps = RouteProp<LeaguesStackParamList|MyTeamsStackParamList,'RosterScreen'>;
-// export type RosterScreenRouteProps = RouteProp<ParamListBase>;
-// export type RosterScreenRouteProps = NavigatorScreenParams<RosterScreenParamList>;
-// export type RosterScreenRouteProps = RouteProp<ParamListBase>;
-// export type RosterScreenRouteProps = NativeStackNavigationProp<RosterScreenParamList>;
-
-// export type RosterScreenCompositeProps = CompositeNavigationProp<
-//   NativeStackNavigationProp<ParamListBase, T>,
-//   RouteProp<RosterScreenParamList>
-// >;
-
-// export type RootStackScreenProps<T extends keyof RootDrawerParamList> = StackScreenProps<RootDrawerParamList, T>;
-
-
-// export type RosterScreenCompositeProps<T extends keyof RosterScreenParamList> =
-//   CompositeScreenProps<
-//     RouteProp<ParamListBase, T>,
-//     RootStackScreenProps<keyof RootStackParamList>
-//   >;
-
-
 
 export type RootDrawerParamList = {
   Home: undefined;
@@ -80,7 +58,6 @@ export type LeaguesStackParamList = {
   },
   RosterScreen: RosterScreenParamList
 };
-
 
 
 declare global {
