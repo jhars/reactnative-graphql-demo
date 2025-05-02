@@ -6,8 +6,9 @@ import LeagueRow from '../components/LeagueRow';
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
 import { GET_ALL_LEAGUES } from '../../data/queries';
-import { Leagues } from '../../data/types';
+import { LeaguesData } from '../../data/types';
 //=====================
+// import { LeaguesScreenRouteProp } from '../../navigation/types';
 
 export default function LeaguesScreen() {
 
@@ -19,7 +20,7 @@ export default function LeaguesScreen() {
     }, [])
   )
   //==== GraphQL ======== 
-  const { loading, error, data, refetch } = useQuery<Leagues>(GET_ALL_LEAGUES);
+  const { loading, error, data, refetch } = useQuery<LeaguesData>(GET_ALL_LEAGUES);
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
   if (error) return <Text>Error: {error.message}</Text>;
   //=====================

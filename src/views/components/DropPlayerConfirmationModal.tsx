@@ -2,8 +2,30 @@ import React, {memo} from 'react';
 import { Alert, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { REMOVE_PLAYER_FROM_TEAM } from '../../data/mutations';
+import { RosterSpot, Position, Team, Roster } from '../../data/types';
 
-const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, roster, modalCallback, visible, cancelCallback, failedToDropPlayerCallback}) => {
+interface DropPlayerConfirmationProps {
+  rosterSpot: RosterSpot,
+  playerId: string,
+  lastName: string,
+  position: Position, 
+  roster: Roster, 
+  modalCallback: () => void,
+  cancelCallback: () => void,
+  failedToDropPlayerCallback: () => void,
+}
+
+const DropPlayerConfirmationModal = ({
+  rosterSpot, 
+  playerId, 
+  lastName, 
+  position, 
+  roster, 
+  modalCallback, 
+  cancelCallback, 
+  failedToDropPlayerCallback
+}: DropPlayerConfirmationProps) => {
+  
   const [dropPlayerFromTeam, { data, loading, error }] = useMutation(REMOVE_PLAYER_FROM_TEAM, {
     onCompleted(data) {
       console.log("Drop Player Request Complete")
@@ -41,13 +63,13 @@ const DropPlayerConfirmationModal = ({rosterSpot, playerId, lastName, position, 
                     })
                 }}>
 
-                <Text style={styles.textStyle}>Confirm</Text>
+                <Text style={styles.textStyle}>Confirm Drop</Text>
 
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={[styles.button, styles.buttonCancel]}
-                onPress={() => cancelCallback(visible)}>
+                onPress={() => cancelCallback()}>
 
                 <Text style={styles.textStyle}>Cancel</Text>
 
@@ -89,10 +111,10 @@ const styles = StyleSheet.create({
     margin: 10
   },
   buttonConfirm: {
-    backgroundColor: 'green',
+    backgroundColor: 'darkred',
   },
   buttonCancel: {
-    backgroundColor: 'darkred',
+    backgroundColor: 'goldenrod',
   },
   textStyle: {
     color: 'white',

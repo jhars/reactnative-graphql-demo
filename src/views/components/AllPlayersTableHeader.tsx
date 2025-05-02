@@ -2,32 +2,32 @@ import { View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 interface AllPlayersTableHeaderProps {
 	callback(column: string): any;
-	availableForLeagueId: number;
+	availableForLeagueId: number | undefined;
 }
 
-export default AllPlayersTableHeader = (props: AllPlayersTableHeaderProps) => {
+export default ({callback, availableForLeagueId }: AllPlayersTableHeaderProps) => {
 	return(
 	  <View style={styles.tableHeader}>
 
 		  <TouchableOpacity 
 		    style={styles.positionColumnHeader} 
-		    onPress={()=> props.callback('Position')}>
+		    onPress={()=> callback('Position')}>
 		  	<Text style={styles.columnHeaderTxt}>{'Pos.' + "\n▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		    style={styles.nameColumnHeader} 
-		    onPress={()=> props.callback('Name')}>
+		    onPress={()=> callback('Name')}>
 		    <Text style={styles.columnHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		  	style={styles.pointsColumnHeader}
-		  	onPress={()=> props.callback('Points')}>
+		  	onPress={()=> callback('Points')}>
 		    <Text style={styles.columnHeaderTxt}>{'Points' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
-		  {props.availableForLeagueId && 
+		  {availableForLeagueId && 
 
 		  	<View style={styles.addColumnHeader}>
 		  	  <Text style={styles.columnHeaderTxt}>{'Action'}</Text>

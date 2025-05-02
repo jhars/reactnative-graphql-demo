@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet} from 'react-native';
-import { Button } from '@react-navigation/elements';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { useAuthenticator } from '@aws-amplify/ui-react-native';
 import { UserContext } from "../../contexts/UserContext"
 
@@ -15,9 +14,9 @@ export default function MyAccountScreen() {
         <Text style={styles.userRow}>Username: {user?.preferred_username}</Text>
       </View>
       <View style={styles.footer}>
-        <Button style={styles.button} onPress={signOut}>
+        <TouchableOpacity style={styles.button} onPress={signOut}>
           <Text style={styles.buttonText}>Sign Out</Text>
-        </Button>
+        </TouchableOpacity>
       </View>
 
     </View>
@@ -45,12 +44,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'darkblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
     color: 'aliceblue',
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontVariant: 'small-caps'
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 })
 

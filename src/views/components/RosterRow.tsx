@@ -1,8 +1,27 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Team, RosterSpot, Position, Player, SelectDropPlayerObject } from '../../data/types';
 
-const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam, leagueId, team}) => {
+interface RosterRowProps {
+  dropPlayerCallback: (player: SelectDropPlayerObject) => void, 
+  rosterId: string | undefined,
+  rosterSpot: RosterSpot,
+  position: Position | undefined,
+  playerInfo: Player | undefined,
+  myTeam: boolean | undefined,
+  teamInfo: Team | undefined
+}
+
+const RosterRow = ({
+  dropPlayerCallback,
+  rosterId,
+  rosterSpot,
+  position,
+  playerInfo,
+  myTeam,
+  teamInfo
+}: RosterRowProps) => {
   const navigation = useNavigation();
   
   const addDropButton = () => {
@@ -10,11 +29,11 @@ const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam
       return (
         <View style={styles.dropAddColumn}>
           <TouchableOpacity style={styles.dropButton} onPress={() => {
-            callback({
-              leagueId: leagueId,
-              playerId: playerInfo.id,
+            dropPlayerCallback({
+              leagueId: Number(teamInfo?.league?.id),
+              playerId: Number(playerInfo.id),
               rosterSpot: rosterSpot,
-              rosterId: rosterId,
+              rosterId: String(rosterId),
               playerInfo: playerInfo
             })
           }}>
@@ -25,13 +44,18 @@ const RosterRow = ({callback, rosterId, rosterSpot, position, playerInfo, myTeam
     } else {
       return (
         <View style={styles.dropAddColumn}>
-          <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AvailablePlayersScreen', {
-            availableForLeagueId: leagueId,
-            position: position,
-            team: team,
-            rosterSpot: rosterSpot,
-            rosterId: rosterId
-          })}>
+          <TouchableOpacity style={styles.addButton} onPress={() => {
+            return navigation.navigate('MyTeams', {
+              screen: 'AvailablePlayersScreen',
+              params: {
+                availableForLeagueId: Number(teamInfo?.league?.id),
+                position: position,
+                team: teamInfo,
+                rosterSpot: rosterSpot,
+                rosterId: rosterId 
+              }
+            })
+          }}>
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>

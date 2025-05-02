@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button } from '@react-navigation/elements';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import TeamsList from '../components/TeamsList';
+import { LeagueTeamsScreenRouteProps, BaseNavigationProps } from '../../navigation/types';
 
-export default function LeagueTeamsScreen({route}) {
-  const navigation = useNavigation();
+export default function LeagueTeamsScreen() {
+  const navigation = useNavigation<BaseNavigationProps>();
+  const route = useRoute<LeagueTeamsScreenRouteProps>();
 
   const { league } = route.params
 
@@ -19,14 +20,18 @@ export default function LeagueTeamsScreen({route}) {
     <View style={styles.container}>
       <TeamsList teams={league.teams} myTeams={false}/>
       <View style={styles.footer}>
-        <Button style={styles.button} onPress={() => navigation.navigate('My Teams',{
-          screen: 'CreateNewTeamConfirmation',
-          params: {
-            leagueID: league.id, 
-            leagueName: league.title
-          }})}>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          return navigation.navigate('CreateTeam',{
+            screen: 'CreateNewTeamConfirmation',
+            params: {
+              leagueID: league.id, 
+              leagueTitle: league.title,
+            },
+            path: 'Leagues'
+        })
+        }}>
           <Text style={styles.buttonText}>Join {league.title}</Text>
-        </Button>
+        </TouchableOpacity>
       </View>
     </View>
     
@@ -46,12 +51,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'midnightblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
     color: 'aliceblue',
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontVariant: 'small-caps'
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
   }
   
 });

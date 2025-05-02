@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet} from 'react-native';
 
-interface RosterHeaderProps {
-	myTeam: boolean;
+interface RosterTableHeaderProps {
+	myTeam: boolean | undefined;
 }
 
-export default RosterTableHeader = (props: RosterHeaderProps) => {
+const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 	return(
 		<View style={styles.tableHeader}>
 
@@ -22,7 +22,7 @@ export default RosterTableHeader = (props: RosterHeaderProps) => {
 		    <Text style={styles.columnHeaderTxt}>Points</Text>
 		  </View>
 
-		  { props.myTeam && 
+		  { myTeam && 
 		    <View 
 		      style={styles.dropAddColumnHeader}>
 		      <Text style={styles.columnHeaderTxt}>Action</Text>
@@ -32,6 +32,8 @@ export default RosterTableHeader = (props: RosterHeaderProps) => {
 		</View>
 	)
 }
+
+export default RosterTableHeader
 
 const styles = StyleSheet.create({
 	tableHeader: {

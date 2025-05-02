@@ -1,28 +1,35 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Button } from '@react-navigation/elements';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { HeaderBackButton } from '@react-navigation/elements';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { ADD_TEAM_TO_LEAGUE } from '../../data/mutations';
 import { useMutation } from '@apollo/client';
 import { UserContext } from "../../contexts/UserContext"
+import { CreateNewTeamConfirmationScreenRouteProp, BaseNavigationProps } from '../../navigation/types';
 
-
-const CreateNewTeamConfirmation = ({route}) => {
-  const navigation = useNavigation();
+const CreateNewTeamConfirmation = () => {
+  const {navigate, setOptions} = useNavigation<BaseNavigationProps>();
+  const {params, path} = useRoute<CreateNewTeamConfirmationScreenRouteProp>();
   const { user } = useContext(UserContext);
-  const {leagueID, leagueName } = route.params
+  const {leagueID, leagueTitle } = params
   const [teamname, onChangeText] = useState('');
 
   useEffect(()=>{
-    navigation.setOptions({
-      title: "Create Team Name"
+    setOptions({
+      title: "Create Team Name",
+      headerLeft: () => <HeaderBackButton displayMode={"minimal"} onPress={() => {
+        // JH-NOTE: a bit hacky, but ok for now...
+        return navigate(path as never)
+      }}/>
     });
+
   }, []);
 
 
   const [addTeam, { data, loading, error }] = useMutation(ADD_TEAM_TO_LEAGUE, {
     onCompleted(data) {
-      navigation.navigate('UserTeams')
+      // navigation.navigate('MyTeams', {screen:'UserTeams'})
+      navigate('MyTeams', {screen:'UserTeams'})
     },
     errorPolicy: "all",
     onError(err) {
@@ -40,12 +47,12 @@ const CreateNewTeamConfirmation = ({route}) => {
         placeholder="Team Name"
         value={teamname}
       />
-        <Button
+        <TouchableOpacity
           style={styles.button}
           disabled={teamname.length <= 0}
           onPress={() => addTeam({variables: { ownerId: String(user.id), name: teamname, leagueId: Number(leagueID) }})}>
-          <Text style={styles.buttonText}>Add {teamname} to {leagueName}</Text>
-        </Button>
+          <Text style={styles.buttonText}>Add {teamname} to {leagueTitle}</Text>
+        </TouchableOpacity>
 
       { error &&
         <Text>Error: {error.message}</Text>
@@ -67,13 +74,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'darkblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
     color: 'aliceblue',
     fontSize: 20,
-    fontWeight: 'bold',
-    fontVariant: 'small-caps'
-  }
+    fontWeight: "bold",
+    marginLeft: 25
+  },
 });
 
 export default CreateNewTeamConfirmation;

@@ -2,10 +2,32 @@ import React, {memo} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { ADD_PLAYER_TO_TEAM } from '../../data/mutations';
+import { AddPlayerToTeamRosterMutationResponse, RosterSpot, Position, Team } from '../../data/types';
 
-const AddPlayerConfirmationModal = ({rosterSpot, rosterId, playerId, lastName, position, team, callback, visible, cancelCallback, failedToAddPlayerCallback}) => {
+interface AddPlayerConfirmationProps {
+  rosterSpot: RosterSpot, 
+  rosterId: string, 
+  playerId: number, 
+  lastName: string, 
+  position: Position, 
+  team: Team, 
+  callback: () => void,
+  cancelCallback: () => void,
+  failedToAddPlayerCallback: () => void, 
+}
 
-  const [addPlayerToTeam, { data, loading, error }] = useMutation(ADD_PLAYER_TO_TEAM, {
+const AddPlayerConfirmationModal = ({
+  rosterSpot, 
+  rosterId, 
+  playerId, 
+  lastName, 
+  position, 
+  team, 
+  callback, 
+  cancelCallback, 
+  failedToAddPlayerCallback
+}: AddPlayerConfirmationProps) => {
+  const [addPlayerToTeam, { data, loading, error }] = useMutation<AddPlayerToTeamRosterMutationResponse>(ADD_PLAYER_TO_TEAM, {
     onCompleted(data) {
       callback()
     },
@@ -50,7 +72,7 @@ const AddPlayerConfirmationModal = ({rosterSpot, rosterId, playerId, lastName, p
 
           <TouchableOpacity
               style={[styles.button, styles.buttonCancel]}
-              onPress={() => cancelCallback(visible)}>
+              onPress={() => cancelCallback()}>
 
               <Text style={styles.textStyle}>Cancel</Text>
 
@@ -97,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
   },
   buttonCancel: {
-    backgroundColor: 'darkred',
+    backgroundColor: 'goldenrod',
   },
   textStyle: {
     color: 'white',

@@ -1,26 +1,29 @@
 import React, {useEffect} from 'react';
 import { View, Text, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
-
+import { HeaderBackButton } from '@react-navigation/elements';
 //==== GraphQL ========
 import { useQuery } from '@apollo/client';
 import { GET_ALL_LEAGUES } from '../../data/queries';
-import { Leagues } from '../../data/types';
+import { LeaguesData } from '../../data/types';
 //=====================
+import { BaseNavigationProps } from '../../navigation/types';
 
-export default function CreateNewTeamScreen() {
-  const navigation = useNavigation();
+export default function SelectLeagueFromList() {
+  const navigation = useNavigation<BaseNavigationProps>();
 
   useEffect(()=>{
     navigation.setOptions({
-      title: "Choose League To Join"
+      title: "Select League to Join",
+      headerLeft: () => <HeaderBackButton displayMode={"minimal"} onPress={() => {
+        navigation.navigate('MyTeams')
+      }}/>
     });
   }, []);
 
   //==== GraphQL ======== 
-  const { loading, error, data } = useQuery<Leagues>(GET_ALL_LEAGUES);
+  const { loading, error, data } = useQuery<LeaguesData>(GET_ALL_LEAGUES);
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
   if (error) return <Text>Error: {error.message}</Text>;
   //=====================

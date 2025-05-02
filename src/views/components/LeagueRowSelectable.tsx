@@ -1,16 +1,27 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { Button } from '@react-navigation/elements';
+import React, {useEffect} from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { League } from '../../data/types';
+import { BaseNavigationProps } from '../../navigation/types';
 
-const LeagueRowSelectable = ({league}) => {
-  const navigation = useNavigation();
+interface LeagueRowSelectableProps {
+  league: League
+}
+
+const LeagueRowSelectable = ({league}: LeagueRowSelectableProps) => {
+  const {navigate} = useNavigation<BaseNavigationProps>();
 
 	return(
 		<View style={styles.container}>
-        <Button style={styles.button} onPress={() => navigation.navigate('CreateNewTeamConfirmation', {leagueID: league.id, leagueName: league.title})}>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          return navigate('CreateTeam', {
+            screen: 'CreateNewTeamConfirmation',
+            params: {leagueID: Number(league.id), leagueTitle: league.title},
+            path: 'SelectLeagueFromList'
+          })}
+        }>
           <Text style={styles.buttonText}>{league.title}</Text>
-        </Button>
+        </TouchableOpacity>
   		
 		</View>
 	);
@@ -22,10 +33,18 @@ const styles = StyleSheet.create({
     padding:5,
   },
   button: {
+    flex: 1,
     backgroundColor: 'darkblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
-    color: 'aliceblue'
+    color: 'aliceblue',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 25
   }
 });
 

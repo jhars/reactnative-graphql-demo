@@ -2,25 +2,34 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
+import { League } from '../../data/types';
 
-const LeagueRow = ({league}) => {
+interface LeagueRowProps {
+  league: League
+}
+
+const LeagueRow = ({league}: LeagueRowProps) => {
   const navigation = useNavigation();
 
-	const {
-		title
-	} = league;
-
-	return(
-		<View style={styles.container}>
-      <Button style={styles.button} onPress={() => navigation.navigate('LeagueTeamsScreen', {league: league, name: league.title})}>
-      	<Text style={styles.buttonText}>{title}</Text>
-      </Button>
-		</View>
-	);
+    return(
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.button} 
+          onPress={() => {
+          return navigation.navigate('Leagues',{
+            screen: 'LeagueTeamsScreen',
+            params: {league: league}
+          })
+        }}>
+          <Text style={styles.buttonText}>{league.title}</Text>
+        </TouchableOpacity>
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -29,10 +38,18 @@ const styles = StyleSheet.create({
     padding:5,
   },
   button: {
-    backgroundColor: 'steelblue',
+    flex: 1,
+    backgroundColor: 'darkblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
-    color: 'aliceblue'
+    color: 'aliceblue',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 25
   }
 });
 

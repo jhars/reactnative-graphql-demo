@@ -1,13 +1,39 @@
 export type ById<T> = { [index: string]: T };
 
-interface DropPlayerRequestObject {
+//JH-NOTE: unused
+export interface DropPlayerRequestObject {
   leagueId: number,
   playerId: number,
   rosterSpot: RosterSpot,
-  rosterId: serial
+  rosterId: string,
+  playerInfo: Player
 }
 
-enum RosterSpot {
+export interface SelectDropPlayerObject {
+  leagueId: number,
+  playerId: number,
+  rosterSpot: RosterSpot,
+  rosterId: string,
+  playerInfo: Player
+}
+
+export enum SortColumnName {
+  Name = "Name",
+  Points = "Points",
+  Position = "Position"
+}
+
+export enum Position {
+  G = "G",
+  D = "D",
+  LSM = "LSM",
+  SSDM = "SSDM",
+  FO = "FO",
+  M = "M",
+  A = "A"
+}
+
+export enum RosterSpot {
   GOALIE = "GOALIE",
   DEFENSE1 = "DEFENSE1",
   DEFENSE2 = "DEFENSE2",
@@ -38,15 +64,15 @@ interface Statistics {
   statLineLastSeason: StatLine;
 }
 
-interface Player {
+export interface Player {
   id: string;
   firstName: string;
   lastName: string;
-  jersey: number;
   statistics: Statistics;
+  position: Position
 }
 
-interface PlayerData {
+export interface PlayerData {
   players: Player[];
 }
 
@@ -54,18 +80,18 @@ export interface Players {
   data: PlayerData;
 }
 
-interface League {
-  id: serial;
+export interface League {
+  id: string;
   title: string;
   teams: Team[];
 }
 
-interface LeagueData {
+export interface LeaguesData {
   leagues: League[];
 }
 
 interface Leagues {
-  data: LeagueData;
+  data: LeaguesData;
 }
 
 export interface Team {
@@ -74,21 +100,23 @@ export interface Team {
   league: League;
 }
 
-interface TeamData {
-  teams: Team[]
+export interface TeamsData {
+  teams: Team[];
 }
 
-export interface Teams {
-  data: TeamData
+interface Teams {
+  data: TeamsData
 }
 
 export interface Roster {
+  id: string;
   teamId: number;
   teamInfo: Team;
   goalie: Player;
   defense1: Player;
   defense2: Player;
   lsm: Player;
+  ssdm: Player;
   fo: Player;
   midfield1: Player;
   midfield2: Player;
@@ -96,17 +124,31 @@ export interface Roster {
   attack2: Player;
 }
 
-interface RosterData {
+
+export interface RosterData {
   roster: Roster;
 }
 
-export interface Roster {
-  data: RosterData;
+// should we add following to this object to make it make more sens...?
+//error
+//loading
+// ...?
+// export interface RosterQueryResult {
+//   data: RosterData;
+// }
+
+interface AddPlayerToTeamRosterData {
+  addPlayerToTeamRoster: Roster;
+}
+
+export interface AddPlayerToTeamRosterMutationResponse {
+  data: AddPlayerToTeamRosterData
 }
 
 //============================
 //============================
 export interface CurrentUser {
-  id: serial;
+  id: string;
   email: string;
+  preferred_username: string;
 }

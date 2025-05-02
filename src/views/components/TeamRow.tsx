@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
-import { Button } from '@react-navigation/elements';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Team } from '../../data/types';
 
-const TeamRow = ({team, myTeam}) => {
+interface TeamRowProps {
+  team: Team,
+  myTeam: boolean,
+}
+
+const TeamRow = ({team, myTeam}: TeamRowProps) => {
   const navigation = useNavigation();
 
 	const {
@@ -17,9 +17,15 @@ const TeamRow = ({team, myTeam}) => {
 
   return(
     <View style={styles.container}>
-      <Button style={styles.button} onPress={() => navigation.navigate('RosterScreen', { team: team, myTeam: myTeam})}>
+      <TouchableOpacity style={styles.button} onPress={() => {
+        const navStack = myTeam ? 'MyTeams' : 'Leagues'
+        return navigation.navigate(navStack, {
+          screen: 'RosterScreen',
+          params: { team: team, myTeam: myTeam}
+        })
+      }}>
         <Text style={styles.buttonText}>{name}</Text>
-      </Button>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -30,10 +36,18 @@ const styles = StyleSheet.create({
     padding:5,
   },
   button: {
+    flex: 1,
     backgroundColor: 'steelblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
-    color: 'aliceblue'
+    color: 'aliceblue',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 25
   }
 });
 

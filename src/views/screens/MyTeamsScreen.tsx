@@ -1,11 +1,10 @@
-import React, {useContext, useEffect} from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { Button } from '@react-navigation/elements';
-import { useNavigation } from '@react-navigation/native';
+import React, {useContext, useEffect, useCallback} from 'react';
+import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation, useFocusEffect} from '@react-navigation/native';
 import TeamsList from '../components/TeamsList';
 import { useQuery } from '@apollo/client';
 import { GET_TEAMS } from '../../data/queries';
-import { Teams } from '../../data/types';
+import { TeamsData } from '../../data/types';
 import { UserContext } from "../../contexts/UserContext"
 
 export default function MyTeamsScreen() {
@@ -13,11 +12,23 @@ export default function MyTeamsScreen() {
   const { user } = useContext(UserContext);
 
   useEffect(()=>{
-    refetch();
+    navigation.setOptions({
+      title: "My Teams",
+      initialRouteName: 'MyTeams'
+    });
   }, []);
 
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      refetch()
+      //Do I need this return statement at all?
+      return () => {};
+    }, [])
+  )
+
   //==== GraphQL ======== 
-  const { loading, error, data, refetch } = useQuery<Teams>(GET_TEAMS, {
+  const { loading, error, data, refetch } = useQuery<TeamsData>(GET_TEAMS, {
     variables: { ownerId: user?.id }
   });
 
@@ -29,9 +40,14 @@ export default function MyTeamsScreen() {
     <View style={styles.container}>
       <TeamsList teams={data?.teams} myTeams={true}/>
       <View style={styles.footer}>
-        <Button style={styles.button} onPress={() => navigation.navigate('CreateNewTeamScreen')}>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          return  navigation.navigate('CreateTeam', {
+            screen: 'SelectLeagueFromList',
+            path: 'MyTeams'
+          })
+        }}>
           <Text style={styles.buttonText}>Add New Team</Text>
-        </Button>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -47,12 +63,18 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   button: {
-    backgroundColor: 'darkblue',
+    backgroundColor: 'midnightblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
     color: 'aliceblue',
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontVariant: 'small-caps'
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
+    // fontVariant: 'small-caps'
   }
 });

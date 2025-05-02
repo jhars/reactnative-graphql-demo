@@ -1,15 +1,22 @@
 import React, {useState,  useContext, memo} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import AddPlayerConfirmationModal from './AddPlayerConfirmationModal'
+import AddPlayerConfirmationModal from './AddPlayerConfirmationModal';
+import { Player } from '../../data/types';
 
-const PlayerRow = ({player, addPlayerButton, callback}) => {
-	const { id, lastName, jersey, position, statistics } = player;
+interface PlayerRowProps {
+  player: Player, 
+  addPlayerButton: boolean, 
+  addPlayerCallback: (player: Player) => void
+}
+
+const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps) => {
+	const { id, lastName, position, statistics } = player;
 
 	return(
 		<View style={styles.container}>
 
 			<View style={styles.positionColumn}>
-			  <Text style={styles.positionText}>{position}</Text>  
+			  <Text>{position}</Text>  
 			</View>
 
 			<View style={styles.nameColumn}>
@@ -21,7 +28,7 @@ const PlayerRow = ({player, addPlayerButton, callback}) => {
 
       {addPlayerButton && 
         <View style={styles.addPlayerColumn}>
-          <TouchableOpacity style={styles.addButton} onPress={() => callback(player)}>
+          <TouchableOpacity style={styles.addButton} onPress={() => addPlayerCallback(player)}>
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>

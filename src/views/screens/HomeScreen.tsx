@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import { UserContext } from "../../contexts/UserContext"
@@ -15,9 +15,13 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.myTeams}>
-        <Button style={styles.button} onPress={() => navigation.navigate('My Teams')}>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          return navigation.navigate('MyTeams', {
+            screen: 'UserTeams'
+          })
+        }}>
           <Text style={styles.buttonText}>Go to My Teams</Text>
-        </Button>
+        </TouchableOpacity>
       </View> 
     </View>
   );
@@ -43,11 +47,16 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'darkblue',
+    height: 35,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
   },
   buttonText: {
     color: 'aliceblue',
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontVariant: 'small-caps'
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 })

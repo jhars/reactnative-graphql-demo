@@ -1,8 +1,13 @@
 import React from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import LeagueRowSelectable from './LeagueRowSelectable';
+import { League } from '../../data/types';
 
-export default function LeagueSelectFromList({leagues}) {
+interface LeagueSelectFromListProps {
+  leagues: League[] | undefined
+}
+
+export default function LeagueSelectFromList({leagues}: LeagueSelectFromListProps) {
   return(
   	<View style={styles.container}>
 			<FlatList

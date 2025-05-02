@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import TeamRow from './TeamRow';
+import { Team } from '../../data/types';
 
-export default function TeamsList({teams, myTeams}) {
+interface TeamListProps {
+	teams: Team[] | undefined,
+	myTeams: boolean
+}
+
+export default function TeamsList({teams, myTeams}: TeamListProps) {
 
  	return(
 	    <View style={styles.container}>

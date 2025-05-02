@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {Navigation} from './src/navigation';
 import { UserProvider } from './src/contexts/UserContext';
+import "react-native-devsettings";
 
 Amplify.configure(config);
 
