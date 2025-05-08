@@ -8,7 +8,7 @@ import AddPlayerConfirmationModal from '../../../../src/views/components/AddPlay
 import {it, describe} from '@jest/globals';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
 import {Player, RosterSpot, Position} from '../../../../src/data/types';
-import { MOCK_PLAYER_ATTACK1, MOCK_TEAM } from '../../../mocks/mocks_shared'
+import { MOCK_PLAYER_ATTACK1, MOCK_TEAM } from '../../../mocks/MOCKS_SHARED'
 import {MockedProvider} from '@apollo/react-testing';
 import { ADD_PLAYER_TO_TEAM } from '../../../../src/data/mutations';
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import LeagueRowSelectable from './LeagueRowSelectable';
 import { League } from '../../data/types';
+import { ContainerStyles } from '../styles/index';
 
 interface LeagueSelectFromListProps {
   leagues: League[] | undefined
@@ -9,7 +10,7 @@ interface LeagueSelectFromListProps {
 
 export default function LeagueSelectFromList({leagues}: LeagueSelectFromListProps) {
   return(
-  	<View style={styles.container}>
+  	<View style={ContainerStyles.container}>
 			<FlatList
 				data={leagues}
 				renderItem={({item}) => <LeagueRowSelectable league={item} />}
@@ -17,10 +18,3 @@ export default function LeagueSelectFromList({leagues}: LeagueSelectFromListProp
   	</View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-})

@@ -1,5 +1,601 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`All Players Screen Test calls renders player names on screen 1`] = `
+<View>
+  <RCTScrollView
+    ListHeaderComponent={
+      <AllPlayersTableHeader
+        callback={[Function]}
+        sortOrder="DESC"
+        statCriteria="points"
+      />
+    }
+    data={
+      [
+        {
+          "id": "97",
+          "lastName": "Teat",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 64,
+            },
+          },
+        },
+        {
+          "id": "25",
+          "lastName": "Nolting",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 39,
+            },
+          },
+        },
+        {
+          "id": "121",
+          "lastName": "Sowers",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 37,
+            },
+          },
+        },
+        {
+          "id": "131",
+          "lastName": "Malone",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 37,
+            },
+          },
+        },
+        {
+          "id": "95",
+          "lastName": "McArdle",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 34,
+            },
+          },
+        },
+        {
+          "id": "82",
+          "lastName": "Fields",
+          "position": "A",
+          "statistics": {
+            "statLineLastSeason": {
+              "points": 32,
+            },
+          },
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      [
+        0,
+      ]
+    }
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        collapsable={false}
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(90 130 156 / 1.0)",
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "flex-start",
+              "paddingLeft": 15,
+            }
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+                "opacity": 1,
+              }
+            }
+            testID="positionColumnSortHeaderButtonTestID"
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Pos.
+▲▼
+            </Text>
+          </View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+                "opacity": 1,
+              }
+            }
+            testID="nameColumnSortHeaderButtonTestID"
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Name
+  ▲▼
+            </Text>
+          </View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "flexGrow": 1,
+                "opacity": 1,
+              }
+            }
+            testID="pointsColumnSortHeaderButtonTestID"
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Points
+  ▲▼
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              Teat
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              64
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              Nolting
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              39
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              Sowers
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              37
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              Malone
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              37
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              McArdle
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              34
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 50,
+              "paddingTop": 30,
+            }
+          }
+          testId="playerRowContainerID"
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "flexGrow": 2,
+              }
+            }
+          >
+            <Text>
+              A
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+                "flexGrow": 5,
+              }
+            }
+          >
+            <Text>
+              Fields
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flexGrow": 1,
+              }
+            }
+          >
+            <Text>
+              32
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
 exports[`All Players Screen Test calls the sortTable() function when the Column Header Button is Pressed 1`] = `
 <View>
   <RCTScrollView

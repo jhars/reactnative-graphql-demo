@@ -6,7 +6,7 @@ import 'react-native';
 import React from 'react';
 import RosterRow from '../../../../src/views/components/RosterRow';
 import {Player, RosterSpot, Position} from '../../../../src/data/types';
-import { MOCK_PLAYER, MOCK_TEAM } from '../../../mocks/mocks_shared'
+import { MOCK_PLAYER, MOCK_TEAM } from '../../../mocks/MOCKS_SHARED'
 // Note: import explicitly to use the types shiped with jest.
 import {it, describe} from '@jest/globals';
 

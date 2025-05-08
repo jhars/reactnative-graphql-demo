@@ -18,22 +18,7 @@ const AllPlayersTableHeader = ({statCriteria, sortOrder, callback, availableForL
 
 	const sortTable = (column: SortColumnName) => {
 	  setSelectedColumn(column)
-	  let sortStat
-	  let order
-	  if (column == "name") {
-	  	sortStat = "lastName"
-	  	order = sortDirection
-	  	setSortStat(sortStat)
-	  } else if (column == "position") {
-	  	sortStat = column
-	  	order = sortDirection
-	  	setSortStat(sortStat)
-	  } else if (column == "points") {
-	  	sortStat = column
-	  	order = sortDirection
-	  	setSortStat(sortStat)
-	  }
-	  callback(sortStat, sortDirection)
+	  callback(column, sortDirection)
 	}
 
 	return(
@@ -49,7 +34,7 @@ const AllPlayersTableHeader = ({statCriteria, sortOrder, callback, availableForL
 		  <TouchableOpacity 
 		  	testID={"nameColumnSortHeaderButtonTestID"}
 		    style={styles.nameColumnHeader} 
-		    onPress={()=> sortTable('name')}>
+		    onPress={()=> sortTable('lastName')}>
 		    <Text style={styles.columnHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
@@ -75,14 +60,6 @@ export default AllPlayersTableHeader;
 // export default memo(AllPlayersTableHeader);
 
 const styles = StyleSheet.create({
-  // tableHeader: {
-  //   flexDirection: "row",
-  //   justifyContent: "flex-start",
-  //   alignItems: "center",
-  //   backgroundColor: "darkblue",
-  //   height: 50,
-  //   paddingLeft: 15
-  // },
   positionColumnHeader: {
     flex:1,
     flexGrow: 2,

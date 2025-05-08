@@ -71,7 +71,7 @@ exports[`Home Screen Tests renders with CurrentUsers preferred username 1`] = `
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "rgba(90 130 156 / 1.0)",
+          "backgroundColor": "rgba(146 212 230 / 1.0)",
           "borderRadius": 20,
           "height": 35,
           "justifyContent": "center",
@@ -82,10 +82,9 @@ exports[`Home Screen Tests renders with CurrentUsers preferred username 1`] = `
       <Text
         style={
           {
-            "color": "aliceblue",
+            "color": "rgba(18 27 40 / 1.0)",
             "fontSize": 16,
             "fontWeight": "bold",
-            "marginLeft": 25,
           }
         }
       >

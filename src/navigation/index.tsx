@@ -59,7 +59,7 @@ export const Navigation = () => {
     return (
       <CreateTeamStack.Navigator>
         <CreateTeamStack.Screen name="SelectLeagueFromList" component={SelectLeagueFromList} />
-        <CreateTeamStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} />
+        <CreateTeamStack.Screen name="CreateNewTeamConfirmation" component={CreateNewTeamConfirmation} options={{ title: 'Choose Team Name' }} />
       </CreateTeamStack.Navigator>
     );
     
@@ -75,6 +75,7 @@ export const Navigation = () => {
           <Drawer.Screen name="Account" component={MyAccountScreen} />
           <Drawer.Screen name="CreateTeam" component={CreateTeamNavigator} options={() => ({
             drawerItemStyle: { display: 'none' },
+            title: 'Create New Team'
           })}/>
         </Drawer.Navigator>
         

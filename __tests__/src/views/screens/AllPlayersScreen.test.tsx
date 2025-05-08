@@ -5,11 +5,11 @@
 import 'react-native';
 import React from 'react';
 import AllPlayersScreen from '../../../../src/views/screens/AllPlayersScreen';
-import {it, describe} from '@jest/globals';
-import { MOCK_ALLPLAYERS_RESPONSE } from '../../../mocks/mocks_useQuery_Players'
-import { MOCK_QUERY_01 } from '../../../mocks/MOCKS_SHARED'
+import {it, describe, act} from '@jest/globals';
+import { MOCK_ALLPLAYERS_RESPONSE } from '../../../mocks/MOCK_GQL_QUERY_RESULTS'
 
-// JH-NOTE: see RosterRow test for original annoation (must import before 'react-native')
+// JH-NOTE: original annoation on on RosterRow test
+// must import (below)  before 'react-native'
 import { render, screen, waitFor } from '@testing-library/react-native';
 import {MockedProvider} from '@apollo/react-testing';
 
@@ -27,6 +27,14 @@ jest.mock("@react-navigation/native", () => {
     })
   };
 });
+
+async function wait(ms = 0) {
+  await act(() => {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
+  });
+}
 
 describe('All Players Screen Test', () => {
 
@@ -50,7 +58,7 @@ describe('All Players Screen Test', () => {
 	  }
 	];
 	
-	it('calls the sortTable() function when the Column Header Button is Pressed', async () => {
+	it('calls renders player names on screen', async () => {
 	  const AllPlayers = render(
 	  	<MockedProvider mocks={mocks}>
 	  		<AllPlayersScreen testID={"AllPlayersScreenTestID"}/>
@@ -65,7 +73,7 @@ describe('All Players Screen Test', () => {
 	    expect(testedTree).toMatchSnapshot()
 	  });
 	  
-	});	
+	});
 
 });
 

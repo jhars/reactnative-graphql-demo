@@ -40,29 +40,10 @@ export default function LeagueTeamsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   footer: {
     height: 100,  
     justifyContent: 'flex-end',
     flexGrow: 1,
     paddingBottom: 100
   },
-  button: {
-    backgroundColor: 'midnightblue',
-    height: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: 'aliceblue',
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
-  }
-  
 });

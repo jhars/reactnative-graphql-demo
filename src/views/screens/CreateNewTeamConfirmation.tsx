@@ -6,7 +6,7 @@ import { ADD_TEAM_TO_LEAGUE } from '../../data/mutations';
 import { useMutation } from '@apollo/client';
 import { UserContext } from "../../contexts/UserContext"
 import { CreateNewTeamConfirmationScreenRouteProp, BaseNavigationProps } from '../../navigation/navTypes';
-import { ButtonStyles } from '../styles/index';
+import { ButtonStyles, ContainerStyles} from '../styles/index';
 
 const CreateNewTeamConfirmation = () => {
   const {navigate, setOptions} = useNavigation<BaseNavigationProps>();
@@ -17,7 +17,6 @@ const CreateNewTeamConfirmation = () => {
 
   useEffect(()=>{
     setOptions({
-      title: "Create Team Name",
       headerLeft: () => <HeaderBackButton displayMode={"minimal"} onPress={() => {
         // JH-NOTE: a bit hacky, but ok for now...
         return navigate(path as never)
@@ -40,7 +39,7 @@ const CreateNewTeamConfirmation = () => {
   });
       
   return(
-    <View style={styles.container}>
+    <View style={ContainerStyles.container}>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -62,11 +61,8 @@ const CreateNewTeamConfirmation = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop:25,
-    padding:5,
-  },
   input: {
+    backgroundColor: 'white',
     height: 40,
     margin: 12,
     borderWidth: 1,

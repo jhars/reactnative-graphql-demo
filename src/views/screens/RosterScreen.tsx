@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import { useNavigation, useFocusEffect, useRoute } from '@react-navigation/native';
-import { Alert, View, Text, StyleSheet, ScrollView, Modal, ActivityIndicator} from 'react-native';
+import { Alert, View, Text, ScrollView, Modal, ActivityIndicator} from 'react-native';
 import RosterTableHeader from '../components/RosterTableHeader';
 import RosterRow from '../components/RosterRow';
 import DropPlayerConfirmationModal from '../components/DropPlayerConfirmationModal'
@@ -73,7 +73,7 @@ export default function RosterScreen() {
   if (error) return <Text>Error: {error.message}</Text>;
 
     return (
-      <View style={styles.container}>
+      <View>
         <RosterTableHeader myTeam={myTeam}/>
           <Modal
             animationType="slide"
@@ -112,10 +112,3 @@ export default function RosterScreen() {
       </View>
     );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  }
-});

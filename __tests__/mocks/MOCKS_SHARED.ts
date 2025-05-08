@@ -115,58 +115,20 @@ export const MOCK_ROSTER: Roster = {
 	attack2: MOCK_PLAYER_ATTACK2
 }
 
-// const MOCK_USER_CONTEXT
-
 export const MOCK_CURRENT_USER: CurrentUser = {
   id: "CRNT-USER-CRNT-USR",
   email: "current@User.edu",
   preferred_username: "CurrentUser"
 }
 
+// JH-NOTE: unused
 // const MOCK_QUERY_01 = {
 //   request: {
 //     query: GET_SORTED_PLAYERS,
-//     // variableMatcher: (variables) => true,
 //     variables: {
 //     	"orderBy":{
 //     		"field":"points",
 //     		"order":"DESC"
-//     },
-//     "availableForLeagueId":null,
-//   	"position":null
-//     }
-//   },
-//   result: {
-//     data: MOCK_ALLPLAYERS_RESPONSE
-//   },
-// };
-
-// const MOCK_QUERY_02 = {
-//   request: {
-//     query: GET_SORTED_PLAYERS,
-//     // variableMatcher: (variables) => true,
-//     variables: {
-//     	"orderBy":{
-//     		"field":"position",
-//     		"order":"ASC"
-//     },
-//     "availableForLeagueId":null,
-//   	"position":null
-//     }
-//   },
-//   result: {
-//     data: MOCK_ALLPLAYERS_RESPONSE
-//   },
-// };
-
-// const MOCK_QUERY_03 = {
-//   request: {
-//     query: GET_SORTED_PLAYERS,
-//     // variableMatcher: (variables) => true,
-//     variables: {
-//     	"orderBy":{
-//     		"field":"points",
-//     		"order":"ASC"
 //     },
 //     "availableForLeagueId":null,
 //   	"position":null

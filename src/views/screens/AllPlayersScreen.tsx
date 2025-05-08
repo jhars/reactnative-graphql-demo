@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import { Alert, View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
+import { Alert, View, Text, FlatList, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
 import PlayerRow from '../components/PlayerRow';
 import AddPlayerConfirmationModal from '../components/AddPlayerConfirmationModal';
 import AllPlayersTableHeader from '../components/AllPlayersTableHeader';
@@ -28,8 +28,7 @@ export default function AllPlayersScreen() {
   }, [statCriteria]);
 	  
   const handleSortTable = async () => {
-		
-		await refetch( { 
+		await refetch({ 
 			"orderBy": { 
 				"field": statCriteria,
 				"order": sortOrder 
@@ -131,12 +130,3 @@ export default function AllPlayersScreen() {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-});

@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 export const HeaderStyles = StyleSheet.create({
 	tableHeader: {
-		
 		flexDirection: "row",
 		justifyContent: "flex-start",
 		alignItems: "center",

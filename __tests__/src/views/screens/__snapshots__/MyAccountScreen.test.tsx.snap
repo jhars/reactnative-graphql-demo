@@ -84,10 +84,11 @@ exports[`My Account Screen Tests renders with current user email and username 1`
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "midnightblue",
+          "backgroundColor": "rgb(81,87,81)",
           "borderRadius": 20,
           "height": 35,
           "justifyContent": "center",
+          "margin": 5,
           "opacity": 1,
         }
       }
@@ -98,8 +99,6 @@ exports[`My Account Screen Tests renders with current user email and username 1`
             "color": "aliceblue",
             "fontSize": 16,
             "fontWeight": "bold",
-            "paddingLeft": 20,
-            "paddingRight": 20,
           }
         }
       >

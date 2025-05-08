@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { View, Text, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LeagueSelectFromList from '../components/LeagueSelectFromList';
 import { HeaderBackButton } from '@react-navigation/elements';
@@ -9,6 +9,7 @@ import { GET_ALL_LEAGUES } from '../../data/queries';
 import { LeaguesData } from '../../data/types';
 //=====================
 import { BaseNavigationProps } from '../../navigation/navTypes';
+import { ContainerStyles } from '../styles/index';
 
 export default function SelectLeagueFromList() {
   const navigation = useNavigation<BaseNavigationProps>();
@@ -29,15 +30,8 @@ export default function SelectLeagueFromList() {
   //=====================
   
   return (
-    <View style={styles.container}>
+    <View style={ContainerStyles.container}>
         <LeagueSelectFromList leagues={data?.leagues}/>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

@@ -6,9 +6,9 @@ import 'react-native';
 import React from 'react';
 import RosterScreen from '../../../../src/views/screens/RosterScreen';
 import {it, describe} from '@jest/globals';
-import { render, screen, waitFor, act } from '@testing-library/react-native';
+import { render, screen, waitFor } from '@testing-library/react-native';
 import {Roster} from '../../../../src/data/types';
-import { MOCK_TEAM, MOCK_ROSTER } from '../../../mocks/mocks_shared'
+import { MOCK_TEAM, MOCK_ROSTER } from '../../../mocks/MOCKS_SHARED'
 import {MockedProvider} from '@apollo/react-testing';
 import { GET_TEAM_ROSTER } from '../../../../src/data/queries';
 import { NavigationContainer } from '@react-navigation/native';
@@ -29,14 +29,6 @@ jest.mock("@react-navigation/native", () => {
     })
   };
 });
-
-async function wait(ms = 0) {
-  await act(() => {
-    return new Promise(resolve => {
-      setTimeout(resolve, ms);
-    });
-  });
-}
 
 describe('Roster Screen Tests', () => {
 	
@@ -66,9 +58,11 @@ describe('Roster Screen Tests', () => {
 	  	</MockedProvider>
 	  )
 
-	  await wait(1000)
+	  const playerName = await screen.findByText('McStickens')
 	  const testedTree = screen.toJSON()
+
     await waitFor(() => {
+    	expect(playerName).toBeVisible()
       expect(testedTree).toMatchSnapshot()
     });
 	});

@@ -1,11 +1,22 @@
 import {StyleSheet} from 'react-native';
 
+// Other Color Options:
+  // 'steelblue',
+	// 'darkblue',
+  // 'rgba(90 130 156 / 1.0)',
+	// 'midnightblue',
+// Text Color:
+		// 'aliceblue',
+
+// JH-NOTE on actionButton:
+// typically, an actionButton is not in a list, 
+// so it loses 5 PADDING points, from container,
+// which is why we add 5 MARGIN points to actionButton
+// but not prim/sec buttons
+
 export const ButtonStyles = StyleSheet.create({
 
 	primaryButton: {
-	  // flex: 1,
-	  // backgroundColor: 'steelblue',
-	  // backgroundColor: 'rgba(90 130 156 / 1.0)',
 	  backgroundColor: 'rgba(146 212 230 / 1.0)',
 	  height: 35,
 	  alignItems: "center",
@@ -13,16 +24,12 @@ export const ButtonStyles = StyleSheet.create({
 	  borderRadius: 20,
 	},
 	primaryButtonText: {
-	  // color: 'aliceblue',
 	  color: 'rgba(18 27 40 / 1.0)',
 	  fontSize: 16,
 	  fontWeight: "bold",
-	  marginLeft: 25
 	},
 
 	secondaryButton: {
-		// flex: 1,
-		// backgroundColor: 'darkblue',
 		backgroundColor: 'rgba(28 78 167 / 1.0)',
 		height: 35,
 		alignItems: "center",
@@ -32,23 +39,21 @@ export const ButtonStyles = StyleSheet.create({
 	secondaryButtonText: {
 		color: 'aliceblue',
 		fontSize: 16,
-		fontWeight: "bold",
-		marginLeft: 25
+		fontWeight: "bold"
 	},
 
   actionButton: {
-    backgroundColor: 'midnightblue',
+    backgroundColor: 'rgb(81,87,81)',
     height: 35,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 20,
+    margin: 5
   },
   actionButtonText: {
     color: 'aliceblue',
     fontSize: 16,
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
     // fontVariant: 'small-caps'
   }
 });

@@ -10,7 +10,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react-nativ
 
 describe('All Players Table Header', () => {
 	
-	it('calls the callback function from local sortTable() method when the POINTS Column Header Button is Pressed', async () => {
+	it('calls the AllPlayerScreen callback from local sortTable() on POINTS Column Header Button Press', async () => {
 		const mockSortPlayerCallback = jest.fn();
 	  
 	  const TableHeader = render(<AllPlayersTableHeader 
@@ -25,9 +25,28 @@ describe('All Players Table Header', () => {
 	  fireEvent.press(sortByPointsHeaderButton)
 	  await waitFor(() => {
   		expect(mockSortPlayerCallback).toHaveBeenCalledWith('points', 'DESC')
-    })
+    });
 	  
 	});
+
+		it('calls sortPlayerCallbacl on POINTS Column Header Button Press with ASC sort Order', async () => {
+			const mockSortPlayerCallback = jest.fn();
+		  
+		  const TableHeader = render(<AllPlayersTableHeader 
+		  	sortCriteria={'points'}
+		  	sortOrder={'ASC'}
+		  	callback={mockSortPlayerCallback} 
+		  	availableForLeague={undefined}
+		  />)
+
+		  const sortByPointsHeaderButton = await screen.queryByTestId('pointsColumnSortHeaderButtonTestID')
+		  
+		  fireEvent.press(sortByPointsHeaderButton)
+		  await waitFor(() => {
+	  		expect(mockSortPlayerCallback).toHaveBeenCalledWith('points', 'ASC')
+	    });
+		  
+		});
 
 	it('calls the callback function from local sortTable() method when the POSITION Column Header Button is Pressed', async () => {
 		const mockCallback = jest.fn();
