@@ -68,7 +68,7 @@ export interface Player {
   firstName: string;
   lastName: string;
   statistics: Statistics;
-  position: Position
+  position: Position;
 }
 
 export interface PlayerData {
@@ -127,14 +127,6 @@ export interface Roster {
 export interface RosterData {
   roster: Roster;
 }
-
-// should we add following to this object to make it make more sens...?
-//error
-//loading
-// ...?
-// export interface RosterQueryResult {
-//   data: RosterData;
-// }
 
 interface AddPlayerToTeamRosterData {
   addPlayerToTeamRoster: Roster;

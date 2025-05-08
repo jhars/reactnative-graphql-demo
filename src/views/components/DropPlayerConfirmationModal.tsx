@@ -51,17 +51,18 @@ const DropPlayerConfirmationModal = ({
           
           <View style={styles.actionButtons}>
             <TouchableOpacity
-                style={[styles.button, styles.buttonConfirm]}
-                onPress={() => {
-                    dropPlayerFromTeam({
-                      variables: { 
-                        leagueId: Number(roster?.teamInfo?.league?.id),
-                        playerId: Number(playerId),
-                        rosterSpot: rosterSpot,
-                        rosterId: roster.id
-                      }
-                    })
-                }}>
+              testID={"dropPlayerConfirmationButtonTestID"}
+              style={[styles.button, styles.buttonConfirm]}
+              onPress={() => {
+                dropPlayerFromTeam({
+                  variables: { 
+                    leagueId: Number(roster?.teamInfo?.league?.id),
+                    playerId: Number(playerId),
+                    rosterSpot: rosterSpot,
+                    rosterId: roster.id
+                  }
+                })
+              }}>
 
                 <Text style={styles.textStyle}>Confirm Drop</Text>
 

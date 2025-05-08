@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.7",
+    "@apollo/client": "^3.13.8",
     "@aws-amplify/react-native": "^1.1.6",
     "@aws-amplify/ui-react-native": "^2.2.20",
     "@react-native-async-storage/async-storage": "^2.1.0",
@@ -32,11 +32,15 @@
     "react-native-screens": "^4.4.0"
   },
   "devDependencies": {
+    "@apollo/react-hooks": "^4.0.0",
+    "@apollo/react-testing": "^4.0.0",
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native/eslint-config": "^0.72.2",
     "@react-native/metro-config": "^0.72.9",
+    "@testing-library/react-native": "^13.2.0",
+    "@ts-gql/apollo": "^0.12.2",
     "@tsconfig/react-native": "^3.0.0",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",

@@ -9,31 +9,33 @@ import { GET_SORTED_PLAYERS } from '../../data/queries';
 import { PlayerData, Team, Position, RosterSpot, SortColumnName, Player} from '../../data/types';
 //=====================
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { AvailablePlayersScreenRouteProp } from '../../navigation/types';
+import { AvailablePlayersScreenRouteProp } from '../../navigation/navTypes';
 
 export default function AllPlayersScreen() {
-
 	const navigation = useNavigation();
 	const route = useRoute<AvailablePlayersScreenRouteProp>();
 
-	const [ columns, setColumns ] = useState([
-    "Position",
-    "Name",
-    "Points",
-  ])
-
-  const [ selectedColumn, setSelectedColumn ] = useState<SortColumnName|null>(null)
-  const [ pointsSortDirection, setPoinstsSortDirection ] = useState('DESC')
-  const [ positionSortDirection, setPositionSortDirection ] = useState('ASC')
-  const [ nameSortDirection, setNameSortDirection ] = useState('ASC')
-
-
   const [ addPlayer, setAddPlayer ] = useState<Player | null>(null);
   const [ modalVisible, setModalVisible ] = useState(false);
+  
+  const [ statCriteria, setStatCriteria ] = useState("points");
+  const [ sortOrder, setSortOrder ] = useState("DESC");
 
-  const sortTableCallback = useCallback( (column: SortColumnName) => {
-  	sortTable(column)
-  }, [pointsSortDirection, positionSortDirection, nameSortDirection]);
+  const sortTableCallback = useCallback( async (sortStat: string, sortDirection: string) => {
+  	setStatCriteria(sortStat)
+  	setSortOrder(sortDirection === "DESC" ? "ASC" : "DESC")
+  	await handleSortTable()
+  }, [statCriteria]);
+	  
+  const handleSortTable = async () => {
+		
+		await refetch( { 
+			"orderBy": { 
+				"field": statCriteria,
+				"order": sortOrder 
+			} 
+		});	  
+  }
 
   const addPlayerFromPlayerRowCallback = useCallback( (player: Player) => {
   	selectPlayerToAdd(player)
@@ -54,10 +56,11 @@ export default function AllPlayersScreen() {
 
   //==== GraphQL ======== 
 	const { loading, error, data, refetch } = useQuery<PlayerData>(GET_SORTED_PLAYERS, {
+		fetchPolicy: "no-cache",
 		variables: {
 		  "orderBy": {
-		    "field": "points",
-		    "order": pointsSortDirection
+		    "field": statCriteria,
+		    "order": sortOrder
 		  },
 		  "availableForLeagueId": Number(route.params?.availableForLeagueId) || null,
 		  "position": route.params?.position || null
@@ -79,26 +82,6 @@ export default function AllPlayersScreen() {
 		setModalVisible(true)
 	}
 
-	const sortTable = (column: SortColumnName) => {
-	  setSelectedColumn(column)
-	  let sortStat
-	  let order
-	  if (column == "Name") {
-	  	sortStat = "lastName"
-	  	order = nameSortDirection
-	  	setNameSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
-	  } else if (column == "Position") {
-	  	sortStat = column.toLowerCase()
-	  	order = positionSortDirection
-	  	setPositionSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
-	  } else if (column == "Points") {
-	  	sortStat = column.toLowerCase()
-	  	order = pointsSortDirection
-	  	setPoinstsSortDirection(order == 'ASC' ? 'DESC' : 'ASC')
-	  }
-	  refetch({"orderBy": {"field": sortStat, "order": order}})
-	}
-
 	if (loading ) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
 	if (error ) return <Text>Error: {error.message}</Text>;
 //=====================
@@ -112,6 +95,7 @@ export default function AllPlayersScreen() {
   			  visible={modalVisible}
   			  onRequestClose={() => setModalVisible(!modalVisible)}>
 	  			  <AddPlayerConfirmationModal 
+	  			  	testID={'addPlayerConfirmationModalTestID'}
 	  			  	lastName={addPlayer.lastName}
 	  			  	position={addPlayer.position}
 	  			  	team={route.params.team}
@@ -129,6 +113,8 @@ export default function AllPlayersScreen() {
 				keyExtractor={(item) => item.id}
 				ListHeaderComponent={
 					<AllPlayersTableHeader 
+						statCriteria={statCriteria}
+						sortOrder={sortOrder}
 						callback={sortTableCallback} 
 						availableForLeagueId={route.params?.availableForLeagueId}/>
 				}

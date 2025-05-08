@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_LEAGUES } from '../../data/queries';
 import { LeaguesData } from '../../data/types';
 //=====================
-import { BaseNavigationProps } from '../../navigation/types';
+import { BaseNavigationProps } from '../../navigation/navTypes';
 
 export default function SelectLeagueFromList() {
   const navigation = useNavigation<BaseNavigationProps>();

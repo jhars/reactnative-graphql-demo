@@ -1,29 +1,62 @@
+import React, {useState, memo} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { SortColumnName } from '../../data/types';
+import { HeaderStyles } from '../styles/index';
 
 interface AllPlayersTableHeaderProps {
-	callback(column: string): any;
+	callback(sortStat: string, sortDirection: string): any;
 	availableForLeagueId: number | undefined;
+	statCriteria: string;
+	sortOrder: string;
 }
 
-export default ({callback, availableForLeagueId }: AllPlayersTableHeaderProps) => {
+const AllPlayersTableHeader = ({statCriteria, sortOrder, callback, availableForLeagueId }: AllPlayersTableHeaderProps) => {
+
+	const [ selectedColumn, setSelectedColumn ] = useState<SortColumnName|null>(null)
+	const [ sortDirection, setSortDirection ] = useState(sortOrder)
+	const [ sortStat, setSortStat ] = useState(statCriteria)
+
+	const sortTable = (column: SortColumnName) => {
+	  setSelectedColumn(column)
+	  let sortStat
+	  let order
+	  if (column == "name") {
+	  	sortStat = "lastName"
+	  	order = sortDirection
+	  	setSortStat(sortStat)
+	  } else if (column == "position") {
+	  	sortStat = column
+	  	order = sortDirection
+	  	setSortStat(sortStat)
+	  } else if (column == "points") {
+	  	sortStat = column
+	  	order = sortDirection
+	  	setSortStat(sortStat)
+	  }
+	  callback(sortStat, sortDirection)
+	}
+
 	return(
-	  <View style={styles.tableHeader}>
+	  <View style={HeaderStyles.tableHeader}>
 
 		  <TouchableOpacity 
+		  	testID={"positionColumnSortHeaderButtonTestID"}
 		    style={styles.positionColumnHeader} 
-		    onPress={()=> callback('Position')}>
+		    onPress={()=> sortTable('position')}>
 		  	<Text style={styles.columnHeaderTxt}>{'Pos.' + "\n▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
+		  	testID={"nameColumnSortHeaderButtonTestID"}
 		    style={styles.nameColumnHeader} 
-		    onPress={()=> callback('Name')}>
+		    onPress={()=> sortTable('name')}>
 		    <Text style={styles.columnHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
+		  	testID={"pointsColumnSortHeaderButtonTestID"}
 		  	style={styles.pointsColumnHeader}
-		  	onPress={()=> callback('Points')}>
+		  	onPress={()=> sortTable('points')}>
 		    <Text style={styles.columnHeaderTxt}>{'Points' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
@@ -38,15 +71,18 @@ export default ({callback, availableForLeagueId }: AllPlayersTableHeaderProps) =
 	)
 }
 
+export default AllPlayersTableHeader;
+// export default memo(AllPlayersTableHeader);
+
 const styles = StyleSheet.create({
-  tableHeader: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "darkblue",
-    height: 50,
-    paddingLeft: 15
-  },
+  // tableHeader: {
+  //   flexDirection: "row",
+  //   justifyContent: "flex-start",
+  //   alignItems: "center",
+  //   backgroundColor: "darkblue",
+  //   height: 50,
+  //   paddingLeft: 15
+  // },
   positionColumnHeader: {
     flex:1,
     flexGrow: 2,

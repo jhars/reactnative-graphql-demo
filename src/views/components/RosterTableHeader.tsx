@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet} from 'react-native';
+import { HeaderStyles } from '../styles/index';
 
 interface RosterTableHeaderProps {
 	myTeam: boolean | undefined;
@@ -6,7 +7,7 @@ interface RosterTableHeaderProps {
 
 const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 	return(
-		<View style={styles.tableHeader}>
+		<View style={HeaderStyles.tableHeader}>
 
 		  <View style={styles.positionColumnHeader} >
 		    <Text style={styles.columnHeaderTxt}>Pos.</Text>  
@@ -24,6 +25,7 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 
 		  { myTeam && 
 		    <View 
+		    	testID={"actionColumnHeaderTestID"}
 		      style={styles.dropAddColumnHeader}>
 		      <Text style={styles.columnHeaderTxt}>Action</Text>
 		    </View>        
@@ -36,13 +38,13 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 export default RosterTableHeader
 
 const styles = StyleSheet.create({
-	tableHeader: {
-	  flex: 1,
-	  flexDirection: "row",
-	  alignItems: "center",
-	  backgroundColor: "darkblue",
-	  height: 50,
-	},
+	// tableHeader: {
+	//   flex: 1,
+	//   flexDirection: "row",
+	//   alignItems: "center",
+	//   backgroundColor: "darkblue",
+	//   height: 50,
+	// },
 	positionColumnHeader: {
 	  flex:1,
 	  flexGrow: 2,

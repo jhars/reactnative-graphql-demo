@@ -13,7 +13,7 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 	const { id, lastName, position, statistics } = player;
 
 	return(
-		<View style={styles.container}>
+		<View testId={"playerRowContainerID"} style={styles.container}>
 
 			<View style={styles.positionColumn}>
 			  <Text>{position}</Text>  
@@ -27,7 +27,7 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 			</View>
 
       {addPlayerButton && 
-        <View style={styles.addPlayerColumn}>
+        <View style={styles.addPlayerColumn} testID={"addPlayerButtonTestID"}>
           <TouchableOpacity style={styles.addButton} onPress={() => addPlayerCallback(player)}>
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { League } from '../../data/types';
-import { BaseNavigationProps } from '../../navigation/types';
+import { BaseNavigationProps } from '../../navigation/navTypes';
 
 interface LeagueRowSelectableProps {
   league: League

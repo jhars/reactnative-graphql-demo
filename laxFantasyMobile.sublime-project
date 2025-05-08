@@ -2,10 +2,19 @@
 	"folders":
 	[
 		{
-			"path": ".",
+			"path": "/Users/macpan/dev/APPS/laxFantasy/lfMobile/laxFantasyMobile",
 		}
 	],
 	"debugger_configurations":
 	[
+		{
+			"name": "Launch via jest",
+			"type": "node",
+			"request": "launch",
+			// "cwd": "/Users/macpan/dev/APPS/laxFantasy/lfMobile/laxFantasyMobile",
+			"runtimeExecutable": "pwd",
+			// "runtimeArgs": ["npm run", "test"]
+			// "runtimeArgs": ["test"]
+		}
 	],
 }

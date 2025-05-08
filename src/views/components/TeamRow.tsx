@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Team } from '../../data/types';
+import { ButtonStyles, ContainerStyles } from '../styles/index';
+
 
 interface TeamRowProps {
   team: Team,
@@ -16,39 +18,18 @@ const TeamRow = ({team, myTeam}: TeamRowProps) => {
 	} = team;
 
   return(
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => {
+    <View style={ContainerStyles.container}>
+      <TouchableOpacity style={ButtonStyles.primaryButton} onPress={() => {
         const navStack = myTeam ? 'MyTeams' : 'Leagues'
         return navigation.navigate(navStack, {
           screen: 'RosterScreen',
           params: { team: team, myTeam: myTeam}
         })
       }}>
-        <Text style={styles.buttonText}>{name}</Text>
+        <Text style={ButtonStyles.primaryButtonText}>{name}</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding:5,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'steelblue',
-    height: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: 'aliceblue',
-    fontSize: 16,
-    fontWeight: "bold",
-    marginLeft: 25
-  }
-});
 
 export default TeamRow;

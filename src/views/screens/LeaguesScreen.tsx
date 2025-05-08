@@ -6,6 +6,7 @@ import LeagueRow from '../components/LeagueRow';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_LEAGUES } from '../../data/queries';
 import { LeaguesData } from '../../data/types';
+import { ContainerStyles } from '../styles/index';
 //=====================
 
 export default function LeaguesScreen() {
@@ -22,7 +23,7 @@ export default function LeaguesScreen() {
   //=====================
 
   return(
-    <View style={styles.container}>
+    <View style={ContainerStyles.container}>
       <FlatList
         data={data?.leagues}
         renderItem={({item}) => <LeagueRow league={item} />}
@@ -30,10 +31,3 @@ export default function LeaguesScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-})

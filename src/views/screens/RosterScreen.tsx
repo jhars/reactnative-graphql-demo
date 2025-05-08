@@ -9,7 +9,7 @@ import { useQuery } from '@apollo/client';
 import { GET_TEAM_ROSTER } from '../../data/queries';
 import { RosterData, DropPlayerRequestObject, RosterSpot, Position } from '../../data/types';
 //=====================
-import { RosterScreenRouteProps } from '../../navigation/types';
+import { RosterScreenRouteProps } from '../../navigation/navTypes';
 
 export default function RosterScreen() {
   const navigation = useNavigation();
@@ -66,7 +66,7 @@ export default function RosterScreen() {
   const { loading, error, data, refetch } = useQuery<RosterData>(GET_TEAM_ROSTER, {
     variables: { teamId: Number(team?.id) }
   });
-
+  
   const roster = data?.roster
 
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
@@ -109,8 +109,6 @@ export default function RosterScreen() {
             <RosterRow dropPlayerCallback={dropPlayerFromRosterRowCallback} rosterId={roster.id} rosterSpot={RosterSpot.ATTACK2} position={Position.A} playerInfo={roster.attack2} myTeam={myTeam} teamInfo={roster?.teamInfo}/>
           </ScrollView>   
           }
-          
-        
       </View>
     );
 }

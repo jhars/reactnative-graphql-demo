@@ -27,7 +27,7 @@ const RosterRow = ({
   const addDropButton = () => {
     if(playerInfo) {
       return (
-        <View style={styles.dropAddColumn}>
+        <View style={styles.dropAddColumn} testId={"rosterRowDropButtonID"}>
           <TouchableOpacity style={styles.dropButton} onPress={() => {
             dropPlayerCallback({
               leagueId: Number(teamInfo?.league?.id),
@@ -43,7 +43,7 @@ const RosterRow = ({
       )
     } else {
       return (
-        <View style={styles.dropAddColumn}>
+        <View style={styles.dropAddColumn} testId={"rosterRowAddButtonID"}>
           <TouchableOpacity style={styles.addButton} onPress={() => {
             return navigation.navigate('MyTeams', {
               screen: 'AvailablePlayersScreen',
@@ -71,7 +71,7 @@ const RosterRow = ({
       </View>
 
       <View style={styles.nameColumn}>
-        <Text style={styles.rowText}>{playerInfo?.lastName ?? "ReEMPTYY"}</Text>
+        <Text style={styles.rowText}>{playerInfo?.lastName ?? "(empty)"}</Text>
       </View>
 
       <View style={styles.pointsColumn}>

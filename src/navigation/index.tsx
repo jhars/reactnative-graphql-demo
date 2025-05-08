@@ -71,7 +71,7 @@ export const Navigation = () => {
           <Drawer.Screen name="Home" component={HomeScreen} />
           <Drawer.Screen name="MyTeams" component={MyTeamsNavigator} options={{ title: 'My Teams' }}/>
           <Drawer.Screen name="Leagues" component={LeaguesNavigator} />
-          <Drawer.Screen name="Players" component={AllPlayersScreen} />
+          <Drawer.Screen name="Players" component={AllPlayersScreen}/>
           <Drawer.Screen name="Account" component={MyAccountScreen} />
           <Drawer.Screen name="CreateTeam" component={CreateTeamNavigator} options={() => ({
             drawerItemStyle: { display: 'none' },

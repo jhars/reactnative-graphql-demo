@@ -1,0 +1,635 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Roster Screen Tests ASSERT SOMETHING HERE 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fff",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(90 130 156 / 1.0)",
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "flex-start",
+        "paddingLeft": 15,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "flexGrow": 2,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Pos.
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "flexGrow": 5,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Name
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexGrow": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Points
+      </Text>
+    </View>
+  </View>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  />
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            G
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Gilmore
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            D
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            One
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            D
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Two
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            LSM
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Pole
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            SSDM
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            McStickens
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            FO
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            GetOff
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            M
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            One
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            M
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Two
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            A
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            McGavin
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 50,
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "flexGrow": 2,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            A
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+              "flexGrow": 5,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Two
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <Text
+            style={{}}
+          >
+            23
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

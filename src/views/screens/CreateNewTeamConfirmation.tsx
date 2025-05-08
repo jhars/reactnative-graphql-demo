@@ -5,7 +5,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { ADD_TEAM_TO_LEAGUE } from '../../data/mutations';
 import { useMutation } from '@apollo/client';
 import { UserContext } from "../../contexts/UserContext"
-import { CreateNewTeamConfirmationScreenRouteProp, BaseNavigationProps } from '../../navigation/types';
+import { CreateNewTeamConfirmationScreenRouteProp, BaseNavigationProps } from '../../navigation/navTypes';
+import { ButtonStyles } from '../styles/index';
 
 const CreateNewTeamConfirmation = () => {
   const {navigate, setOptions} = useNavigation<BaseNavigationProps>();
@@ -47,10 +48,10 @@ const CreateNewTeamConfirmation = () => {
         value={teamname}
       />
         <TouchableOpacity
-          style={styles.button}
+          style={ButtonStyles.actionButton}
           disabled={teamname.length <= 0}
           onPress={() => addTeam({variables: { ownerId: String(user.id), name: teamname, leagueId: Number(leagueID) }})}>
-          <Text style={styles.buttonText}>Add {teamname} to {leagueTitle}</Text>
+          <Text style={ButtonStyles.actionButtonText}>Add {teamname} to {leagueTitle}</Text>
         </TouchableOpacity>
 
       { error &&
@@ -70,19 +71,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-  },
-  button: {
-    backgroundColor: 'darkblue',
-    height: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: 'aliceblue',
-    fontSize: 15,
-    fontWeight: "bold",
-  },
+  }
 });
 
 export default CreateNewTeamConfirmation;

@@ -5,7 +5,8 @@ import TeamsList from '../components/TeamsList';
 import { useQuery } from '@apollo/client';
 import { GET_TEAMS } from '../../data/queries';
 import { TeamsData } from '../../data/types';
-import { UserContext } from "../../contexts/UserContext"
+import { UserContext } from "../../contexts/UserContext";
+import { ButtonStyles, ContainerStyles } from '../styles/index';
 
 export default function MyTeamsScreen() {
   const navigation = useNavigation();
@@ -34,16 +35,16 @@ export default function MyTeamsScreen() {
   //=====================
 
   return (
-    <View style={styles.container}>
+    <View style={ContainerStyles.container}>
       <TeamsList teams={data?.teams} myTeams={true}/>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.button} onPress={() => {
+        <TouchableOpacity style={ButtonStyles.actionButton} onPress={() => {
           return  navigation.navigate('CreateTeam', {
             screen: 'SelectLeagueFromList',
             path: 'MyTeams'
           })
         }}>
-          <Text style={styles.buttonText}>Add New Team</Text>
+          <Text style={ButtonStyles.actionButtonText}>Add New Team</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -51,27 +52,8 @@ export default function MyTeamsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   footer: {
     marginBottom: 25,
     marginTop: 25,
-  },
-  button: {
-    backgroundColor: 'midnightblue',
-    height: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: 'aliceblue',
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
-    // fontVariant: 'small-caps'
   }
 });

@@ -27,6 +27,7 @@ const AddPlayerConfirmationModal = ({
   cancelCallback, 
   failedToAddPlayerCallback
 }: AddPlayerConfirmationProps) => {
+
   const [addPlayerToTeam, { data, loading, error }] = useMutation<AddPlayerToTeamRosterMutationResponse>(ADD_PLAYER_TO_TEAM, {
     onCompleted(data) {
       callback()
@@ -50,17 +51,18 @@ const AddPlayerConfirmationModal = ({
 
         <View style={styles.actionButtons}>
           <TouchableOpacity
+            testID={"addPlayerConfrimationButtonTestID"}
             style={[styles.button, styles.buttonConfirm]}
             onPress={() => {
                 addPlayerToTeam({
-                variables: { 
-                  teamId: Number(team?.id),
-                  playerId: Number(playerId),
-                  rosterSpot: rosterSpot,
-                  leagueId: Number(team.league.id),
-                  position: position,
-                  rosterId: rosterId,
-                }
+                  variables: { 
+                    teamId: Number(team?.id),
+                    playerId: Number(playerId),
+                    rosterSpot: rosterSpot,
+                    leagueId: Number(team.league.id),
+                    position: position,
+                    rosterId: rosterId,
+                  }
               })
             }
             }>

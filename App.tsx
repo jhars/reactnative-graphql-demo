@@ -1,6 +1,11 @@
 import 'react-native-gesture-handler';//JH- do i need this here?
 import React from 'react';
-import { Authenticator } from '@aws-amplify/ui-react-native';
+import { 
+  Authenticator,   
+  defaultDarkModeOverride,
+  ThemeProvider,
+} from '@aws-amplify/ui-react-native';
+
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -17,21 +22,34 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+//JH-NOTE: Theme Provider, start here
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Authenticator.Provider>
-        <Authenticator 
-          loginMechanisms={['email']}
-          signUpAttributes={['preferred_username']}>
-          <SafeAreaProvider>
-            <UserProvider>
-              <Navigation />
-            </UserProvider>
-          </SafeAreaProvider>      
-        </Authenticator>
-      </Authenticator.Provider>
+      <ThemeProvider
+        colorMode={'dark'}
+        theme={{ overrides: [defaultDarkModeOverride]}}>
+        <Authenticator.Provider>
+          <Authenticator 
+            Container={(props) => (
+              <Authenticator.Container
+                {...props}
+                style={{ 
+                  backgroundColor: 'rgba(6 6 48 / 1.0)',
+                }}
+              />
+            )}
+            loginMechanisms={['email']}
+            signUpAttributes={['preferred_username']}>
+            <SafeAreaProvider>
+              <UserProvider>
+                <Navigation />
+              </UserProvider>
+            </SafeAreaProvider>      
+          </Authenticator>
+        </Authenticator.Provider>
+      </ThemeProvider>
      </ApolloProvider>
   );
 }

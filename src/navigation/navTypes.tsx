@@ -33,7 +33,7 @@ export type CreateTeamStackParamList = {
     leagueTitle: string;
   }
 }
-
+// JH-NOTE: myTeam should just be true/false, never undefined
 export type RosterScreenParamList = {
   team: Team | undefined;
   myTeam: boolean | undefined;
