@@ -32,9 +32,7 @@ const CreateNewTeamConfirmation = () => {
     },
     errorPolicy: "all",
     onError(err) {
-      console.log("Apollo err")
-      console.log(err)
-      console.log("***********")
+      console.log("Apollo err", err)
     }
   });
       

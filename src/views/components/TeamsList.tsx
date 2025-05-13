@@ -10,18 +10,18 @@ interface TeamListProps {
 
 export default function TeamsList({teams, myTeams}: TeamListProps) {
 
- 	return(
-	    <View style={styles.container}>
-	      <FlatList
-	        data={teams}
-	        renderItem={({item}) => <TeamRow team={item} myTeam={myTeams}/>}
-	      />
-	    </View>
-  	);
+	return(
+		<View style={styles.container}>
+			<FlatList
+				data={teams}
+				renderItem={({item}) => <TeamRow team={item} myTeam={myTeams}/>}
+			/>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
+	container: {
+		flex: 1
+	},
 });

@@ -1,10 +1,20 @@
-# Fantasy Lacrosse Mobile App
+# L@x F@nt@sy Mobile
 
 
 ## Technnologies
 React Native
-GraphQL
+GraphQL Client
+Apollo Client
+React Hooks
+AWS Amplify Auth
 
-## Getting Started
 
-(see email)
+### A brief description of the project
+An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's current state, the main purpose of this repo is to  demonstrate my mobile app development skills. I plan to release this to the Google/Apple app stores in the future, so please excuse the leet '@'s & '0's -- as I am trying to keep the repo as private as possible while sharing it easily/publicly. 
+
+#### Setup/Demo
+You are welcome to fork and download this project, however, the setup process would require initializing new user group/pool on AWS Amplify and configuring the environment.
+
+### Server Setup
+There is also a [GraphQL Server](https://github.com/jhars/nodejs-graphql-psql-apollo-demo) for this application, built with NodeJS / PostgreSQL / Apollo, that you are welcome to download and run. Follow the instructions in that repo's [README](https://github.com/jhars/nodejs-graphql-psql-apollo-demo) to get it up and running locally and then you can checkout the GraphQL data explorer on localhost:4000.
+

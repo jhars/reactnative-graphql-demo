@@ -34,8 +34,7 @@ const AddPlayerConfirmationModal = ({
     },
     errorPolicy: "all",
     onError(err) {
-      console.log("Apollo err")
-      console.log(err)
+      console.log("Apollo err", err)
       failedToAddPlayerCallback()
     }
   });
@@ -86,7 +85,6 @@ const AddPlayerConfirmationModal = ({
   );
 }
 
-// do i need this to be a memo?
 export default memo(AddPlayerConfirmationModal);
 
 const styles = StyleSheet.create({

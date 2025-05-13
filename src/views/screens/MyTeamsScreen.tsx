@@ -25,14 +25,12 @@ export default function MyTeamsScreen() {
     }, [])
   )
 
-  //==== GraphQL ======== 
   const { loading, error, data, refetch } = useQuery<TeamsData>(GET_TEAMS, {
     variables: { ownerId: user?.id }
   });
 
   if (loading) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
   if (error) return <Text>Error: {error.message}</Text>;
-  //=====================
 
   return (
     <View style={ContainerStyles.container}>

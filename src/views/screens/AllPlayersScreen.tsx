@@ -3,11 +3,9 @@ import { Alert, View, Text, FlatList, TouchableOpacity, ActivityIndicator, Modal
 import PlayerRow from '../components/PlayerRow';
 import AddPlayerConfirmationModal from '../components/AddPlayerConfirmationModal';
 import AllPlayersTableHeader from '../components/AllPlayersTableHeader';
-//==== GraphQL ========
 import { useQuery } from '@apollo/client';
 import { GET_SORTED_PLAYERS } from '../../data/queries';
 import { PlayerData, Team, Position, RosterSpot, SortColumnName, Player} from '../../data/types';
-//=====================
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AvailablePlayersScreenRouteProp } from '../../navigation/navTypes';
 
@@ -53,7 +51,6 @@ export default function AllPlayersScreen() {
   	showFailureAlert()
   }, []);
 
-  //==== GraphQL ======== 
 	const { loading, error, data, refetch } = useQuery<PlayerData>(GET_SORTED_PLAYERS, {
 		fetchPolicy: "no-cache",
 		variables: {
@@ -83,7 +80,7 @@ export default function AllPlayersScreen() {
 
 	if (loading ) return <ActivityIndicator testID="loading" size="large" color="#0000ff" />;
 	if (error ) return <Text>Error: {error.message}</Text>;
-//=====================
+
 	const renderModal = addPlayer && route.params?.team && route.params?.rosterId && route.params?.rosterSpot && route.params?.availableForLeagueId
 	return(
 		<View>
@@ -118,7 +115,7 @@ export default function AllPlayersScreen() {
 						availableForLeagueId={route.params?.availableForLeagueId}/>
 				}
 				stickyHeaderIndices={[0]}
-		  	data={data?.players}
+				data={data?.players}
 		  	renderItem={({item}) =>
 		  		  <PlayerRow 
 		  				player={item}
