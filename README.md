@@ -16,9 +16,19 @@ An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's c
 
 #### Setup/Demo
 
-There is Web App Demo you are welcome explore here: https://laxapp--ia4rbnj5by.expo.app/
+There is Web App Demo you are welcome explore here: https://laxapp--yo17zt86m5.expo.app/
 
 You are welcome to fork and download this project, however, the setup process would require initializing new user group/pool on AWS Amplify and configuring the environment.
+
+Local Build commands for qall three platforms (web, Android, iOS)
+
+```
+$ npm run web
+
+$ npx expo run android
+
+$ npx expo run ios
+```
 
 ### Server Setup
 There is also a [GraphQL Server](https://github.com/jhars/nodejs-graphql-psql-apollo-demo) for this application, built with NodeJS / PostgreSQL / Apollo, that you are welcome to download and run. Follow the instructions in that repo's [README](https://github.com/jhars/nodejs-graphql-psql-apollo-demo) to get it up and running locally and then you can checkout the GraphQL data explorer on localhost:4000.
