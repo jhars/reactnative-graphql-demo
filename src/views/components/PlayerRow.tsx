@@ -37,6 +37,7 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 	);
 }
 
+// export default memo(PlayerRow);
 export default memo(PlayerRow);
 
 const styles = StyleSheet.create({

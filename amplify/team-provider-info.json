@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-laxfan-dev-af98d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxfan-dev-af98d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::442042506404:role/amplify-laxfan-dev-af98d-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-laxfan-dev-af98d-deployment",
+      "UnauthRoleName": "amplify-laxfan-dev-af98d-unauthRole",
+      "StackName": "amplify-laxfan-dev-af98d",
+      "StackId": "arn:aws:cloudformation:us-east-1:442042506404:stack/amplify-laxfan-dev-af98d/4e069170-3357-11f0-93e1-0affcfc309cf",
+      "AmplifyAppId": "dpr1dq9twf7nh"
+    },
+    "categories": {
+      "auth": {
+        "laxfan4f3942f0": {}
+      }
+    }
+  }
+}

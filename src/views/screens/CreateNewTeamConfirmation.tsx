@@ -32,7 +32,9 @@ const CreateNewTeamConfirmation = () => {
     },
     errorPolicy: "all",
     onError(err) {
-      console.log("Apollo err", err)
+      console.log("Apollo err")
+      console.log(err)
+      console.log("***********")
     }
   });
       
@@ -52,7 +54,7 @@ const CreateNewTeamConfirmation = () => {
         </TouchableOpacity>
 
       { error &&
-        <Text>Error: {error.message}</Text>
+        <Text style={{color: 'red'}}>Error: {error.message}</Text>
       }
     </View>
   );

@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import { League } from '../../data/types';
 import { ButtonStyles, ContainerStyles } from '../styles/index';

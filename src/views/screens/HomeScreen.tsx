@@ -9,6 +9,9 @@ export default function HomeScreen() {
   const navigation = useNavigation();
   const { user } = useContext(UserContext);
 
+  console.log("user from useContext")
+  console.log(user)
+
   return (
     <View style={ContainerStyles.container}>
       <View style={styles.username}>

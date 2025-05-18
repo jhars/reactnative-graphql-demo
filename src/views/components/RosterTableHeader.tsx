@@ -38,6 +38,13 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 export default RosterTableHeader
 
 const styles = StyleSheet.create({
+	// tableHeader: {
+	//   flex: 1,
+	//   flexDirection: "row",
+	//   alignItems: "center",
+	//   backgroundColor: "darkblue",
+	//   height: 50,
+	// },
 	positionColumnHeader: {
 	  flex:1,
 	  flexGrow: 2,
