@@ -12,21 +12,24 @@ Expo (EAS Hosting)
 
 
 ### A brief description of the project
-An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's current state, the main purpose of this repo is to  demonstrate my mobile app development skills. I plan to release this to the Google/Apple app stores in the future, so please excuse the leet '@'s & '0's -- as I am trying to keep the repo as private as possible while sharing it easily/publicly. 
+An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's current state, the main purpose of this repo is to  demonstrate my mobile app development skills. I plan to release this to the Google/Apple app stores in the future, hence the '@' & '0' leet characters -- I am trying to keep the repo as private as possible while easily sharing it publicly. 
 
-#### Setup/Demo
+### Setup/Demo
 
-There is Web App Demo you are welcome explore here: https://laxapp--tsv6z8iq3n.expo.app
+There is Web App Demo you are welcome explore here: https://laxapp--jqhplihc93.expo.app
 
 You are welcome to fork and download this project, however, the setup process would require initializing new user group/pool on AWS Amplify and configuring the environment.
 
-Local Build commands for qall three platforms (web, Android, iOS)
+### Local Build commands for Web, Android & iOS
 
+Run on Web:
 ```
 $ npm run web
+```
 
+Emulator Build Commands:
+```
 $ npx expo run android
-
 $ npx expo run ios
 ```
 

@@ -87,7 +87,7 @@ export default function AllPlayersScreen() {
 //=====================
 	const renderModal = addPlayer && route.params?.team && route.params?.rosterId && route.params?.rosterSpot && route.params?.availableForLeagueId
 	return(
-		<View>
+		<View style={{flex: 1}}>
 			{ renderModal && 
   			<Modal
   			  animationType="slide"
@@ -109,9 +109,9 @@ export default function AllPlayersScreen() {
   			  
 			  </Modal>
 			}
-			<View style={ContainerStyles.container}>
-			</View>
+			
 			<FlatList
+				contentContainerStyle={{ paddingBottom: 20 }}
 				style={{ height: '100vh' }}
 				keyExtractor={(item) => item.id}
 				ListHeaderComponent={
