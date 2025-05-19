@@ -73,7 +73,7 @@ export default function RosterScreen() {
   if (error) return <Text>Error: {error.message}</Text>;
 
     return (
-      <View>
+      <View style={{height: '100vh', flex: 1}}>
         <RosterTableHeader myTeam={myTeam}/>
           <Modal
             animationType="slide"
@@ -96,7 +96,7 @@ export default function RosterScreen() {
           </Modal>
         
           {roster &&
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <RosterRow dropPlayerCallback={dropPlayerFromRosterRowCallback} rosterId={roster.id} rosterSpot={RosterSpot.GOALIE} position={Position.G} playerInfo={roster.goalie} myTeam={myTeam} teamInfo={roster?.teamInfo}/>
             <RosterRow dropPlayerCallback={dropPlayerFromRosterRowCallback} rosterId={roster.id} rosterSpot={RosterSpot.DEFENSE1} position={Position.D} playerInfo={roster.defense1} myTeam={myTeam} teamInfo={roster?.teamInfo}/>
             <RosterRow dropPlayerCallback={dropPlayerFromRosterRowCallback} rosterId={roster.id} rosterSpot={RosterSpot.DEFENSE2} position={Position.D} playerInfo={roster.defense2} myTeam={myTeam} teamInfo={roster?.teamInfo}/>

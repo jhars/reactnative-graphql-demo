@@ -53,7 +53,7 @@ export default function MyTeamsScreen() {
 
 const styles = StyleSheet.create({
   footer: {
-    marginBottom: 25,
-    marginTop: 25,
+    // height: 100,  
+    justifyContent: 'flex-end',
   }
 });

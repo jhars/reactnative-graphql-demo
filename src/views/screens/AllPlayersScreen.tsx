@@ -10,6 +10,7 @@ import { PlayerData, Team, Position, RosterSpot, SortColumnName, Player} from '.
 //=====================
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AvailablePlayersScreenRouteProp } from '../../navigation/navTypes';
+import { ContainerStyles } from '../styles/index';
 
 export default function AllPlayersScreen() {
 	const navigation = useNavigation();
@@ -108,7 +109,10 @@ export default function AllPlayersScreen() {
   			  
 			  </Modal>
 			}
+			<View style={ContainerStyles.container}>
+			</View>
 			<FlatList
+				style={{ height: '100vh' }}
 				keyExtractor={(item) => item.id}
 				ListHeaderComponent={
 					<AllPlayersTableHeader 
@@ -120,12 +124,12 @@ export default function AllPlayersScreen() {
 				stickyHeaderIndices={[0]}
 		  	data={data?.players}
 		  	renderItem={({item}) =>
-		  		  <PlayerRow 
+	  		  <PlayerRow 
 		  				player={item}
 		  				addPlayerButton={route.params?.availableForLeagueId ? true : false}
 		  				addPlayerCallback={addPlayerFromPlayerRowCallback}
-		  		  />
-		  	}
+		  		 	/>
+		  		}
       />
 		</View>
 	);

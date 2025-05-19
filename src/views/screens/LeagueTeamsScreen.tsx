@@ -41,9 +41,9 @@ export default function LeagueTeamsScreen() {
 
 const styles = StyleSheet.create({
   footer: {
-    height: 100,  
+    // height: 100,  
     justifyContent: 'flex-end',
-    flexGrow: 1,
-    paddingBottom: 100
+    // flexGrow: 1,
+    // paddingBottom: 100
   },
 });
