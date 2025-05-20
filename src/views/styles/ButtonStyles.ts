@@ -16,6 +16,26 @@ import {StyleSheet} from 'react-native';
 
 export const ButtonStyles = StyleSheet.create({
 
+	dropButton: {
+	  backgroundColor: 'darkred',
+	  borderWidth: 2,
+	  borderRadius: 20,
+	  alignItems: 'center',
+	  width: 65
+	},
+	addButton: {
+	  backgroundColor: 'green',
+	  borderWidth: 2,
+	  borderRadius: 20,
+	  alignItems: 'center',
+	  width: 65
+	},
+	addDropButtonText: {
+	  fontSize: 12,
+	  color: 'aliceblue',
+	  fontWeight: "bold"
+	},
+
 	primaryButton: {
 	  backgroundColor: 'rgba(146 212 230 / 1.0)',
 	  height: 35,

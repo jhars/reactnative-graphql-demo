@@ -2,6 +2,7 @@ import React, {useState,  useContext, memo} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AddPlayerConfirmationModal from './AddPlayerConfirmationModal';
 import { Player } from '../../data/types';
+import { ButtonStyles, RowStyles } from '../styles/index';
 
 interface PlayerRowProps {
   player: Player, 
@@ -15,21 +16,21 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 	return(
 		<View testId={"playerRowContainerID"} style={styles.container}>
 
-			<View style={styles.positionColumn}>
+			<View style={RowStyles.positionColumn}>
 			  <Text style={styles.columnText}>{position}</Text>  
 			</View>
 
-			<View style={styles.nameColumn}>
+			<View style={RowStyles.nameColumn}>
 				<Text style={styles.nameColumnText}>{lastName}</Text>
 			</View>
-			<View style={styles.pointsColumn}>
+			<View style={RowStyles.pointsColumn}>
 				<Text style={styles.pointsColumnText}>{statistics?.statLineLastSeason.points}</Text>
 			</View>
 
       {addPlayerButton && 
-        <View style={styles.addPlayerColumn} testID={"addPlayerButtonTestID"}>
-          <TouchableOpacity style={styles.addButton} onPress={() => addPlayerCallback(player)}>
-            <Text style={styles.buttonText}>Add</Text>
+        <View style={RowStyles.dropAddPlayerColumn} testID={"addPlayerButtonTestID"}>
+          <TouchableOpacity style={ButtonStyles.addButton} onPress={() => addPlayerCallback(player)}>
+            <Text style={ButtonStyles.addDropButtonText}>Add</Text>
           </TouchableOpacity>
         </View>
       }
@@ -41,38 +42,11 @@ export default memo(PlayerRow);
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: "row",
     backgroundColor: '#fff',
     height: 50,
     paddingTop:15,
     paddingBottom:15,
-  },
-  positionColumn: {
-    flex:2,
-    alignItems: 'center'
-  },
-  nameColumn: {
-    flex:4,
-  },
-  pointsColumn: {
-    flex: 2,
-  },
-  addPlayerColumn: {
-    flex:2,
-    alignItems: 'center'
-  },
-  addButton: {
-    backgroundColor: 'green',
-    borderWidth: 2,
-    borderRadius: 20,
-    alignItems: 'center',
-    width: 70
-  },
-  buttonText: {
-    fontSize: 12,
-    color: 'aliceblue',
-    fontWeight: "bold"
   },
   columnText: {
     alignSelf: 'center'

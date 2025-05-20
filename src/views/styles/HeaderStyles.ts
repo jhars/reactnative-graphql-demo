@@ -8,5 +8,6 @@ export const HeaderStyles = StyleSheet.create({
 		backgroundColor: 'rgba(90 130 156 / 1.0)',
 		height: 50,
 		// paddingLeft: 15
-	}
+	},
+
 });

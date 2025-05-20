@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
   },
   addColumnHeader: {
     flex:2,
+    alignItems: 'center',
+    paddingRight: 10
   },
   nameHeaderTxt: {
     color: "white",

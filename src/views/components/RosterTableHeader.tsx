@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet} from 'react-native';
-import { HeaderStyles } from '../styles/index';
+import { HeaderStyles, RowStyles } from '../styles/index';
 
 interface RosterTableHeaderProps {
 	myTeam: boolean | undefined;
@@ -9,24 +9,24 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 	return(
 		<View style={HeaderStyles.tableHeader}>
 
-		  <View style={styles.positionColumnHeader} >
+		  <View style={RowStyles.positionColumn} >
 		    <Text style={styles.columnHeaderTxt}>Pos.</Text>  
 		  </View>
 
 		  <View 
-		    style={styles.nameColumnHeader}>
+		    style={RowStyles.nameColumn}>
 		    <Text style={styles.nameHeaderTxt}>Name</Text>
 		  </View>
 
 		  <View 
-		    style={styles.pointsColumnHeader}>
+		    style={RowStyles.pointsColumn}>
 		    <Text style={styles.pointsHeaderTxt}>Points</Text>
 		  </View>
 
 		  { myTeam && 
 		    <View 
 		    	testID={"actionColumnHeaderTestID"}
-		      style={styles.dropAddColumnHeader}>
+		      style={RowStyles.dropAddPlayerColumn}>
 		      <Text style={styles.actionHeaderTxt}>Action</Text>
 		    </View>        
 		  }
@@ -38,22 +38,11 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 export default RosterTableHeader
 
 const styles = StyleSheet.create({
-	positionColumnHeader: {
-	  flex:1,
-	  flexGrow: 2,
-	  alignItems: 'center'
-	},
-	nameColumnHeader: {
-	  flex:1,
-	  flexGrow: 4,
-	},
-	pointsColumnHeader: {
-	  flex: 2,
-	},
-	dropAddColumnHeader: {
-	  flex: 2,
-	  alignItems: 'center',
-	},
+	// positionColumnHeader: {
+	//   flex:1,
+	//   flexGrow: 2,
+	//   alignItems: 'center'
+	// },
 	columnHeaderTxt: {
 	  color: "white",
 	  fontWeight: "bold",

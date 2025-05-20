@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Team, RosterSpot, Position, Player, SelectDropPlayerObject } from '../../data/types';
+import { ButtonStyles, RowStyles } from '../styles/index';
 
 interface RosterRowProps {
   dropPlayerCallback: (player: SelectDropPlayerObject) => void, 
@@ -27,8 +28,8 @@ const RosterRow = ({
   const addDropButton = () => {
     if(playerInfo) {
       return (
-        <View style={styles.dropAddColumn} testId={"rosterRowDropButtonID"}>
-          <TouchableOpacity style={styles.dropButton} onPress={() => {
+        <View style={RowStyles.dropAddPlayerColumn} testId={"rosterRowDropButtonID"}>
+          <TouchableOpacity style={ButtonStyles.dropButton} onPress={() => {
             dropPlayerCallback({
               leagueId: Number(teamInfo?.league?.id),
               playerId: Number(playerInfo.id),
@@ -37,14 +38,14 @@ const RosterRow = ({
               playerInfo: playerInfo
             })
           }}>
-            <Text style={styles.buttonText}>Drop</Text>
+            <Text style={ButtonStyles.addDropButtonText}>Drop</Text>
           </TouchableOpacity>
         </View>
       )
     } else {
       return (
-        <View style={styles.dropAddColumn} testId={"rosterRowAddButtonID"}>
-          <TouchableOpacity style={styles.addButton} onPress={() => {
+        <View style={RowStyles.dropAddPlayerColumn} testId={"rosterRowAddButtonID"}>
+          <TouchableOpacity style={ButtonStyles.addButton} onPress={() => {
             return navigation.navigate('MyTeams', {
               screen: 'AvailablePlayersScreen',
               params: {
@@ -56,7 +57,7 @@ const RosterRow = ({
               }
             })
           }}>
-            <Text style={styles.buttonText}>Add</Text>
+            <Text style={ButtonStyles.addDropButtonText}>Add</Text>
           </TouchableOpacity>
         </View>
       )
@@ -66,15 +67,15 @@ const RosterRow = ({
 	return(
     <View style={styles.container}>
 
-      <View style={styles.positionColumn}>
+      <View style={RowStyles.positionColumn}>
         <Text style={styles.rowText}>{position}</Text>  
       </View>
 
-      <View style={styles.nameColumn}>
+      <View style={RowStyles.nameColumn}>
         <Text style={styles.rowText}>{playerInfo?.lastName ?? "(empty)"}</Text>
       </View>
 
-      <View style={styles.pointsColumn}>
+      <View style={RowStyles.pointsColumn}>
         <Text style={styles.pointsRowText}>{playerInfo?.statistics.statLineLastSeason.points ?? "  "}</Text>
       </View>
 
@@ -94,45 +95,10 @@ const styles = StyleSheet.create({
     paddingTop:15,
     paddingBottom:15,
   },
-  positionColumn: {
-    flex:1,
-    flexGrow: 2,
-    alignItems: 'center'
-  },
-  nameColumn: {
-    flex:1,
-    flexGrow: 4,
-  },
-  pointsColumn: {
-    flex: 2,
-  },
-  dropAddColumn: {
-    flex: 2,
-    alignItems: 'center',
-  },
   rowText: {
     
   },
   pointsRowText: {
     alignSelf: 'center'
   },
-  buttonText: {
-    fontSize: 12,
-    color: 'aliceblue',
-    fontWeight: "bold"
-  },
-  addButton: {
-    backgroundColor: 'green',
-    borderWidth: 2,
-    borderRadius: 20,
-    alignItems: 'center',
-    width: 70
-  },
-  dropButton: {
-    backgroundColor: 'darkred',
-    borderWidth: 2,
-    borderRadius: 20,
-    alignItems: 'center',
-    width: 70
-  }
 });
