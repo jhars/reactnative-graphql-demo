@@ -12,7 +12,13 @@ Expo (EAS Hosting)
 
 
 ### A brief description of the project
-An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's current state, the main purpose of this repo is to  demonstrate my mobile app development skills. I plan to release this to the Google/Apple app stores in the future, hence the '@' & '0' leet characters -- I am trying to keep the repo as private as possible while easily sharing it publicly. 
+An iOS/Android mobile application to play F@nt@sy L@cr0sse. Currently, functionality is limited to:
+
+- Sign Up / Login
+- Create a Team + Join League
+- Add/Drop Players to/from your Team. 
+
+Hoping for a Beta release in 2025, but lots of functionality still to build!
 
 ### Setup/Demo
 
