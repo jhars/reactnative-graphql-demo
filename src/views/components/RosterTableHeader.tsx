@@ -15,19 +15,19 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 
 		  <View 
 		    style={styles.nameColumnHeader}>
-		    <Text style={styles.columnHeaderTxt}>Name</Text>
+		    <Text style={styles.nameHeaderTxt}>Name</Text>
 		  </View>
 
 		  <View 
 		    style={styles.pointsColumnHeader}>
-		    <Text style={styles.columnHeaderTxt}>Points</Text>
+		    <Text style={styles.pointsHeaderTxt}>Points</Text>
 		  </View>
 
 		  { myTeam && 
 		    <View 
 		    	testID={"actionColumnHeaderTestID"}
 		      style={styles.dropAddColumnHeader}>
-		      <Text style={styles.columnHeaderTxt}>Action</Text>
+		      <Text style={styles.actionHeaderTxt}>Action</Text>
 		    </View>        
 		  }
 
@@ -38,13 +38,6 @@ const RosterTableHeader = ({myTeam}: RosterTableHeaderProps) => {
 export default RosterTableHeader
 
 const styles = StyleSheet.create({
-	// tableHeader: {
-	//   flex: 1,
-	//   flexDirection: "row",
-	//   alignItems: "center",
-	//   backgroundColor: "darkblue",
-	//   height: 50,
-	// },
 	positionColumnHeader: {
 	  flex:1,
 	  flexGrow: 2,
@@ -52,17 +45,30 @@ const styles = StyleSheet.create({
 	},
 	nameColumnHeader: {
 	  flex:1,
-	  flexGrow: 5,
+	  flexGrow: 4,
 	},
 	pointsColumnHeader: {
-	  flexGrow:1,
-	  alignItems: 'center'
+	  flex: 2,
 	},
 	dropAddColumnHeader: {
-	  flexGrow:1,
-	  width: 25
+	  flex: 2,
+	  alignItems: 'center',
 	},
 	columnHeaderTxt: {
+	  color: "white",
+	  fontWeight: "bold",
+	  alignSelf: 'center'
+	},
+	nameHeaderTxt: {
+	  color: "white",
+	  fontWeight: "bold",
+	},
+	pointsHeaderTxt: {
+	  color: "white",
+	  fontWeight: "bold",
+	  alignSelf: 'center'
+	},
+	actionHeaderTxt: {
 	  color: "white",
 	  fontWeight: "bold",
 	},

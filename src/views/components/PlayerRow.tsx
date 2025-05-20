@@ -16,14 +16,14 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 		<View testId={"playerRowContainerID"} style={styles.container}>
 
 			<View style={styles.positionColumn}>
-			  <Text>{position}</Text>  
+			  <Text style={styles.columnText}>{position}</Text>  
 			</View>
 
 			<View style={styles.nameColumn}>
-				<Text>{lastName}</Text>
+				<Text style={styles.nameColumnText}>{lastName}</Text>
 			</View>
 			<View style={styles.pointsColumn}>
-				<Text>{statistics?.statLineLastSeason.points}</Text>
+				<Text style={styles.pointsColumnText}>{statistics?.statLineLastSeason.points}</Text>
 			</View>
 
       {addPlayerButton && 
@@ -37,42 +37,49 @@ const PlayerRow = ({player, addPlayerButton, addPlayerCallback}: PlayerRowProps)
 	);
 }
 
-// export default memo(PlayerRow);
 export default memo(PlayerRow);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     flexDirection: "row",
     backgroundColor: '#fff',
     height: 50,
-    paddingTop:30,
+    paddingTop:15,
+    paddingBottom:15,
   },
   positionColumn: {
-    flex:1,
-    flexGrow: 2,
+    flex:2,
     alignItems: 'center'
   },
   nameColumn: {
-    flex:1,
-    flexGrow: 5,
+    flex:4,
   },
   pointsColumn: {
-    flexGrow:1,
+    flex: 2,
   },
   addPlayerColumn: {
-    flexGrow:1,
-    paddingRight: 10
+    flex:2,
+    alignItems: 'center'
   },
   addButton: {
     backgroundColor: 'green',
     borderWidth: 2,
     borderRadius: 20,
     alignItems: 'center',
+    width: 70
   },
   buttonText: {
     fontSize: 12,
     color: 'aliceblue',
     fontWeight: "bold"
-  }
+  },
+  columnText: {
+    alignSelf: 'center'
+  },
+  nameColumnText: {
+  },
+  pointsColumnText: {
+    alignSelf: 'center'
+  },
 });

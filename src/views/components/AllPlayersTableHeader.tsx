@@ -28,21 +28,21 @@ const AllPlayersTableHeader = ({statCriteria, sortOrder, callback, availableForL
 		  	testID={"positionColumnSortHeaderButtonTestID"}
 		    style={styles.positionColumnHeader} 
 		    onPress={()=> sortTable('position')}>
-		  	<Text style={styles.columnHeaderTxt}>{'Pos.' + "\n▲▼"}</Text>
+		  	<Text style={styles.positionHeaderTxt}>{'Pos.' + "\n▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		  	testID={"nameColumnSortHeaderButtonTestID"}
 		    style={styles.nameColumnHeader} 
 		    onPress={()=> sortTable('lastName')}>
-		    <Text style={styles.columnHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
+		    <Text style={styles.nameHeaderTxt}>{'Name' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  <TouchableOpacity 
 		  	testID={"pointsColumnSortHeaderButtonTestID"}
 		  	style={styles.pointsColumnHeader}
 		  	onPress={()=> sortTable('points')}>
-		    <Text style={styles.columnHeaderTxt}>{'Points' + "\n  ▲▼"}</Text>
+		    <Text style={styles.pointsHeaderTxt}>{'Points' + "\n  ▲▼"}</Text>
 		  </TouchableOpacity>
 
 		  {availableForLeagueId && 
@@ -61,24 +61,37 @@ export default AllPlayersTableHeader;
 
 const styles = StyleSheet.create({
   positionColumnHeader: {
-    flex:1,
-    flexGrow: 2,
+    flex:2,
     alignItems: 'center'
   },
   nameColumnHeader: {
-    flex:1,
-    flexGrow: 5,
+    flex:4,
   },
   pointsColumnHeader: {
-  	flexGrow:1,
-    alignItems: 'center'
+    flex: 2,
   },
   addColumnHeader: {
-    flexGrow:1,
+    flex:2,
+  },
+  nameHeaderTxt: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  pointsHeaderTxt: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 13,
+    alignSelf: 'center'
+  },
+  positionHeaderTxt: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 13
   },
   columnHeaderTxt: {
     color: "white",
     fontWeight: "bold",
+    alignSelf: 'center'
   }
 })
 

@@ -7,6 +7,6 @@ export const HeaderStyles = StyleSheet.create({
 		alignItems: "center",
 		backgroundColor: 'rgba(90 130 156 / 1.0)',
 		height: 50,
-		paddingLeft: 15
+		// paddingLeft: 15
 	}
 });

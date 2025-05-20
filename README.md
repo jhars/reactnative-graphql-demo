@@ -16,7 +16,7 @@ An iOS/Android mobile application to play in F@nt@sy L@cr0sse leagues. In it's c
 
 ### Setup/Demo
 
-There is Web App Demo you are welcome explore here: https://laxapp--yat0w4wh44.expo.app
+There is Web App Demo you are welcome explore here: https://laxapp--g3bqmk65vf.expo.app
 
 You are welcome to fork and download this project, however, the setup process would require initializing new user group/pool on AWS Amplify and configuring the environment.
 

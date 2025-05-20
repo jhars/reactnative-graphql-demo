@@ -75,7 +75,7 @@ const RosterRow = ({
       </View>
 
       <View style={styles.pointsColumn}>
-        <Text style={styles.rowText}>{playerInfo?.statistics.statLineLastSeason.points ?? "  "}</Text>
+        <Text style={styles.pointsRowText}>{playerInfo?.statistics.statLineLastSeason.points ?? "  "}</Text>
       </View>
 
       { myTeam && addDropButton() }
@@ -88,11 +88,11 @@ export default memo(RosterRow);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     backgroundColor: '#fff',
     height: 50,
-    paddingTop:30,
+    paddingTop:15,
+    paddingBottom:15,
   },
   positionColumn: {
     flex:1,
@@ -101,17 +101,20 @@ const styles = StyleSheet.create({
   },
   nameColumn: {
     flex:1,
-    flexGrow: 5,
+    flexGrow: 4,
   },
   pointsColumn: {
-    flexGrow:1,
+    flex: 2,
   },
   dropAddColumn: {
-    flexGrow:1,
-    paddingRight: 10,
-    width: 25
+    flex: 2,
+    alignItems: 'center',
   },
   rowText: {
+    
+  },
+  pointsRowText: {
+    alignSelf: 'center'
   },
   buttonText: {
     fontSize: 12,
@@ -123,11 +126,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     alignItems: 'center',
+    width: 70
   },
   dropButton: {
     backgroundColor: 'darkred',
     borderWidth: 2,
     borderRadius: 20,
     alignItems: 'center',
+    width: 70
   }
 });
