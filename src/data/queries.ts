@@ -1,8 +1,16 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_SORTED_PLAYERS = gql`
-  query Players($orderBy: PlayerOrder!, $position: Position, $availableForLeagueId: Int) {
-    players(orderBy: $orderBy, position: $position, availableForLeagueId: $availableForLeagueId) {
+  query Players(
+    $orderBy: PlayerOrder!
+    $position: Position
+    $availableForLeagueId: Int
+  ) {
+    players(
+      orderBy: $orderBy
+      position: $position
+      availableForLeagueId: $availableForLeagueId
+    ) {
       id
       lastName
       position
@@ -16,16 +24,16 @@ export const GET_SORTED_PLAYERS = gql`
 `;
 
 export const GET_ALL_LEAGUES = gql`
-	query Leagues {
-	  leagues {
-	    id
-	    title
-	    teams {
-	      id
-	      name
-	    }
-	  }
-	}
+  query Leagues {
+    leagues {
+      id
+      title
+      teams {
+        id
+        name
+      }
+    }
+  }
 `;
 
 export const GET_TEAMS = gql`
@@ -41,146 +49,143 @@ export const GET_TEAMS = gql`
   }
 `;
 
-
-
 export const GET_TEAM_ROSTER = gql`
-query Roster($teamId: Int) {
-  roster(teamId: $teamId) {
-
-    id
-    
-    teamInfo {
-      name
+  query Roster($teamId: Int) {
+    roster(teamId: $teamId) {
       id
-      league {
-        title
+
+      teamInfo {
+        name
         id
+        league {
+          title
+          id
+        }
       }
-    }
 
-    goalie {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          saves
+      goalie {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            saves
+          }
+        }
+      }
+
+      defense1 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            turnovers
+          }
+        }
+      }
+
+      defense2 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            turnovers
+          }
+        }
+      }
+
+      lsm {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            groundBalls
+          }
+        }
+      }
+
+      ssdm {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            groundBalls
+          }
+        }
+      }
+
+      fo {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            faceoffsWon
+          }
+        }
+      }
+
+      midfield1 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            goals
+            assists
+          }
+        }
+      }
+
+      midfield2 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            goals
+            assists
+          }
+        }
+      }
+
+      attack1 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            goals
+            assists
+          }
+        }
+      }
+
+      attack2 {
+        id
+        lastName
+        position
+        statistics {
+          statLineLastSeason {
+            points
+            goals
+            assists
+          }
         }
       }
     }
-
-    defense1 {
-    id
-    lastName
-    position
-    statistics {
-      statLineLastSeason {
-        points
-        turnovers
-      }
-     } 
-    }
-   
-    defense2 {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          turnovers
-      }
-     } 
-    }
-
-    lsm {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          groundBalls
-        }
-      }
-    }
-
-    ssdm {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          groundBalls
-        }
-      }
-    }
-
-    fo {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          faceoffsWon
-        }
-      }
-    }
-
-    midfield1 {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          goals
-          assists
-        }
-      }
-    }
-
-    midfield2 {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          goals
-          assists
-        }
-      }
-    }
-
-    attack1 {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          goals
-          assists
-        }
-      }
-    }
-
-    attack2 {
-      id
-      lastName
-      position
-      statistics {
-        statLineLastSeason {
-          points
-          goals
-          assists
-        }
-      }
-    } 
   }
-}
 `;

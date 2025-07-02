@@ -1,21 +1,43 @@
-import { RouteProp, NavigatorScreenParams, ParamListBase, CompositeScreenProps, CompositeNavigationProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import { Team, Position, RosterSpot, League } from '../data/types';
-import type { NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+  NavigatorScreenParams,
+  ParamListBase,
+  RouteProp,
+} from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { League, Position, RosterSpot, Team } from "../data/types";
 
-//JH-NOTE: review all of this... necessary? 
+//JH-NOTE: review all of this... necessary?
 export type BaseNavigationProps = NativeStackNavigationProp<ParamListBase>;
-export type AvailablePlayersScreenRouteProp = RouteProp<MyTeamsStackParamList, 'AvailablePlayersScreen'>;
-export type RosterScreenRouteProps = RouteProp<LeaguesStackParamList|MyTeamsStackParamList,'RosterScreen'>;
+export type AvailablePlayersScreenRouteProp = RouteProp<
+  MyTeamsStackParamList,
+  "AvailablePlayersScreen"
+>;
+export type RosterScreenRouteProps = RouteProp<
+  LeaguesStackParamList | MyTeamsStackParamList,
+  "RosterScreen"
+>;
 
-export type MyTeamsScreenNavigationProps = NavigatorScreenParams<MyTeamsStackParamList>;
+export type MyTeamsScreenNavigationProps =
+  NavigatorScreenParams<MyTeamsStackParamList>;
 
-export type LeagueTeamsScreenRouteProps = RouteProp<LeaguesStackParamList, 'LeagueTeamsScreen'>;
-export type LeaguesScreenNavigationProps = NavigatorScreenParams<LeaguesStackParamList>;
+export type LeagueTeamsScreenRouteProps = RouteProp<
+  LeaguesStackParamList,
+  "LeagueTeamsScreen"
+>;
+export type LeaguesScreenNavigationProps =
+  NavigatorScreenParams<LeaguesStackParamList>;
 
-export type CreateNewTeamConfirmationScreenRouteProp = RouteProp<CreateTeamStackParamList, 'CreateNewTeamConfirmation'>;
-export type CreateNewTeamNavigationProps = NavigatorScreenParams<CreateTeamStackParamList>;
+export type CreateNewTeamConfirmationScreenRouteProp = RouteProp<
+  CreateTeamStackParamList,
+  "CreateNewTeamConfirmation"
+>;
+export type CreateNewTeamNavigationProps =
+  NavigatorScreenParams<CreateTeamStackParamList>;
+
+export type TeamHomeScreenRouteProp = RouteProp<
+  MyTeamsStackParamList,
+  "TeamHomeScreen"
+>;
 
 export type RootDrawerParamList = {
   Home: undefined;
@@ -24,44 +46,58 @@ export type RootDrawerParamList = {
   Players: undefined;
   Account: undefined;
   CreateTeam: CreateNewTeamNavigationProps;
+  //JH-NOTE: Below Needs Diff params
+  LiveDraft: CreateNewTeamNavigationProps;
 };
 
-export type CreateTeamStackParamList = { 
-  SelectLeagueFromList: undefined,
+export type CreateLiveDraftParamList = {
+  LeagueDraftLanding: {
+    league: League;
+  };
+};
+
+export type TeamHomeScreenParamList = {
+  team: Team | undefined;
+  myTeam: boolean | undefined;
+};
+
+export type CreateTeamStackParamList = {
+  SelectLeagueFromList: undefined;
   CreateNewTeamConfirmation: {
     leagueID: number;
     leagueTitle: string;
-  }
-}
+  };
+};
 // JH-NOTE: myTeam should just be true/false, never undefined
 export type RosterScreenParamList = {
   team: Team | undefined;
   myTeam: boolean | undefined;
-}
+};
 
 export type MyTeamsStackParamList = {
-  UserTeams: undefined,
-  RosterScreen: RosterScreenParamList,
-  AvailablePlayersScreen: { 
+  UserTeams: undefined;
+  TeamHomeScreen: TeamHomeScreenParamList;
+  RosterScreen: RosterScreenParamList;
+  AvailablePlayersScreen: {
     availableForLeagueId: number | undefined;
     team: Team | undefined;
     position: Position | undefined;
     rosterId: string | undefined;
     rosterSpot: RosterSpot | undefined;
-  }
+  };
 };
 
 export type LeaguesStackParamList = {
-  LeaguesScreen: undefined,
+  LeaguesScreen: undefined;
   LeagueTeamsScreen: {
     league: League;
-  },
-  RosterScreen: RosterScreenParamList
+  };
+  RosterScreen: RosterScreenParamList;
 };
 
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootDrawerParamList {}
-  }
-}
+//JH-NOTE: may not be the best idea...
+// declare global {
+//   namespace ReactNavigation {
+//     interface RootParamList extends RootDrawerParamList {}
+//   }
+// }

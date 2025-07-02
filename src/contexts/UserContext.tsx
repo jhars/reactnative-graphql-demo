@@ -1,20 +1,20 @@
-import React, { ReactNode, createContext, useState } from 'react';
-import { CurrentUser } from '../data/types'
+import React, { ReactNode, createContext, useState } from "react";
+import { CurrentUser } from "../data/types";
 
 const emptyCurrentUser: CurrentUser = {
-  id: "", 
+  id: "",
   email: "",
-  preferred_username: ""
-}
+  preferred_username: "",
+};
 
 interface Props {
-    children?: ReactNode
-    // any props that come into the component
+  children?: ReactNode;
+  // any props that come into the component
 }
 
 export const UserContext = createContext({
   user: emptyCurrentUser,
-  setUser: (user: CurrentUser) => {}
+  setUser: (user: CurrentUser) => {},
 });
 export const UserProvider = ({ children }: Props) => {
   const [user, setUser] = useState(emptyCurrentUser);

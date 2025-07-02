@@ -1,25 +1,25 @@
 export type ById<T> = { [index: string]: T };
 
 export interface DropPlayerRequestObject {
-  leagueId: number,
-  playerId: number,
-  rosterSpot: RosterSpot,
-  rosterId: string,
-  playerInfo: Player
+  leagueId: number;
+  playerId: number;
+  rosterSpot: RosterSpot;
+  rosterId: string;
+  playerInfo: Player;
 }
 
 export interface SelectDropPlayerObject {
-  leagueId: number,
-  playerId: number,
-  rosterSpot: RosterSpot,
-  rosterId: string,
-  playerInfo: Player
+  leagueId: number;
+  playerId: number;
+  rosterSpot: RosterSpot;
+  rosterId: string;
+  playerInfo: Player;
 }
 
 export enum SortColumnName {
   Name = "Name",
   Points = "Points",
-  Position = "Position"
+  Position = "Position",
 }
 
 export enum Position {
@@ -29,7 +29,7 @@ export enum Position {
   SSDM = "SSDM",
   FO = "FO",
   M = "M",
-  A = "A"
+  A = "A",
 }
 
 export enum RosterSpot {
@@ -46,7 +46,7 @@ export enum RosterSpot {
   BENCH1 = "BENCH1",
   BENCH2 = "BENCH2",
   BENCH3 = "BENCH3",
-  BENCH4 = "BENCH4"
+  BENCH4 = "BENCH4",
 }
 
 interface StatLine {
@@ -89,9 +89,9 @@ export interface LeaguesData {
   leagues: League[];
 }
 
-interface Leagues {
-  data: LeaguesData;
-}
+// interface Leagues {
+//   data: LeaguesData;
+// }
 
 export interface Team {
   id: string;
@@ -103,9 +103,9 @@ export interface TeamsData {
   teams: Team[];
 }
 
-interface Teams {
-  data: TeamsData
-}
+// interface Teams {
+//   data: TeamsData;
+// }
 
 export interface Roster {
   id: string;
@@ -123,7 +123,6 @@ export interface Roster {
   attack2: Player;
 }
 
-
 export interface RosterData {
   roster: Roster;
 }
@@ -133,7 +132,7 @@ interface AddPlayerToTeamRosterData {
 }
 
 export interface AddPlayerToTeamRosterMutationResponse {
-  data: AddPlayerToTeamRosterData
+  data: AddPlayerToTeamRosterData;
 }
 
 //============================
